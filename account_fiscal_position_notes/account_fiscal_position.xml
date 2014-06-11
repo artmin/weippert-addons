@@ -1,0 +1,51 @@
+<openerp>
+  <data noupdate="True">
+    
+    <record 
+      model="account.fiscal.position.template" 
+      id="fiscal_position_non_eu_sale_skr04">
+      <field name="chart_template_id" ref="l10n_chart_de_skr04"/>
+      <field name="name">Kunde Ausland</field>
+      <field name="note">
+        Umsatzsteuerfreie Ausfuhrlieferung gemäß § 4 Nr. 1a UStG
+      </field>
+    </record>
+
+    <record 
+      model="account.fiscal.position.template"
+      id="fiscal_position_eu_vat_id_sale_skr04">
+      <field name="chart_template_id" ref="l10n_chart_de_skr04"/>
+      <field name="name">Kunde EU Unternehmen (mit USt-ID)</field>
+      <field name="note">
+        Umsatzsteuerfreie EU-Lieferung gemäß § 4 Nr. 1b UStG in Verbindung mit § 6a UStG. Die USt-ID-Nummer des Kunden lautet:
+      </field>
+    </record>
+
+    <record 
+      model="account.fiscal.position.template"
+      id="fiscal_position_eu_no_id_sale_skr04">
+      <field name="chart_template_id" ref="l10n_chart_de_skr04"/>
+      <field name="name">Kunde EU (ohne USt-ID)</field>
+      <field name="note">
+        Keine USt-Befreiung möglich, da die Voraussetzungen des § 6a UStG nicht erfüllt sind.
+      </field>
+    </record>
+
+    <!-- Add records for costumer from Germany, which always has to pay taxes -->
+    <record 
+      model="account.fiscal.position.template"
+      id="fiscal_position_inland_sale_skr04">
+      <field name="chart_template_id" ref="l10n_chart_de_skr04"/>
+      <field name="name">Kunde Inland (Deutschland)</field>
+    </record>
+
+    <record
+      id="account_fiscal_position_tax_inland_sale_19_skr04"
+      model="account.fiscal.position.tax.template">
+      <field name="position_id" ref="fiscal_position_eu_vat_id_sale_skr04"/>
+      <field name="tax_dest_id" ref="tax_eu_19_purchase_skr04"/>
+      <field name="tax_src_id" ref="tax_ust_19_skr04"/>
+    </record>
+
+  </data>
+</openerp>
