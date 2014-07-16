@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>    
+    <!-- Override sales report -->
+    <report
+      auto="False" 
+      id="report_sale_order"
+      string="Angebot / Bestellung"
+      model="sale.order" 
+      name="sale.report_saleorder.webkit"
+      report_type="webkit"
+      webkit_header="weippert_reports.dreh24_header"
+      usage="default"
+      file="weippert_reports/report/sale_report.mako"
+      attachment="object.state in ('draft','sent') and ('Angebot_'+(object.name or '').replace('/','')+'.pdf')"/>
+
+    <!-- Override invoice report -->
+    <report
+      id="account.account_invoices"
+      string="Rechnung"
+      model="account.invoice" 
+      name="account.invoice.dreh24"
+      report_type="webkit"
+      webkit_header="weippert_reports.dreh24_header"
+      usage="default"
+      file="weippert_reports/report/invoice_report.mako"
+      attachment="(object.state in ('open','paid')) and ('RN'+(object.number or '').replace('/','')+'.pdf')"
+    />
+
+    <!-- Override delivery report -->
+    <report
+      id="stock.report_picking_list_out"
+      model="stock.picking.out"
+      name="stock.picking.list.out.dreh24"
+      string="Lieferschein - dreh24 AG"
+      report_type="webkit"
+      webkit_header="weippert_reports.dreh24_header"
+      usage="default"
+      file="weippert_reports/report/delivery_slip.mako"
+      attachment="('Lieferschein_'+(object.name and object.name or '').replace('/','')+'.pdf')"/>
+
+    <!-- Override purchase order report -->
+    <report
+      id="purchase.action_report_purchase_order"
+      model="purchase.order"
+      name="purchase.order.dreh24"
+      string="Bestellung"
+      report_type="webkit"
+      webkit_header="weippert_reports.dreh24_header"
+      usage="default"
+      file="weippert_reports/report/purchase_order.mako"
+      attachment="('Bestellung_'+(object.name and object.name or '').replace('/','')+'.pdf')"/>
+
+    <!-- Override purchase request report -->
+    <report
+      id="purchase.report_purchasequotation"
+      model="purchase.order"
+      name="purchase.report_purchasequotation"
+      string="Anfrage"
+      report_type="webkit"
+      webkit_header="weippert_reports.dreh24_header"
+      usage="default"
+      file="weippert_reports/report/purchase_order_request.mako"
+      attachment="('Anfrage_'+(object.name and object.name or '').replace('/','')+'.pdf')"/>
+
+   </data>
+</openerp>

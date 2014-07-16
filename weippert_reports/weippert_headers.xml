@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- webkit header and footer-->
+    <record id="weippert_reports.dreh24_header" model="ir.header_webkit">
+      <field name="name">dreh24 AG</field>
+      <field name="margin_top" eval="31.0" />
+	  <field name="margin_bottom" eval="32.0" />
+	  <field name="margin_left" eval="22.0" />
+	  <field name="margin_right" eval="20.0" />
+	  <field name="format">A4</field>
+	  <field name="orientation">Portrait</field>
+	  <field name="css"><![CDATA[
+body {
+font-family:arial;
+font-size:10pt;
+}
+
+.header {
+margin-left:0;
+text-align:left;
+width:300px;
+font-size:12;
+}
+
+.title {
+font-size:12pt;
+}
+
+.fullwidth {
+width:100%;
+}
+
+/* by it.artmin */
+.footer, .from{
+vertical-align: top;
+color: #808080;
+font-size:8pt;
+}
+
+.info {
+color: #808080;
+}
+
+/* Alignment */
+.right {
+float:right;
+}	  
+      ]]>
+      </field>
+      <field name="html"><![CDATA[
+<!-- In the header only the logo is embedded, because otherwise the costumers address could not be displayed -->
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+      function subst() {
+        var vars={};
+        var x=document.location.search.substring(1).split('&');
+        for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+        var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+          var y = document.getElementsByClassName(x[i]);
+          for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+      }
+    </script>
+    <style type="text/css">
+      ${css}
+    </style>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+    <table class="header" style="border-bottom: 0px solid black; width: 100%">
+      <tr>
+        <td style="float:right">
+          ${helper.embed_logo_by_name('dreh24_logo',width=272)|safe}
+        </td>
+      </tr>
+    </table> ${_debug or ''|safe}
+  </body>
+</html>      
+      ]]>      
+      </field>
+      <field name="footer_html"><![CDATA[
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <script>
+        function subst() {
+          var vars={};
+          var x=document.location.search.substring(1).split('&');
+          for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = unescape(z[1]);}
+          var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+          for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+          }
+        }
+    </script>
+    <style type="text/css">
+      ${css}
+    </style>
+  </head>
+  <body style="border:0; margin: 0;" onload="subst()">
+    <table style="width: 100%">
+      <tr>
+        <td class="footer" style="margin-right:1cm">
+          ${company.partner_id.name}<br/>
+          ${company.partner_id.street}<br/>
+          ${company.partner_id.zip} ${company.partner_id.city} &middot;
+          ${company.partner_id.country_id.name} <br/>
+          Geschäftsführer: Günter Weippert</br>
+          Handelsregister des Kantons Schaffhausen<br/>
+        </td>
+        <td class="footer" style="margin-right:1cm">
+          Tel. ${company.partner_id.phone or ''}<br/>
+          ${company.partner_id.email or ''}<br/>
+          ${company.partner_id.website or ''}<br/>
+          Webshop<br/>
+          ${company.company_registry}
+        </td>
+        <td class="footer">
+          Bankverbindung<br/>
+          CHF - IBAN: CH72 0078 2008 2076 2010 2<br/>
+          EUR - IBAN: CH45 0078 2008 2076 2010 3<br/>
+          BIC: SHKBCH2S<br/>
+          MWST CHE 347 663 959
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>      
+      ]]>
+      </field>
+    </record>
+  </data>
+</openerp>
+
+
