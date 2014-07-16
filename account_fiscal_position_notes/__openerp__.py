@@ -30,7 +30,7 @@ Adds notes to be displayed on invoices explaining why or why not tax is charged.
     'website': 'http://it.artmin.de',
     'summary': 'Notes for German fiscal positions',
     'depends': [
-        'account'
+        'l10n_de'
     ],
     'data': [
         'account_fiscal_position.xml',
