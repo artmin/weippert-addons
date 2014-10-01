@@ -4,7 +4,7 @@
     <!-- Override sales report -->
     <report
       auto="False" 
-      id="report_sale_order"
+      id="sale.report_saleorder"
       string="Angebot / Bestellung"
       model="sale.order" 
       name="sale.report_saleorder.webkit"

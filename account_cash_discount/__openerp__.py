@@ -28,7 +28,7 @@ Possibility to add cash discount on invoice.
 """,
     'author': 'it.artmin',
     'website': 'http://it.artmin.de',
-    'summary': 'Cash discount on invoices',
+    'summary': 'Cash discount on invoices and sales orders.',
     'depends': [
         'account',
         'sale'

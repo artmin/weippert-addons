@@ -57,3 +57,6 @@ getaddons
 
 # Eclipse Settings
 .settings
+
+# Editor files
+*~

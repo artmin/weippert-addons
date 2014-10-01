@@ -5,6 +5,7 @@
     </style>
 </head>
 <body>
+  %import datetime
   %for o in objects :
   <table style="width:100%; padding-top:1.5cm">
     <tr>
@@ -109,20 +110,56 @@
     </tr>
   </table>
 
-  <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
+  <!-- cash discount -->
+  % if o.cash_discount:
+    <table>
+      <tr>
+        <td colspan="3">
+          Zahlung: innerhalb von ${o.cash_discount.discount_deadline} mit
+          ${o.cash_discount.discount_rate} &#037; Skonto,
+          ${o.cash_discount.net_payment_target} Tagen netto
+        </td>
+      </tr>
+      <tr>
+        <td>Zahlung bis ${o.discount_date}</td>
+        <td class="right">
+          abzgl. ${ formatLang(o.discount_amount, dp='Account',
+          currency_obj=o.pricelist_id.currency_id) } = 
+        </td>
+        <td class="right">
+          ${ formatLang(o.discount_sum, dp='Account',
+          currency_obj=o.pricelist_id.currency_id) }
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Zahlung bis ${o.date_order +
+          datetime.timedelta(days=o.cash_discount.net_payment_target)}
+        </td>
+        <td class="right">=</td>
+        <td class="right">
+          ${ formatLang(o.amount_total, dp='Account',
+          currency_obj=o.pricelist_id.currency_id) }
+        </td>
+      </tr>
+    </table>
+  %endif
+
+   <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
   <table style="margin-top:1.5cm">
     <tr>
       <td>
         <p> ${ o.carrier_id and ('Versandart: ' + o.carrier_id.name) or '' }</p>
         <p> ${o.incoterm and ('Lieferbedingungen: ' + o.incoterm.name) or ''}</p>
         <p> ${o.payment_term and ('Zahlungsbedinungen: ') + o.payment_term.name or ''}</p>
-      </td>
+        <br/>
+     </td>
     </tr>
     <tr>
       <td> ${o.note and o.note or ''}</td>
       <td>
         %if o.state in ['draft','sent'] or '':
-          Wir bedanken und für Ihre Anfrage und bieten freibleibend an.
+          Wir bedanken uns für Ihre Anfrage und bieten freibleibend an.
         %endif
       </td>
     </tr>

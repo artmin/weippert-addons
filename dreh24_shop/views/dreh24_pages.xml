@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+       
+    <!-- Home page -->
+    <template id="website_home" inherit_id="website.homepage">
+      <xpath expr="//div[@id='wrap']" position="replace">
+        <t t-set="disable_logo" t-value="true"/>
+        <div id="wrap" class="oe_structure oe_empty">
+          <section class="mb32">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 mt64">
+                  <img class="img img-responsive mb16 img-rounded" src="/dreh24_shop/static/src/img/dreh24_logo.png" style=""/>
+                </div>
+                <div class="col-md-6 mt48">
+                  <h3 style="text-align: right;">
+                    <span style="color:#f68712;">
+                      <strong>Ihr Partner für eine gute Verbindung</strong>
+                    </span>
+                  </h3>
+                  <p style="text-align: right;">
+                    <span style="color:#656263;">Die dreh24 AG ist Ihr zuverlässiger Partner wenn es um Verbindungselemente, <br/>
+    DIN-Normteile und Schrauben aus Edelstahl dreht.</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="mb16">
+            <div class="container">
+              <div class="row mt16 mb16">
+                <div class="col-md-4 text-center">
+                  <a href="/shop/category/edelstahlschrauben-zylinderschrauben-14">
+                    <img class="catImage" src="/dreh24_shop/static/src/img/prod_screw_zylinder.png" style=""/>
+                    <h3 class="mt8 mb0">Zylinderschrauben</h3>
+                  </a>
+                  <div class="text-muted">
+                    <span style="line-height: 1.42857143;">DIN 912</span>
+                  </div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <a href="/shop/category/edelstahlschrauben-senkschraube-tx-antrieb-15">
+                    <img class="catImage" src="/dreh24_shop/static/src/img/prod_screw_torx.png" style=""/>
+                    <h3 class="mt8 mb0">Senkschrauben</h3>
+                  </a>
+                  <div class="text-muted">mit Kreuzschlitz</div>
+                  <div class="text-muted">DIN 965</div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <a href="/shop/category/edelstahlschrauben-senkschraube-kreuzschlitz-16">
+                    <img class="catImage" src="/dreh24_shop/static/src/img/prod_screw_kreuz.png" style=""/>
+                    <h3 class="mt8 mb0">Senkschrauben</h3>
+                  </a>
+                  <div class="text-muted">mit TX-Antrieb</div>
+                  <div class="text-muted">ähnlich DIN 965</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="mb16">
+            <div class="container">
+              <div class="row mt16 mb16">
+                <div class="col-md-4 text-center">
+                  <a href="/shop/category/muttern-sechskantmuttern-17">
+                    <img class="catImage img-rounded" src="/dreh24_shop/static/src/img/prod_mutter.png" style=""/>
+                    <h3 class="mt8 mb0">Sechskantmuttern</h3>
+                  </a>
+                  <div class="text-muted">DIN 934</div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <a href="/shop/category/sicherungselemente-unterlegscheiben-18">
+                    <img class="catImage" src="/dreh24_shop/static/src/img/prod_unterlegscheibe.png" style=""/>
+                    <h3 class="mt8 mb0">Unterlegscheiben</h3>
+                  </a>
+                  <div class="text-muted">DIN 125</div>
+                </div>
+                <div class="col-md-4 text-center">
+                  <a href="/shop/category/sicherungselemente-federringe-19">
+                    <img class="catImage" src="/dreh24_shop/static/src/img/prod_spring_ring.png" style=""/>
+                    <h3 class="mt8 mb0">Federringe</h3>
+                  </a>
+                  <div class="text-muted">DIN 127</div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <hr/>
+          <section class="mb16">
+            <div class="container">
+              <div class="row"/>
+              <div class="row">
+                <div class="col-md-5 mt16 mb16">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span class="pull-left mb16 fa fa-hand-o-right fa-3x" style="min-width: 45px"/>
+                      <h3 class="mt0 mb0">Zuverlässig</h3>
+                      <p>Wir sind Ihr Partner für Verbindungselemente, DIN-Normteile und Schrauben aus Edelstahl.</p>
+                    </div>
+                    <div class="col-md-12">
+                      <span class="pull-left mb16 fa fa-wrench fa-3x" style="min-width: 45px"/>
+                      <h3 class="mt0 mb0">Kompetent</h3>
+                      <p>Gewindegrößen von M4 bis M12<br/><span style="line-height: 1.42857143;">Längen von 10 mm bis 100 mm</span><span style="line-height: 1.42857143;"> </span></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-5 col-md-offset-2 mt16 mb16">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <span class="pull-left mb16 fa fa-retweet fa-3x" style="min-width: 45px"/>
+                      <h3 class="mt0 mb0">Flexibel</h3>
+                      <p>Andere rostfreie Schrauben und Verbindungselemente auf Anfrage kurzfristig lieferbar.</p>
+                    </div>
+                    <div class="col-md-12">
+                      <span class="fa fa-3x fa-user pull-left mb16" style="min-width: 45px"/>
+                      <h3 class="mt0 mb0">Kundenorientiert</h3>
+                      <p>Für uns steht der Kunde im Vordergrund. Wir freuen uns über jeden Kunden ob groß oder klein.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="oe_img_bg" style="height: 480px; overflow: hidden; background-image: url('/dreh24_shop/static/src/img/screws1.png') !important;">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 mt16"/>
+              </div>
+            </div>
+          </section>
+        </div>
+      </xpath>
+    </template>
+    
+    <!-- about us page -->
+    <template id="website_aboutus" inherit_id="website.aboutus">
+      <xpath expr="//div[@id='wrap']" position="replace">
+        <div id="wrap">
+          <section class="mt0">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 mt16">
+                  <img class="img img-responsive mb16 img-rounded" src="/dreh24_shop/static/src/img/screws2.png" style=""/>
+                </div>
+                <div class="col-md-5 mt48 mb32">
+                  <h3>
+                    <strong>
+                      <span style="color:#FF8C00;">&gt;&gt; Über uns</span>
+                    </strong>
+                  </h3>
+                  <p/>
+                  <p style="margin-bottom: 0.35cm; line-height: 150%">Im Jahr 2012 wurde mit der Umsetzung und Gründung des Aktienunternehmens begonnen.</p>
+                  <p style="margin-bottom: 0.35cm; line-height: 150%">Wir sind ein Großhandelsunternehmen für Ein- und Verkauf von Verbindungselementen, DIN-Normteile, Sonder- und Zeichnungsteilen aus verschiedenen Materialien, hauptsächlich Edelstahl.</p>
+                  <p style="margin-bottom: 0.35cm; line-height: 150%">Dank der guten Infrastruktur und der guten Zusammenarbeit mit der Stadt Stein am Rhein und dem Kanton Schaffhausen konnte der Standort in Stein am Rhein gesichert werden. Hier läuft die Planung für ein Lager- und Verwaltungsgebäude.</p>
+                  <p style="margin-bottom: 0.35cm; line-height: 150%">Ab Oktober 2014 sind wir mit dem Verkauf unserer Produkte bereit und freuen uns Sie als Kunden bald begrüßen zu dürfen.</p>
+                  <p style="margin-bottom: 0.35cm; line-height: 150%">Für unsere Kunden in der Schweiz sind wir in Stein am Rhein in der Kaltenbacherstraße zu finden. Für unsere Kunden aus der EU gibt es ein Außenlager in 74613 Öhringen / Deutschland im Zeilbaumweg.</p>
+                  <p/>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </xpath>
+    </template>
+    
+    <!-- AGB -->
+    <template id="agb" name="AGB" page="True">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <section class="mt16 mb16">
+            <div class="container">
+              <div class="row">
+                <p style="text-align: center;">
+                  <b style="letter-spacing: 0.5 em;"><h2>ALLGEMEINE GESCHÄFTSBEDINGUNGEN</h2></b><br/>
+                  der dreh 24 AG<br/>
+                  Kaltenbacherstraße 24, 8260 Stein am Rhein / Schweiz<br/>
+                  eingetragen zu Handelsregister Schaffhausen CH-290.3.017.680-7<br/>
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 1 Geltungsbereich</b></div>
+                (1) Unsere Allgemeinen Geschäftsbedingungen (AGB) gelten für alle gegenwärtigen und zukünftigen Geschäftsbeziehungen über Fernabsatz, insbesondere die Online-Plattform www.dreh24.com . Abweichende, entgegenstehende oder ergänzende Geschäftsbedingungen werden, selbst bei Kenntnis, nicht Vertragsbestandteil, es sei denn, ihrer Geltung wird unsererseits ausdrücklich zugestimmt. Wir sind nicht verpflichtet, den AGB des Vertragspartners zu widersprechen, und zwar auch dann nicht, wenn in diesen AGB die Gültigkeit derselben als ausdrückliche Bedingung genannt wird. Wir erklären, ausschließlich auf Grund dieser AGB kontrahieren zu wollen.<br/>
+                (2)   In diesen AGB sind für Verbrauchergeschäfte besondere Bestimmungen vorgesehen.
+                  Verbraucher im Sinne der nachstehenden Regelungen ist jede natürliche Peron, die ein Rechtsgeschäft zu Zwecken abschließt, die überwiegend weder ihrer gewerblichen noch ihrer selbstständigen beruflichen Tätigkeit zugerechnet werden kann.<br/> 
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 2 Preise – Angebot – Bestellung</b></div>
+                (1) Preise, die in Katalogen, Prospekten oder Angeboten enthalten sind, verstehen sich ab unserem Lager, es sei denn, es ist eine andere Vereinbarung getroffen worden. Alle Preise sind Nettopreise exklusiv der gesetzlicher Mehrwertsteuer. Für Verbraucher weisen wir die Preise zusätzlich mit 19 % MWSt aus. Sofern nicht anders erwähnt, beziehen sich die Preise auf die jeweils abgebildeten Artikel gemäß Beschreibung, jedoch nicht auf Inhalt, Zubehör oder Dekoration. Unsere Verkaufspreise beinhalten nicht die Kosten für Zustellung, Service oder Einschulung. Unsere Preise und Angebote sind freibleibend und unverbindlich. Der Vertrag gilt erst mit Absendung einer schriftlichen Auftragsbestätigung durch uns oder durch die Auslieferung der bestellten Ware als geschlossen. Einen eventuellen Zwischenverkauf oder Rücktritt behalten wir uns vor.<br/>
+                (2) Wir sind jederzeit berechtigt, die Annahme der Bestellung – etwa nach Prüfung der Bonität des Kunden – abzulehnen.  <br/>
+                (3) Wir sind berechtigt, vom Vertrag zurückzutreten, wenn unsere Vorlieferanten uns nicht, nicht rechtzeitig oder nicht ordnungsgemäß beliefern.<br/>
+                (4) Vereinbarungen mit Handelsvertretern oder Angestellten bedürfen zur Rechtswirksamkeit der schriftlichen Bestätigung durch uns. Druck- und Schreibfehler in unseren Listen, Katalogen, sonstigen Drucksachen, schriftlichen Angeboten, Lieferscheinen und Rechnungen etc berechtigen uns zu einer Korrektur. Die Preise verstehen sich als Richtpreise. Technische Datenblätter und Beschreibungen sind unverbindlich. Als vereinbart gilt auch, dass jene Preise zu gelten haben, die unserer aktuellen Preisliste zum Zeitpunkt des Vertragsabschlusses entsprechen.
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 3 Produktbeschaffenheit</b></div>
+                Bei Unternehmensgeschäften gilt als Beschaffenheit der Ware die Beschreibung in unseren Angeboten als vereinbart. Öffentliche Äußerungen, Anpreisungen oder Werbung stellen daneben keine vertragliche Beschaffenheit der Ware dar, ebenso wenig (mündliche) Erklärungen von Mitarbeitern oder Handelsvertretern. Werden vom Vertragspartner nicht innerhalb von sieben Kalendertagen nach Absendung der Auftragsbestätigung (spätestens jedoch nach Ablieferung der Ware) Abweichungen (zB Mengen-, Maß- und Ausführungsangaben oder Einzelpreise und Konditionen) moniert und diese der dreh 24 AG unverzüglich schriftlich mitgeteilt, gelten die in der Auftragsbestätigung festgehaltenen Ausführungen als vereinbart und verbindlich. 
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 4 Lieferung, Gefahrenübergang, Kosten</b></div>
+                (1) Zusagen betreffend Lieferzeit werden nach Kräften eingehalten, sind aber unverbindlich. Bei Nichteinhaltung eines Liefertermins bei Unternehmensgeschäften gelten daher die § 9 Abs 1, 3 und 4 dieser AGB und zwar unabhängig davon, welche Ursache der Verzug hatte. Einseitige Leistungsänderungen durch uns, wie insbesondere werkstoffbedingte Änderungen, sind dem Vertragspartner zumutbar und werden einvernehmlich Vertragsbestandteil, wenn sie sachlich gerechtfertigt sind.<br/>
+                (2) Bei allen Lieferungen geht die Gefahr auf den Kunden über, sobald die Waren unser Lager verlassen haben. Die Lieferung erfolgt durch ein von uns beauftragtes Logistikunternehmen. Eine Transportversicherung besteht.<br/>
+                Für Verbraucher ist gesetzlich geregelt, dass die Gefahr des zufälligen Untergangs und der zufälligen Verschlechterung der verkauften Sache während der Versendung erst mit der Übergabe der Ware an sie übergeht, unabhängig davon, ob die Versendung versichert oder unversichert erfolgt.<br/>
+                (3) Bei einem Kauf verrechnen wir Fracht- und Verpackungskosten. Die Höhe der Frachtkosten sind über eine Schaltfläche im Shop abrufbar und werden bei Bestellung und Rechnung besonders ausgewiesen. Eine Anpassung der Fracht- und Verpackungskosten behalten wir uns vor. <br/>
+                (4) Voraussetzungen für einen Rücktritt des Vertragspartners vom Vertrag bei vorliegendem Lieferverzug ist ein grobes Verschulden durch uns sowie der erfolglose Ablauf einer in einem eingeschriebenen Brief gesetzten angemessenen Nachfrist von mindestens drei Wochen.
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 5 Umtausch</b></div>
+                (1) Wir räumen dem Kunden ein Rückgabe- oder Umtauschrecht auf eine Zeitspanne von vierzehn Werktagen nach Lieferung ein. Ausgenommen davon sind Waren, die nicht von uns geliefert oder für den Kunden beschafft wurden und nicht aus unserem Lagersortiment stammen.<br/>
+                (2) Im Falle einer Rücknahme sind wir berechtigt, Fracht, Porto von der Gutschrift abzusetzen, bei Umtausch werden 10 % des Warenwertes an Manipulationsspesen oder der tatsächliche Aufwand, soweit dieser höher ist, in Rechnung gestellt.<br/>
+                (3) Waren müssen in der Originalverpackung, unbenutzt und ohne Gebrauchsspuren an uns zurückgehen. Die Verpackung ist daher bis zur endgültigen Kaufentscheidung aufzubewahren. Das Rückgaberecht ist ausgeschlossen, wenn die Lieferung im Rahmen von Sonderaktionen oder mit Sonderpreisnachlässen geliefert wird. 
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 6 Fälligkeit – Skonto – Rabatt – Verzugszinsen</b></div>
+                (1) Unsere Rechnungen sind sofort nach Rechnungserhalt ohne Abzug fällig. Zahlungen erfolgen ausschließlich über entsprechend gekennzeichneten Schaltflächen die im Shop ausgewiesen werden.. Wir behalten uns vor, eine davon abweichende Zahlungsweise festzulegen. Insbesondere dann, wenn an der Bonität des Kunden Zweifel auftreten. Das Inkasso erfolgt durch einen von uns beauftragten Dritten. Bei Zahlungsverzug von Verbrauchern werden 5 %, von Unternehmern 8 % Verzugszinsen über dem Basiszinssatz verrechnet. Dabei ist der Basiszinssatz, der am letzten Kalendertag eines Halbjahres gilt, für das nächste Halbjahr maßgebend.<br/> 
+                (2) Der Kunde verpflichtet sich für den Fall des Verzuges, die uns entstehenden Mahn- und Inkassospesen, soweit sie zur zweckentsprechenden Rechtsverfolgung notwendig sind, zu ersetzen. Darüber hinaus ist jeder weitere Schaden, insbesondere auch jener, der dadurch entsteht, dass in Folge Nichtzahlung entsprechend höhere Zinsen auf allfälligen Kreditkonten unsererseits anfallen, unabhängig vom Verschulden im Zahlungsverzug zu ersetzen.<br/>
+                (3) Ein Skontoabzug wird nur im Einzelfall und auf Grund einer besonderen schriftlichen Vereinbarung anerkannt. Wenn auch nur eine Teilzahlung nicht innerhalb der vereinbarten Frist geleistet wird, geht der Anspruch nicht nur hinsichtlich dieser Teilzahlung sondern auch in Bezug auf alle bereits geleisteten oder erst später zu erbringenden Zahlungen verloren.
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 7 Erfüllungsort – Annahmeverzug</b></div>
+                (1) Erfüllungsort ist der Sitz unseres Unternehmens. Für Verbraucher gilt die gesetzliche Regelung.<br/>
+                (2) Befindet sich der Kunde in Annahmeverzug, sind wir berechtigt, entweder die Ware bei uns einzulagern, wofür wir eine Lagergebühr von mindestens € 10,-- pro angefangenen Kalendertag in Rechnung stellen und gleichzeitig auf Vertragserfüllung zu bestehen, oder nach Setzung einer angemessenen Nachfrist vom Vertrag zurückzutreten und die Ware anderweitig zu verwerten.
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 8 Eigentumsvorbehalt</b></div>
+                (1) Die gelieferte Ware bleibt bis zur vollständigen Bezahlung des Kaufpreises unser Eigentum. Schecks oder Wechsel gelten erst nach vollständiger Einlösung (inklusive Nebenkosten) als Zahlung. Im Falle einer Veräußerung der Ware im ordentlichen Geschäftsbetrieb des Kunden gilt der Weiterveräußerungspreis als an uns abgetreten, wobei die Abtretung bei Entstehen der Forderungen in den Büchern oder in der EDV-Buchhaltung zu vermerken ist. Der Wiederveräußerungspreis ist daher auf ein gesondertes Konto zu legen und an uns abzuführen. Sofern die Weiterveräußerung auf Kredit/Rechnung erfolgt, hat dies unter Eigentumsvorbehalt zu erfolgen und gilt die Forderung gegen diesen Kunden als an uns abgetreten. Wir nehmen diese Abtretung an.<br/>
+                (2) Wenn der Kunde von uns gelieferte Ware be- oder verarbeitet, steht uns verhältnismäßig Miteigentum an der neu entstandenen Sache zu. Der Kunde hat uns unverzüglich schriftlich von allen Zugriffen Dritter auf die Ware zu unterrichten, insbesondere von Zwangsvollstreckungsmaßnahmen, sowie von etwaigen Beschädigungen oder der Vernichtung der Ware. Einen Besitzwechsel der Ware sowie den eigenen Anschriftenwechsel hat uns der Kunde unverzüglich anzuzeigen.<br/>
+                (3) Der Kunde hat uns alle Schäden und Kosten zu ersetzen, die durch einen Verstoß gegen diese Verpflichtungen und durch erforderliche Interventionsmaßnahmen gegen Zugriffe Dritter auf die Ware entstehen.
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 9 Gewährleistung/Schadenersatz/Verjährung</b></div>
+                Ausschluss sonstiger Ansprüche/Beweislast<br/>
+                (1) Gewährleistung bei Unternehmergeschäften: Ist der Vertragspartner ein Unternehmer, hat er die gelieferte Ware unverzüglich zu untersuchen und spätestens binnen sieben Werktagen ab Übergabe der Ware allfällige Mängel schriftlich gegenüber uns (an die dreh 24 AG) zu rügen, widrigenfalls sind alle Rechte des Vertragspartners insbesondere aus dem Titel der Gewährleistung, des Schadenersatzes und der Irrtumsanfechtung ausgeschlossen; dies unbeschadet der Abs 3 und 4. Eine Mängelrüge berechtigt nicht zur Zurückbehaltung der Rechnungsbeträge oder Teile derselben. Im Falle einer rechtzeitigen Rüge und tatsächlich vorhandener Mängel, haben wir die Wahl, auf welche Art wir Gewähr leisten (nach unserer Wahl Austausch, Verbesserung, Nachlieferung, Minderung oder Wandlung und zwar unabhängig von den gesetzlichen Voraussetzungen). Für Mängel, welche bei der Untersuchung anlässlich der Lieferung nicht erkannt werden konnten, beträgt die Gewährleistungsfrist sechs Monate ab Lieferung und wird durch Verbesserungsversuche weder verlängert noch unterbrochen; sie gilt auch für Teillieferungen. Solche Mängel sind binnen sieben Tagen ab Entdeckung des Mangels bei sonstigem Ausschluss von Gewährleistungs- und/oder Schadenersatzansprüchen und/oder Irrtumsanfechtung schriftlich geltend zu machen, berechtigen aber nicht zur Zurückbehaltung der Rechnungsbeträge oder Teile derselben. Rückgriffsansprüche gegen uns, insbesondere nach § 478 BGB, sind ausgeschlossen. Der Kunde hat stets die Mangelhaftigkeit der gelieferten Ware im Zeitpunkt der Übergabe zu beweisen, die Rechtsvermutung des § 476 BGB wird ausdrücklich ausgeschlossen.<br/>
+                (2) Gewährleistung bei Verbrauchergeschäften: Es gelten die gesetzlichen Gewährleistungsvorschriften. Als Verbraucher werden Sie gebeten, die Ware bei Lieferung umgehend auf Vollständigkeit, offensichtliche Mängel und Transportschäden zu überprüfen und uns sowie dem Transportunternehmen Beanstandungen schnellstmöglich mitzuteilen.   <br/>
+                (3) Schadenersatz: Außerhalb des Anwendungsbereiches des Produkthaftungsgesetzes beschränkt sich unsere Haftung auf Vorsatz und grobe Fahrlässigkeit. Unsere Haftung für leicht fahrlässig verschuldete Sach- und Vermögensschäden wird einvernehmlich ausgeschlossen.<br/>
+                (4) Unsere Beratungen in Wort und Schrift über den Einsatz und die Verwendung der jeweiligen Produkte beruht auf praktischen Erfahrungen sowie den Angaben des Verwenders und erfolgen unverbindlich nach bestem Wissen. Eine Haftung kann weder aus unseren Hinweisen noch aus einer mündlichen Beratung begründet werden.<br/> 
+                (5) Sonstige Ansprüche bei Unternehmensgeschäften: Ist der Vertragspartner Unternehmer, werden im Übrigen alle sonstigen Ansprüche des Vertragspartners ausgeschlossen (zB Anfechtung wegen Irrtums, Verkürzung über die Hälfte). Den Vertragspartner trifft für alle von ihm geltend gemachten Ansprüchen die gesamte Beweislast. Einseitige Aufrechnungserklärungen des Vertragspartners zur Aufrechnung von seinen Forderungen mit unseren Forderungen sind ausgeschlossen.
+                </p>
+                <p> 
+                <div style="text-align: center;"><b>§ 10 Rücktritts- bzw. Widerrufsrecht</b></div>
+                Für Verbrauchergilt das Widerrufsrecht – siehe Widerrufsbelehrung – Widerrufserklärung.
+                </p>
+                <p>  
+                <div style="text-align: center;"><b>§ 11 Urheberrecht</b></div>
+                Technische Datenblätter oder sonstige technische Unterlagen sowie Prospekte, Kataloge, Muster und Ähnliches bleiben unser geistiges Eigentum. Produktabbildungen sind von unseren Lieferanten genehmigt. Jede Verwendung, insbesondere die Weitergabe, Vervielfältigung oder Veröffentlichung bedarf unserer schriftlichen Zustimmung.
+                </p>
+                <p>
+                <div style="text-align: center;"><b>§ 12 Allgemeines </b></div>
+                (1) Wir behalten uns vor, während der Gültigkeitsdauer der Kataloge und Prospekte Produkte aus dem Programm zu nehmen oder zu ersetzen sowie technische Änderungen vorzunehmen.<br/>  
+                (2) Forderungen gegen uns – ausgenommen reine Geldforderungen – dürfen nur mit unserer ausdrücklichen schriftlichen Zustimmung abgetreten werden.<br/>
+                (3) Gerechtfertigte Reklamationen berechtigen nicht zur Zurückhaltung des gesamten, sondern lediglich eines angemessenen Teils des Rechnungsbetrages. Auf Verbraucherverträge findet diese Bestimmung keine Anwendung.<br/> 
+                (4) Sämtliche Vereinbarungen, nachträgliche Änderungen, Ergänzungen, Nebenabreden etc bedürfen zu ihrer Gültigkeit der Schriftform, somit auch der Originalunterschrift. <br/>
+                (5) Es gilt ausschließlich Schweizerisches Recht unter Ausschluss des Kollisionsrechtes und des UN-Kaufrechtes. Die Vertragssprache ist deutsch. Zur Entscheidung aller aus diesem Vertrag entstehenden Streitigkeiten ist das am Sitz unseres Unternehmens sachlich zuständige Gericht ausschließlich örtlich zuständig.<br/>
+                Bei Verbrauchern gilt diese Rechtswahl nur, soweit hierdurch der durch zwingende Bestimmungen des Rechts des Staates des gewöhnlichen Aufenthaltes des Verbrauchers gewährte Schutz nicht entzogen wird (Günstigkeitsprinzip).<br/>
+                (6) Sachlich gerechtfertigte und angemessene Änderungen unserer Leistungs- und Lieferverpflichtung, insbesondere angemessene Lieferfristüberschreitungen unsererseits gelten als vorweg genehmigt.<br/>
+                (7) Unsere Allgemeinen Geschäftsbedingungen sollen auch dann Gültigkeit haben, wenn einzelne Bestimmungen sich als rechtsunwirksam erweisen sollten.<br/>
+                (8) Die dreh24 AG behält sich vor, die vorliegenden AGB jederzeit anzupassen. Änderungen werden dem Kunden in geeigneter Weise, insbesondere durch entsprechende Publikationen auf den Internet-Seiten der www.dreh24.com mitgeteilt.  
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </t>
+    </template>
+    
+    <!-- Versandkosten Seite -->
+    <template id="versandkosten" name="Versandkosten" page="True">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <section class="mt16" style="height: 656px; overflow: hidden;">
+            <div class="container">
+              <div class="row">
+                <h1 style="text-align: center;">
+                  <span style="font-size: 30px; line-height: 33px;">Versandkostenübersicht</span>
+                </h1>
+                <div>
+                  <span style="font-size: 30px; line-height: 33px;"/>
+                </div>
+                <div>
+                  <span style="font-size: 30px; line-height: 33px;"/>
+                </div>
+                <div style="text-align: center;">
+                  <span style="font-size: 30px; line-height: 33px;"/>
+                </div>
+                <div class="col-md-4 mt32">
+                  <div class="panel panel-info">
+                    <div class="panel-heading text-center">
+                      <h2 style="margin: 0">Paketversand</h2>
+                      <p class="text-muted" style="margin: 0">innerhalb Deutschland</p>
+                    </div>
+                    <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                      <h2 style="margin: 0">ab <span style="font-size: 60px; line-height: 66px;"><b>3</b></span><small>,70 € Netto</small></h2>
+                      <div>4,40 € inkl. MwSt.</div>
+                    </div>
+                    <ul class="list-group">
+                      <li class="list-group-item active">Lieferzeit: 2 - 3 Werktage</li>
+                      <li class="list-group-item">bis 2 kg: 3,70 €</li>
+                      <li class="list-group-item">über 10 kg: 6,46 € </li>
+                    </ul>
+                    <div class="panel-footer text-center">
+                      <p class="text-muted">
+                        <i>Ab 2 kg sind die Pakete versichert</i>
+                      </p>
+                      <p class="text-muted">
+                        <a class="btn btn-primary btn-lg" href="/shop/cart">Order now</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mt32">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                      <h2 style="margin: 0">Expressversand</h2>
+                      <p style="margin: 0">innerhalb Deutschland</p>
+                    </div>
+                    <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                      <h2 style="margin: 0">
+                        <span>ab </span>
+                        <b style="font-size: 60px">19</b>
+                        <small>,75 € Netto</small>
+                      </h2>
+                      <div>23,50 € inkl. MwSt.</div>
+                    </div>
+                    <ul class="list-group">
+                      <li class="list-group-item active">Gewicht: bis 10 kg</li>
+                      <li class="list-group-item">Express Montag bis Freitag: 19,75 €</li>
+                      <li class="list-group-item">Express vor 12 Uhr: 23,87 €</li>
+                      <li class="list-group-item">Express vor 10 Uhr: 30,59 €</li>
+                      <li class="list-group-item">Express vor 9 Uhr: 40,34 €</li>
+                    </ul>
+                    <div class="panel-footer text-center">
+                      <p class="text-muted">
+                        <i>Pakete sind versichert</i>
+                      </p>
+                      <a class="btn btn-primary btn-lg" href="/shop/cart">Order now</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4 mt32">
+                  <div class="panel panel-info">
+                    <div class="panel-heading text-center">
+                      <h2 style="margin: 0">Expressversand</h2>
+                      <p class="text-muted" style="margin: 0">innerhalb Deutschland</p>
+                    </div>
+                    <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                      <h2 style="margin: 0">
+                        <span/>
+                      </h2>
+                      <h2 style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: rgb(119, 119, 119); margin: 0px; text-align: center;">ab <b style="font-size: 60px;">23</b><small style="font-size: 20px;">,11 € Netto</small></h2>
+                      <div style="color: rgb(119, 119, 119); text-align: center;">27,50 € inkl. MwSt.</div>
+                    </div>
+                    <ul class="list-group">
+                      <li class="list-group-item active">Gewicht: bis 20 kg</li>
+                      <li class="list-group-item" style="border-right-width: 0px; border-left-width: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">Express Montag bis Freitag: 23,11 €</li>
+                      <li class="list-group-item" style="border-right-width: 0px; border-left-width: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">Express vor 12 Uhr: 27,23 €</li>
+                      <li class="list-group-item" style="border-right-width: 0px; border-left-width: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px;">Express vor 10 Uhr: 33,95 €</li>
+                      <li class="list-group-item" style="border-right-width: 0px; border-left-width: 0px; border-bottom-right-radius: 0px; border-bottom-left-radius: 0px; border-top-left-radius: 0px; border-top-right-radius: 0px;">Express vor 9 Uhr: 42,02 €</li>
+                    </ul>
+                    <div class="panel-footer text-center">
+                      <p class="text-muted">
+                        <i>
+                          <i style="color: rgb(119, 119, 119); text-align: center; background-color: rgb(245, 245, 245);">Pakete sind versichert</i>
+                        </i>
+                      </p>
+                      <a class="btn btn-primary btn-lg" href="/shop/cart">Order now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </t>
+    </template>
+    
+    <!-- Widerrufsbelehrungen -->
+    <template id="widerruf" name="Widerrufsbelehrungen" page="True">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <section class="mt16 mb16">
+            <div class="container">
+              <div class="row">
+                <div>
+                  <h2 style="text-align: center;">Widerrufsbelehrung</h2>
+                  <p/>
+                  <p>
+                    <strong>Widerrufsrecht für Verbraucher</strong>
+                  </p>
+                  <p>Sie haben das Recht, binnen vierzehn Tagen ohne Angabe von Gründen diesen Vertrag zu widerrufen.</p>
+                  <p>Die Widerrufsfrist beträgt vierzehn Tage ab dem Tag,</p>
+                  <ul>
+                    <li>
+                      <p>an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die Waren in Besitz genommen haben bzw. hat, sofern Sie eine oder mehrere Waren im Rahmen einer einheitlichen Bestellung bestellt haben und diese einheitlich geliefert wird bzw. werden;</p>
+                    </li>
+                    <li>
+                      <p>an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die letzte Waren in Besitz genommen haben bzw. hat, sofern Sie mehrere Waren im Rahmen einer einheitlichen Bestellung bestellt haben und diese getrennt geliefert werden.</p>
+                    </li>
+                    <li>
+                      <p>an dem Sie oder ein von Ihnen benannter Dritter, der nicht der Beförderer ist, die letzte Teilsendung oder das letzte Stück in Besitz genommen haben bzw. hat, sofern sie eine Ware bestellt haben, die in mehreren Teilsendungen oder Stücken geliefert wird.</p>
+                    </li>
+                  </ul>
+                  <p>Um Ihr Widerrufsrecht auszuüben, müssen sie uns (dreh24 AG, Kaltenbacherstraße 24, CH-8260 Stein am Rhein, tel. +41 (0) 52740 34 33, E-Mail: office@dreh24.com) mittels einer eindeutigen Erklärung (z. B. ein mit der Post versandter Brief oder E-Mail über Ihren Entschluss, diesen Vertrag zu widerrufen, informieren. Sie können dafür das beigefügte Muster-Widerrufsformular verwenden, das jedoch nicht vorgeschrieben ist.</p>
+                  <p>
+                    <span style="line-height: 1.42857143;">Zur Wahrung der Widerrufsfrist reicht es aus, dass Sie die Mitteilung über die Ausübung des Widerrufsrechts vor Ablauf der Widerrufsfrist absenden.</span>
+                  </p>
+                  <p/>
+                  <p>
+                    <strong>Folgen des Widerrufs</strong>
+                  </p>
+                  <p>Wenn Sie diesen Vertrag widerrufen, haben wir Ihnen alle Zahlungen, die wir von Ihnen erhalten haben, einschließlich der Lieferkosten (mit Ausnahme der zusätzlichen Kosten, die sich daraus ergeben, dass Sie eine andere Art der Lieferung als die von uns angebotene, günstigste Standardlieferung gewählt haben), unverzüglich und spätestens binnen vierzehn Tagen ab dem Tag zurückzuzahlen, an dem die Mitteilung über Ihren Widerruf dieses Vertrags bei uns eingegangen ist. Für diese Rückzahlung verwenden wir dasselbe Zahlungsmittel, das Sie bei der ursprünglichen Transaktion eingesetzt haben, es sei denn, mit Ihnen wurde ausdrücklich etwas anderes vereinbart; in keinem Fall werden Ihnen wegen dieser Rückzahlung Entgelte berechnet.</p>
+                  <p>Wir können die Rückzahlung für paketversandfähige Waren verweigern, bis wir diese Waren wieder zurückerhalten haben oder bis Sie den Nachweis erbracht haben, dass Sie diese Waren zurückgesandt haben, je nachdem, welches der frühere Zeitpunkt ist.</p>
+                  <p>Sie haben die Waren unverzüglich und in jedem Fall spätestens binnen vierzehn Tagen ab dem Tag, an dem Sie uns über den Widerruf dieses Vertrages unterrichten, an uns zurückzusenden oder zu übergeben. Die Frist ist gewahrt, wenn Sie die Waren vor Ablauf der Frist von vierzehn Tagen absenden.</p>
+                  <p>Sie tragen die unmittelbaren Kosten der Rücksendung der Waren.</p>
+                  <p><a name="_GoBack"/> Sie müssen für einen etwaigen Wertverlust der Waren nur aufkommen, wenn dieser Wertverlust auf einen zur Prüfung der Beschaffenheit, Eigenschaften und Funktionsweise der Waren nicht notwenigen Umgang mit Ihnen zurückzuführen ist.</p>
+                  <p/>
+                  <p>
+                    <strong>Ausschluss des Widerrufsrechtes</strong>
+                  </p>
+                  <p>Das Widerrufsrecht besteht nicht bei Verträgen</p>
+                  <ul>
+                    <li>
+                      <p>zur Lieferung von Waren, die nicht vorgefertigt sind und für deren Herstellung eine individuelle Auswahl oder Bestimmung durch den Verbraucher maßgeblich ist oder die eindeutig auf die persönlichen Bedürfnisse des Verbrauchers zugeschnitten sind,</p>
+                    </li>
+                    <li>
+                      <p>zur Lieferung von Waren, die schnell verderben können oder deren Verfallsdatum schnell überschritten würde,</p>
+                    </li>
+                    <li>
+                      <p>zur Lieferung versiegelter Waren, die aus Gründen des Gesundheitsschutzes oder der Hygiene nicht zur Rückgabe geeignet sind, wenn ihre Versiegelung nach der Lieferung entfernt wurde,</p>
+                    </li>
+                    <li>
+                      <p>zur Lieferung von Waren, wenn diese nach der Lieferung auf Grund ihrer Beschaffenheit untrennbar mit anderen Gütern vermischt wurden,</p>
+                    </li>
+                    <li>
+                      <p>zur Lieferung alkoholischer Getränke, deren Preis bei Vertragsschluss vereinbart wurde, die aber frühestens 30 Tage nach Vertragsschluss geliefert werden können und deren aktueller Wer von Schwankungen auf dem Markt abhängt, auf die der Unternehmer keinen Einfluss hat,</p>
+                    </li>
+                    <li>
+                      <p>zur Lieferung von Ton- oder Videoaufnahmen oder Computersoftware in einer versiegelten Packung, wenn die Versiegelung nach der Lieferung entfernt wurde,</p>
+                    </li>
+                    <li>
+                      <p>zur Lieferung von Zeitungen, Zeitschriften oder Illustrierten mit Ausnahme von Abonnement-Vertragen.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </t>
+    </template>
+
+    <template id="impressum" name="Impressum" page="True">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <section class="mt16 mb16">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-4"> </div>
+                <div class="col-md-4"> 
+                  <h2>Impressum dreh24 AG</h2>
+                  <p/>
+                  <table id="impressum">
+                    <tr>
+                      <td>Firma</td>
+                      <td>dreh24 AG</td>
+                    </tr>
+                    <tr>
+                      <td>Anschrift</td>
+                      <td>
+                        <p>Kaltenbacherstr. 24<br/>8260 Stein am Rhein / Schweiz</p>
+                        <p>Tel. +41 (0) 52 740 34 33<br/>
+                          Mail <a href="mailto:office@dreh24.com">office@dreh24.com</a><br/>
+                          <a href="http://www.dreh24.com">http://www.dreh24.com</a>
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                  <p>Handelsregister Schaffhausen CH-290.3.017.680-7</p>
+                  <p>Steuer UID MWST CHE 347 663 959</p>
+                  <p>Geschäftsführer : Günter Weippert</p>
+                </div>
+                <div class="col-md-4"> </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </t>
+    </template>
+ </data>
+</openerp>

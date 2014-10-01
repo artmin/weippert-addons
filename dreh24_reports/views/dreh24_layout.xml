@@ -1,0 +1,183 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <!-- template for object title -->
+    <template id="report.external_report_partner_ref">
+      <span t-if="o.partner_id.customer and o.partner_id.ref">Kunden-Nr.</span>
+      <span t-if="o.partner_id.supplier and o.partner_id.ref">Lieferanten-Nr.</span>
+      <span t-field="o.partner_id.ref"/>
+    </template>
+    
+    <!-- template for address-->
+    <template id="report.external_report_to">
+      <div class="vspace-xs clearleft">
+        <div t-if="not o.partner_id.is_company" 
+          t-field="o.partner_id.parent_id.name"/> 
+        <div t-field="o.partner_id.name"/>
+        <p t-field="o.partner_id.street"/>
+        <span t-field="o.partner_id.zip"/>
+        <span t-field="o.partner_id.city"/>
+      </div>
+   </template>
+ 
+    <!-- create info template for company infos -->
+    <template id="report.external_report_info">
+      <!-- Multicompany -->
+      <t t-if="o and 'company_id' in o">
+          <t t-set="company" t-value="o.company_id"/>
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+          <t t-set="company" t-value="res_company"/>
+      </t>
+      <div class="small grey vspace-m left">
+        <span t-field="company.partner_id.name"/> &amp;middot;
+        <span t-field="company.partner_id.street"/> &amp;middot;
+        <span t-field="company.partner_id.zip"/>
+        <span t-field="company.partner_id.city"/>
+      </div>
+      <div class="right grey vspace-l">
+        <span t-field="company.partner_id.name"/><br/>
+        <span t-if="company.partner_id.name == 'dreh24 AG'">
+          Schraubengroßhandel<br/>
+          Webshop<br/>
+        </span>
+        <span t-field="company.partner_id.street"/><br/>
+        <span t-field="company.partner_id.zip"/> <span t-field="company.partner_id.city"/><br/>
+        Telefon <span t-field="company.partner_id.phone"/><br/>
+        Mail: <span t-field="company.partner_id.email"/><br/>
+        <span t-field="company.partner_id.website"/>
+      </div>
+    </template>
+
+    <!-- Override external footer -->
+    <template id="report.external_layout_footer">
+      <div class="footer">
+        <div class="fullwidth top small grey">
+            <div class="left" style="margin-right:1cm">
+              <span t-field="company.partner_id.name"/><br/>
+              <span t-field="company.partner_id.street"/><br/>
+              <span t-field="company.partner_id.zip"/>
+              <span t-field="company.partner_id.city"/> &amp;middot;
+              <span t-field="company.partner_id.country_id.name"/><br/>
+              Geschäftsführer: Günter Weippert<br/>
+              <span t-if="company.partner_id.name == 'dreh24 AG'">
+                Handelsregister des Kantons Schaffhausen
+              </span>
+            </div>
+            <div class="left">
+              Tel. <span t-field="company.partner_id.phone"/><br/>
+              <span t-field="company.partner_id.email"/><br/>
+              <span t-field="company.partner_id.website"/><br/>
+              <span t-if="company.partner_id.name == 'dreh24 AG'">
+                Webshop<br/>
+              </span>
+              <span t-field="company.company_registry"/>
+            </div>
+            <div class="right">
+              <span t-if="company.partner_id.name == 'dreh24 AG'">
+                Bankverbindung<br/>
+                CHF - IBAN: CH72 0078 2008 2076 2010 2<br/>
+                EUR - IBAN: CH45 0078 2008 2076 2010 3<br/>
+                BIC: SHKBCH2S<br/>
+                MWST CHE-347.663.959
+              </span>
+            </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- Override external header, only show logo -->
+    <template id="report.external_layout_header">
+      <div class="header" style="text-align:right">
+        <img t-if="company.logo" 
+          t-att-src="'data:image/png;base64,%s' % company.logo" 
+          style="width:281px"/>
+      </div>
+    </template>
+
+    <!-- Override style sheets -->
+    <template id="report.style">
+      body {
+        color: #000 !important;
+        font-family:arial;
+        font-size:10pt
+        }
+      .border-black td {
+        border-top: 1px solid black !important;
+        }
+      .table-condensed > thead > tr > th {
+        border-bottom: 1px solid black !important;
+        }
+      .zero_min_height {
+        min-height: 0px !important;
+        }
+      /* by IT.artmin */
+      th, td {
+        padding-right: 0.3cm
+        }
+      .right {
+        float: right;
+        padding-right: 0cm;
+        }
+      .left {
+        float: left
+        }
+      .clearleft {
+        clear : left;
+        }
+      .top {
+        vertical-align: top
+        }
+      .fullwidth {
+        width: 100%
+        }
+      .hspace-s {
+        margin-right: 0.6cm
+        }
+      .hspace-m {
+        margin-right: 1.3cm
+        }
+      .hspace-l {
+        margin-right: 2cm
+        }
+      .vspace-xs {
+        padding-top: 0.3cm
+        }
+      .vspace-s {
+        margin-top: 0.6cm;
+        }
+      .vspace-m {
+        margin-top: 1.3cm
+        }
+      .vspace-l {
+        margin-top: 2cm
+        }
+      .small {
+         font-size: 8pt
+        }
+      .title {
+        font-size:12pt
+        }
+      .grey {
+        color: #808080
+        }
+    </template>
+    
+    <!-- Override margins in paper format -->
+    <record id="report.paperformat_euro" model="report.paperformat">
+      <field name="name">European A4</field>
+      <field name="default" eval="True" />
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">35</field>
+      <field name="margin_bottom">32</field>
+      <field name="margin_left">20</field>
+      <field name="margin_right">16</field>
+      <field name="header_line" eval="False" />
+      <field name="header_spacing">15</field>
+      <field name="dpi">75</field>
+    </record>
+  </data>
+</openerp>

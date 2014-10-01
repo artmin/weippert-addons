@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template 
+      id="report_saleorder_dreh24" inherit_id="sale.report_saleorder_document">
+      <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+          <t t-call="report.external_report_info"/>
+          
+          <div class="vspace-xs clearleft">
+            <div t-if="not o.partner_invoice_id.is_company" 
+            t-field="o.partner_invoice_id.parent_id.name"/> 
+            <div t-field="o.partner_invoice_id.name"/>
+            <p t-field="o.partner_invoice_id.street"/>
+            <span t-field="o.partner_invoice_id.zip"/>
+            <span t-field="o.partner_invoice_id.city"/>
+          </div>
+ 
+          <!-- shipping address != invoice address -->
+          <div t-if="o.partner_shipping_id != o.partner_invoice_id">
+            <p>Lieferadresse:</p>
+            <div t-field="o.partner_shipping_id"
+              t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+          </div>
+ 
+          <div class="fullwidth" style="margin-top:2cm">
+            <span class="title hspace-s"
+              t-if="o.state not in ['draft','sent']">
+              Auftragsbest&amp;auml;tigung Nr.
+            </span>
+            <span class="title hspace-s"
+              t-if="o.state in ['draft','sent']">
+              Angebot Nr.
+            </span>
+            <b><span class="title hspace-m" t-field="o.name"/></b>
+            <span class="hspace-s"> vom </span>
+            <span class="hspace-m" 
+              t-esc="datetime.datetime.strptime(o.date_order, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/>
+             <t t-call="report.external_report_partner_ref"/>
+          </div>
+          
+          <p t-if="o.state in ['draft','sent']" class="vspace-m">Ihre Anfrage</p>
+          <p t-if="o.state not in ['draft','sent']" class="vspace-m">
+            Ihre Bestellung
+          </p>
+
+          <table class="fullwidth">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Artikelnummer</th>
+                <th>Artikelbezeichnung</th>
+                <th>Menge</th>
+                <th>Preis/Einheit</th>
+                <th class="right">Gesamtpreis</th>
+              </tr>
+            </thead>
+            <tbody class="sale_tbody top">
+              <tr t-foreach="o.order_line" t-as="l">
+                <td><span t-esc="l_index + 1"/></td>
+                <td><span t-field="l.product_id.default_code"/></td>
+                <td>
+                  <span t-field="l.product_id.name"/>
+                  <span t-if="l.product_id.uom_so_id">
+                    <br/>
+                    Verpackungseinheit <span t-field="l.product_id.uom_so_id.name"/>
+                  </span>
+                </td>
+                <td><span t-field="l.product_uos_qty"/></td>
+                <td><span t-field="l.price_unit"/></td>
+                <td class="right">
+                  <span t-field="l.price_subtotal"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table id="amount_total" class="right vspace-s">
+            <tr>
+              <td>Gesamt Netto</td>
+              <td class="right">
+                <span t-field="o.amount_untaxed"
+                  t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+              </td>
+            </tr>
+            <tr>
+              <td>MwSt. 19 %</td>
+              <td class="right">
+                <span t-field="o.amount_tax"
+                  t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+              </td>
+            </tr>
+            <tr>
+              <td>Rechnungsendbetrag</td>
+              <td class="right">
+                <span t-field="o.amount_total"
+                  t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+              </td>
+            </tr>
+          </table>
+          
+          <!-- cash discount -->
+          <!--div t-if="o.cash_discount">
+            <table>
+              <tr>
+                <td colspan="3">
+                  Zahlung: innerhalb von 
+                  <span t-field="o.cash_discount.discount_deadline"/> mit
+                  <span t-field="o.cash_discount.discount_rate"/>&amp;#037; Skonto,
+                  <span t-field="o.cash_discount.net_payment_target"/> Tagen netto
+                </td>
+              </tr>
+              <tr>
+                <td>Zahlung bis <span t-field="o.discount_date"/></td>
+                <td class="right">
+                  abzgl. <span t-field="o.discount_amount"
+                    t-field-options='{"widget": "monetary", "display_currency" : "o.pricelist_id.currency_id"}'/> = 
+                </td>
+                <td class="right">
+                  <span t-field="o.discount_sum"
+                    t-field-options='{"widget": "monetary", "display_currency" : "o.pricelist_id.currency_id"}'/> 
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Zahlung bis <span t-esc="o.date_order +
+                    datetime.timedelta(days=o.cash_discount.net_payment_target)"/>
+                </td>
+                <td class="right">=</td>
+                <td class="right">
+                  <span t-field="o.amount_total"
+                    t-field-options='{"widget": "monetary", "display_currency" : "o.pricelist_id.currency_id"}'/> 
+                </td>
+              </tr>
+            </table>
+          </div-->
+
+          <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
+          <div style="margin-top:1.5cm">
+            <p t-if="o.carrier_id">Versandart: <span t-field="o.carrier_id.name"/></p>
+            <p t-if="o.incoterm">Lieferbedingungen: <span t-field="o.incoterm.name"/></p>
+            <p t-if="o.payment_term">Zahlungsbedinungen: <span t-field="o.payment_term.name"/></p>
+            <br/>
+            <p t-if="o.note"><span t-field="o.note"/></p>
+            <p t-if="o.state in ['draft','sent']">
+              Wir bedanken uns für Ihre Anfrage und bieten freibleibend an.
+              <span t-if="o.company_id.name = 'dreh24 AG'">
+                Zwischenverkauf vorbehalten.
+              </span>
+            </p>
+          </div>
+        </div>
+      </xpath>      
+    </template>
+
+    <!-- invoice -->
+    <template id="report_invoice_document_dreh24" 
+      inherit_id="account.report_invoice_document">
+      <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+          <t t-call="report.external_report_info"/>
+         
+          <div class="vspace-xs clearleft">
+            <div t-if="not o.partner_id.is_company" 
+              t-field="o.partner_id.parent_id.name"/> 
+            <div t-field="o.partner_id.name"/>
+            <p t-field="o.partner_id.street"/>
+            <span t-field="o.partner_id.zip"/>
+            <span t-field="o.partner_id.city"/>
+          </div>
+       
+          <div class="fullwidth vspace-l">
+            <span class="title hspace-s">
+              <span t-if="o.type == 'out_invoice' and (o.state == 'open' or o.state == 'paid')">Rechnung</span>
+              <span t-if="o.type == 'out_invoice' and o.state == 'proforma2'">PRO-FORMA Rechnung</span>
+              <span t-if="o.type == 'out_invoice' and o.state == 'draft'">Rechnungsentwurf</span>
+              <span t-if="o.type == 'out_invoice' and o.state == 'cancel'">Stornierte Rechnung</span>
+              <span t-if="o.type == 'out_refund'">Rückzahlung</span>
+              <span t-if="o.type == 'in_refund'">Lieferantenrückzahlung</span>
+              <span t-if="o.type == 'in_invoice'">Liererantenrechnung</span>
+            </span>
+            <b><span class="title hspace-m" t-field="o.number"/></b>
+            <span class="hspace-s"> vom </span>
+            <span class="hspace-m" t-field="o.date_invoice"/>
+            <t t-call="report.external_report_partner_ref"/>
+          </div>
+          
+          <p t-if="o.type not in ['in_refund', 'in_invoice']" class="vspace-m">Ihre Bestellung</p>
+
+          <table class="fullwidth">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Artikelnummer</th>
+                <th>Artikelbezeichnung</th>
+                <th>Menge</th>
+                <th>Preis/Einheit</th>
+                <th class="right">Gesamtpreis</th>
+              </tr>
+            </thead>
+            <tbody class="sale_tbody top">
+              <tr t-foreach="o.invoice_line" t-as="l">
+                <td><span t-esc="l_index + 1"/></td>
+                <td><span t-field="l.product_id.default_code"/></td>
+                <td>
+                  <span t-field="l.product_id.name"/>
+                  <span t-if="l.product_id.uom_so_id">
+                    <br/>Verpackungseinheit <span t-field="l.product_id.uom_so_id.name"/>
+                  </span>
+                </td>
+                <td><span t-field="l.quantity"/></td>
+                <td><span t-field="l.price_unit"/></td>
+                <td class="right">
+                  <span t-field="l.price_subtotal"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table id="total" class="right vspace-s">
+            <tr>
+              <td>Gesamt Netto</td>
+              <td class="right">
+                <span t-field="o.amount_untaxed"
+                  t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+              </td>
+            </tr>
+            <tr>
+              <td>MwSt. 19 %</td>
+              <td class="right">
+                <span t-field="o.amount_tax"
+                  t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+              </td>
+            </tr>
+            <tr>
+              <td>Rechnungsendbetrag</td>
+              <td class="right">
+                <span t-field="o.amount_total"
+                  t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Anmerkung zu Steuern -->
+          <span class="vspace-m" t-field="o.fiscal_position.note"/>
+          <span t-if="o.fiscal_position.name == 'Kunde EU Unternehmen (mit USt-ID)'"
+            t-field="o.partner_id.vat"/>
+          
+          <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
+          <div class="vspace-m">
+            <p t-if="o.payment_term">Zahlungsbedinungen: <span t-field="o.payment_term.name"/></p>
+            <br/>
+            <span t-field="o.comment"/>
+          </div>
+        </div>
+       </xpath>      
+    </template>
+
+    <!-- delivery slip -->
+    <template id="report_picking_artmin" inherit_id="stock.report_picking">
+      <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+          <t t-call="report.external_report_info"/>
+          <t t-call="report.external_report_to"/>
+       
+          <div class="fullwidth vspace-l">
+            <span class="title hspace-s">Lieferschein</span>
+            <b><span class="title hspace-m" t-field="o.name"/></b>
+            <span class="hspace-s"> vom </span>
+            <span class="hspace-m" t-esc="datetime.datetime.strptime(o.date, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/>
+            <t t-call="report.external_report_partner_ref"/>
+          </div>
+
+          <table class="fullwidth vspace-m">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Artikelnummer</th>
+                <th>Artikelbezeichnung</th>
+                <th>Menge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr t-foreach="o.move_lines" t-as="move">
+                <td class="top"><span t-esc="move_index + 1"/></td>
+                <td class="top"><span t-field="move.product_id.default_code"/></td>
+                <td class="top">
+                  <span t-field="move.product_id.name"/>
+                  <span t-if="move.product_id.uom_so_id">
+                    <br/>Verpackungseinheit
+                    <span t-field="move.product_id.uom_so_id.name"/>
+                  </span>
+                </td>
+                <td class="top"><span t-field="move.product_uom_qty"/></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="vspace-m">
+            Die gelieferte Ware bleibt bis zur vollständigen Bezahlung
+            Eigentum des Lieferanten.
+          </div>
+          <div t-if="o.partner_id.name = 'Bürkert'">
+            Die Artikel sind RoHS konform.
+          </div>
+          <!-- Wurde bebraucht für report_shipping2 -->
+          <!--div name="partner_header"/>
+          <table>
+            <tr><th name="td_sched_date_h"></th></tr>
+            <tr><td name="td_sched_date"></td></tr>
+          </table-->
+        </div>
+      </xpath>
+    </template>
+    <!-- Override delivery shipping report -->
+    <template id="delivery.report_shipping2" inherit_id="stock.report_picking">
+      <div/>
+    </template>
+
+
+    <!-- purchase order: use same report for quotation and order -->
+    <template id="report_purchase_artmin">
+      <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+          <t t-call="report.external_report_info"/>
+          <t t-call="report.external_report_to"/>
+          
+          <div class="vspace-s">Lieferadresse:</div>
+          <div t-if="o.dest_address_id" class="vspace-xs">
+            <div t-field="o.dest_address_id" 
+                 t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+          </div>
+          <div t-if="o.picking_type_id.warehouse_id" class="vspace-xs">
+            <span t-field="o.picking_type_id.warehouse_id.name"/>
+            <div t-field="o.picking_type_id.warehouse_id.partner_id"
+              t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+          </div>
+
+          <div class="fullwidth vspace-l">
+            <span class="title hspace-s">Anfrage</span>
+            <b><span class="title hspace-m" t-field="o.name"/></b>
+            <span class="hspace-s"> vom </span>
+            <span class="hspace-m" t-esc="datetime.datetime.strptime(o.date_order, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/>
+            <t t-call="report.external_report_partner_ref"/>
+          </div>
+
+          <p t-if="o.notes" class="vspace-m" t-field="o.notes"/>
+
+          <table class="fullwidth vspace-m">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Artikelbezeichnung</th>
+                <th>Menge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr t-foreach="o.order_line" t-as="order">
+                <td class="top"><span t-esc="order_index + 1"/></td>
+                <td class="top"><span t-field="order.product_id.name"/></td>
+                <td class="top"><span t-field="order.product_qty"/></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="vspace-m">Wir bitten um ein unverbindliches Angebot.</p>
+        </div>
+      </xpath>
+    </template>
+
+    <template id="report_purchasequotation_artmin"
+      inherit_id="purchase.report_purchasequotation">
+      <t t-call="report_purchaseorder_artmin"/>
+    </template>
+    
+    <template id="report_purchaseorder_artmin" inherit_id="purchase.report_purchaseorder">
+      <t t-call="report_purchase_artmin"/>
+    </template>
+  </data>
+</openerp>

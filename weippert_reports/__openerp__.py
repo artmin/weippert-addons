@@ -30,7 +30,7 @@ Custom reports and report headers for company Weippert Technik
     'website': 'http://it.artmin.de',
     'summary': 'Webkit reports for Weippert Technik',
     'depends': [
-        'sale', 'report_webkit'
+        'sale', 'report_webkit', 'account', 'stock', 'purchase'
     ],
     'data': [
         'weippert_headers.xml',

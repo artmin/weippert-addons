@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+<openerp>
+  <data>
+    <!-- Change list view -->
+    <template id="website_products_item" inherit_id="website_sale.products_item">
+      <!-- Mark diameter and length bold -->
+      <xpath expr="//section//h5" position="replace">
+        <h5 t-if="' M' in product.name">
+          <a itemprop="name" t-att-href="keep('/shop/product/%s' % slug(product), page=(pager['page']['num'] if pager['page']['num']&gt;1 else None))">
+            <span t-esc="product.name.split(' M')[0]"/>
+            <strong>
+              <span t-esc="'M' + product.name.split(' M')[1].split(' ')[0]"/>
+            </strong>
+            <span t-if="' A' in product.name" t-esc="product.name.split(' M')[1].split(' ')[1]"/>
+        </a>
+      </h5>
+      </xpath>
+      <!-- Choose price of sales price unit and add gross price -->
+      <xpath expr="//span[@t-field='product.price']" position="replace">
+        <span 
+          t-field="product.product_variant_ids.uom_so_price_unit" 
+          style="white-space: nowrap;" 
+          t-field-options='{"widget": "monetary", "display_currency": "user_id.partner_id.property_product_pricelist.currency_id"}'>
+        </span>
+        <span style="margin-left:1cm; font-size:8pt; font-weight: normal">
+          (<span t-esc='str("%.2f" % (compute_currency(product.product_variant_ids.uom_so_price_unit) * 1.19)).replace(".",",")'/>
+          <span itemprop="priceCurrency" t-esc="user_id.partner_id.property_product_pricelist.currency_id.symbol"/> inkl. MwSt.)
+        </span>
+      </xpath>
+    </template>
+
+    <!-- Add gross price to product view -->
+    <template id="website_product_price" inherit_id="website_sale.product_price">
+      <xpath expr="//b[@class='oe_price']" position="replace">
+        <b class="oe_price" 
+           style="white-space: nowrap;"
+           t-field="product.product_variant_ids.uom_so_price_unit"
+           t-field-options='{ "widget": "monetary", "display_currency": "user_id.partner_id.property_product_pricelist.currency_id" }'/>
+        <span style="margin-left:1cm; font-size:8pt">
+          (<span t-esc='str("%.2f" % (compute_currency(product.product_variant_ids.uom_so_price_unit) * 1.19)).replace(".",",")'/>
+          <span itemprop="priceCurrency" t-esc="user_id.partner_id.property_product_pricelist.currency_id.symbol"/> inkl. MwSt.)
+        </span>
+      </xpath>    
+    </template>
+    
+    <!-- Add sale unit to product description on website payment view -->
+    <template id="website_payment" inherit_id="website_sale.payment">
+      <xpath expr="//td[@t-if='line.product_id.product_tmpl_id']" position="replace">
+        <td t-if="line.product_id.product_tmpl_id">
+          <strong t-field="line.product_id.name"/><br/>
+          Verpackungseinheit: <span t-field="line.product_id.uom_so_id.name"/>
+        </td>
+      </xpath>
+    </template>
+
+    <!-- Add top margin for image on product description page -->
+    <template id="website_product" inherit_id="website_sale.product">
+      <xpath expr="//div/div[@class='col-sm-7 col-md-7 col-lg-7']" position="replace">
+        <div class="col-sm-7 col-md-7 col-lg-7" style="margin-top:50px">
+          <span itemprop="image" t-field="product.image"
+            t-field-options='{"widget": "image", "class": "product_detail_img"}'/>
+        </div>
+      </xpath>
+    </template>
+        
+    <!-- Remove logo on "Home" page and add paading on top-->
+    <template id="website_logo" inherit_id="website.layout_logo_show">
+      <xpath expr="//img" position="replace">
+        <img t-if="not disable_logo" src="/logo.png" style="padding-top:10px"/>
+      </xpath>        
+    </template>
+    
+    <!-- Add style sheets to template -->
+    <template id="website_style" inherit_id="website.layout">
+      <xpath expr="//head" position="inside">
+        <link rel="stylesheet" type="text/css" href="/dreh24_shop/static/src/css/shop.css"/>
+      </xpath>
+    </template>
+    
+    <!-- Use custom footer -->
+    <template id="website_footer" inherit_id="website.footer_custom">
+      <xpath expr="//div[@class='row']" position="replace">
+        <div class="row">
+          <div class="col-md-3"> 
+            <h4>Unternehmen</h4>
+            <ul class="list-unstyled" id="products">
+              <li><a href="/page/aboutus">Über uns</a></li>
+              <li><a href="/page/dreh24_shop.agb">AGB</a></li>
+              <li><a href="/page/dreh24_shop.widerruf">Widerrufsbelehrung</a></li>
+              <li><a href="/page/dreh24_shop.datenschutz">Datenschutzerklärung</a></li>
+              <li><a href="/page/dreh24_shop.versandkosten">Versandkosten</a></li>
+              <li><a href="/page/dreh24_shop.impressum">Impressum</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <h4>Kontakt</h4>
+            <img class="img img-responsive mb16"
+              src="/dreh24_shop/static/src/img/dreh24_logo.png"
+              style="width:150px"/>
+            <p>
+              Schraubengroßhandel<br/>
+              Webshop
+            </p>
+            <p>
+              Tel. +41 (0) 52 740 34 33<br/>
+              mail: <a href="mailto:office@dreh24.com">office@dreh24.com</a>
+            </p>
+            <p>
+              Kaltenbacherstraße 24<br/>
+              8260 Stein am Rhein
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h4 style="color:rgba(0, 0, 0, 0.0)">...</h4>
+            <p>
+              Außenlager<br/>
+              Deutschland
+            </p>
+            <p>
+              Tel.  +49 (0) 7941 630 62<br/>
+              Fax. +49 (0) 7941 339 89
+            </p>
+            <p>
+              mail: <a href="mailto:office@dreh24.com">office@dreh24.com</a>
+            </p>
+            <p>
+              Zeilbaumweg 30<br/>
+              74613 Öhringen
+            </p>
+          </div>
+          <div class="col-md-3">
+            <h4>Partnerfirmen</h4>
+            <p>
+              <a href="http://weippert-kunststofftechnik.de/">
+                Weippert Kunststofftechnik GmbH &amp; Co. KG, Öhringen
+              </a>
+            </p>
+            <p>
+                Weippert Kunststofftechnik GmbH, Dornbirn
+            </p>
+          </div>
+        </div>
+      </xpath>
+    </template>
+  </data>
+</openerp>

@@ -1,0 +1,33 @@
+a, .text-info {
+  color : #605f5f;
+}
+
+a:hover {
+  color : #f29400
+}
+
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  color: #fff;
+  background-color: #f29400;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #f29400;
+  border-color: #f29400;
+}
+
+.pagination > li > a, .pagination > li > span {
+  color: #605f5f;
+}
+
+.pagination > li > a:hover {
+  color: #605f5f;
+}
+
+img.catImage {
+  width: 200px;
+}
+
+#impressum td {
+  padding: 10px;
+}
