@@ -113,11 +113,13 @@
         }
       /* by IT.artmin */
       th, td {
-        padding-right: 0.3cm
+        padding-right: 0.3cm;
+        padding-bottom: 0.2cm;
         }
       .right {
         float: right;
         padding-right: 0cm;
+        padding-bottom: 0cm;
         }
       .left {
         float: left
@@ -129,7 +131,9 @@
         vertical-align: top
         }
       .fullwidth {
-        width: 100%
+        width: 100%;
+        clear:left;
+        clear:right;
         }
       .hspace-s {
         margin-right: 0.6cm
@@ -160,6 +164,9 @@
         }
       .grey {
         color: #808080
+        }
+      td.right {
+        text-align:right;
         }
     </template>
     

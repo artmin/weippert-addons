@@ -66,8 +66,10 @@
                     Verpackungseinheit <span t-field="l.product_id.uom_so_id.name"/>
                   </span>
                 </td>
-                <td><span t-field="l.product_uos_qty"/></td>
-                <td><span t-field="l.price_unit"/></td>
+                <td><span t-field="l.product_uom_qty"/></td>
+                <td><span t-field="l.price_unit"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
+                </td>
                 <td class="right">
                   <span t-field="l.price_subtotal"
                     t-field-options='{"widget": "monetary", "display_currency": "o.pricelist_id.currency_id"}'/>
@@ -137,7 +139,7 @@
           </div-->
 
           <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
-          <div style="margin-top:1.5cm">
+          <div style="margin-top:2.5cm">
             <p t-if="o.carrier_id">Versandart: <span t-field="o.carrier_id.name"/></p>
             <p t-if="o.incoterm">Lieferbedingungen: <span t-field="o.incoterm.name"/></p>
             <p t-if="o.payment_term">Zahlungsbedinungen: <span t-field="o.payment_term.name"/></p>
@@ -145,7 +147,7 @@
             <p t-if="o.note"><span t-field="o.note"/></p>
             <p t-if="o.state in ['draft','sent']">
               Wir bedanken uns für Ihre Anfrage und bieten freibleibend an.
-              <span t-if="o.company_id.name = 'dreh24 AG'">
+              <span t-if="o.company_id.name == 'dreh24 AG'">
                 Zwischenverkauf vorbehalten.
               </span>
             </p>
@@ -210,7 +212,9 @@
                   </span>
                 </td>
                 <td><span t-field="l.quantity"/></td>
-                <td><span t-field="l.price_unit"/></td>
+                <td><span t-field="l.price_unit"
+                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
+                </td>
                 <td class="right">
                   <span t-field="l.price_subtotal"
                     t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
@@ -259,7 +263,8 @@
     </template>
 
     <!-- delivery slip -->
-    <template id="report_picking_artmin" inherit_id="stock.report_picking">
+    <!-- deliver.report_shipping2 muss gelöscht werden!!! -->
+    <template id="report_picking" inherit_id="stock.report_picking">
       <xpath expr="//div[@class='page']" position="replace">
         <div class="page">
           <t t-call="report.external_report_info"/>
@@ -302,26 +307,20 @@
             Die gelieferte Ware bleibt bis zur vollständigen Bezahlung
             Eigentum des Lieferanten.
           </div>
-          <div t-if="o.partner_id.name = 'Bürkert'">
+          <div t-if="o.partner_id.name[0] == 'B' and o.partner_id.name[2:] == 'rkert'" class="vspace-s">
             Die Artikel sind RoHS konform.
           </div>
-          <!-- Wurde bebraucht für report_shipping2 -->
-          <!--div name="partner_header"/>
-          <table>
-            <tr><th name="td_sched_date_h"></th></tr>
-            <tr><td name="td_sched_date"></td></tr>
-          </table-->
+          <div class="vspace-s">
+            <strong>Gesamtgewicht: </strong>
+            <span t-field="o.weight"/> <span t-field="o.weight_uom_id.name"/>
+          </div>
         </div>
       </xpath>
     </template>
-    <!-- Override delivery shipping report -->
-    <template id="delivery.report_shipping2" inherit_id="stock.report_picking">
-      <div/>
-    </template>
-
-
-    <!-- purchase order: use same report for quotation and order -->
-    <template id="report_purchase_artmin">
+    
+    <!-- Anfrage -->
+    <template id="report_purchasequotation"
+      inherit_id="purchase.report_purchasequotation">
       <xpath expr="//div[@class='page']" position="replace">
         <div class="page">
           <t t-call="report.external_report_info"/>
@@ -369,13 +368,62 @@
       </xpath>
     </template>
 
-    <template id="report_purchasequotation_artmin"
-      inherit_id="purchase.report_purchasequotation">
-      <t t-call="report_purchaseorder_artmin"/>
-    </template>
-    
-    <template id="report_purchaseorder_artmin" inherit_id="purchase.report_purchaseorder">
-      <t t-call="report_purchase_artmin"/>
+    <!-- Bestellung -->
+    <template id="report_purchaseorder" inherit_id="purchase.report_purchaseorder">
+      <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+          <t t-call="report.external_report_info"/>
+          <t t-call="report.external_report_to"/>
+          
+          <div class="vspace-s">Lieferadresse:</div>
+          <div t-if="o.dest_address_id" class="vspace-xs">
+            <div t-field="o.dest_address_id" 
+                 t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+          </div>
+          <div t-if="o.picking_type_id.warehouse_id" class="vspace-xs">
+            <span t-field="o.picking_type_id.warehouse_id.name"/>
+            <div t-field="o.picking_type_id.warehouse_id.partner_id"
+              t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
+          </div>
+
+          <div class="fullwidth vspace-l">
+            <span class="title hspace-s">Bestellung</span>
+            <b><span class="title hspace-m" t-field="o.name"/></b>
+            <span class="hspace-s"> vom </span>
+            <span class="hspace-m" t-esc="datetime.datetime.strptime(o.date_order, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/>
+            <t t-call="report.external_report_partner_ref"/>
+          </div>
+
+          <p t-if="o.notes" class="vspace-m" t-field="o.notes"/>
+
+          <table class="fullwidth vspace-m">
+            <thead>
+              <tr>
+                <th>Pos.</th>
+                <th>Artikelbezeichnung</th>
+                <th>Menge</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr t-foreach="o.order_line" t-as="order">
+                <td class="top"><span t-esc="order_index + 1"/></td>
+                <td class="top"><span t-field="order.product_id.name"/></td>
+                <td class="top"><span t-field="order.product_qty"/></td>
+              </tr>
+            </tbody>
+          </table>
+          <p t-if="o.company_id.name == 'dreh24 AG'" class="vspace-m">
+            Wir bestellen unter Zugrundelegung unserer Einkaufsbedingungen
+            abrufbar unter www.dreh24.com die oben aufgeführten Waren bzw.
+            Dienstleistungen.
+          </p>
+          <p t-if="'Weippert Kunststofftechnik GmbH' in o.company_id.name" class="vspace-m">
+            Wir bestellen unter Zugrundelegung unserer Einkaufsbedingungen
+            abrufbar unter www.weippert-kunststofftechnik.de die oben aufgeführten Waren bzw.
+            Dienstleistungen.
+          </p>
+        </div>
+      </xpath>
     </template>
   </data>
 </openerp>
