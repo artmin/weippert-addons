@@ -314,6 +314,13 @@
             <strong>Gesamtgewicht: </strong>
             <span t-field="o.weight"/> <span t-field="o.weight_uom_id.name"/>
           </div>
+           <!-- Wurde bebraucht für report_shipping2>
+           <div name="partner_header"/>
+           <table>
+                <tr><th name="td_sched_date_h"></th></tr>
+                <tr><td name="td_sched_date"></td></tr>
+           </table>
+           -->
         </div>
       </xpath>
     </template>
