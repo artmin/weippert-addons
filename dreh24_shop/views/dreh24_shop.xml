@@ -45,11 +45,15 @@
     
     <!-- Add sale unit to product description on website payment view -->
     <template id="website_payment" inherit_id="website_sale.payment">
-      <xpath expr="//td[@t-if='line.product_id.product_tmpl_id']" position="replace">
-        <td t-if="line.product_id.product_tmpl_id">
-          <strong t-field="line.product_id.name"/><br/>
-          Verpackungseinheit: <span t-field="line.product_id.uom_so_id.name"/>
-        </td>
+      <xpath expr="//td[@t-if='line.product_id.product_tmpl_id']//strong" position="replace">
+        <strong t-field="line.product_id.name"/><br/>
+        Verpackungseinheit: <span t-field="line.product_id.uom_so_id.name"/>
+      </xpath>
+      <xpath expr="//div[@t-field='acquirer.pre_msg']" position="after">
+        <div>
+          Mit dem Klick auf Bestellen akzeptieren Sie unsere 
+          <a href="/page/dreh24_shop.agb">AGB</a>.
+        </div>
       </xpath>
     </template>
 

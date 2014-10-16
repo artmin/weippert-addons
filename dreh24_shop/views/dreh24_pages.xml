@@ -5,7 +5,7 @@
     <!-- Home page -->
     <template id="website_home" inherit_id="website.homepage">
       <xpath expr="//div[@id='wrap']" position="replace">
-        <t t-set="disable_logo" t-value="true"/>
+        <t t-set="disable_logo" t-value="True"/>
         <div id="wrap" class="oe_structure oe_empty">
           <section class="mb32">
             <div class="container">
@@ -470,10 +470,17 @@
                         </p>
                       </td>
                     </tr>
+                    <tr>
+                      <td colspan="2">
+                        Handelsregister Schaffhausen CH-290.3.017.680-7
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Steuer UID</td>
+                      <td>MWST CHE 347 663 959<br/>MWST DE 289 269 812</td>
+                    </tr>
+                    <tr><td colspan="2">Geschäftsführer : Günter Weippert</td></tr>
                   </table>
-                  <p>Handelsregister Schaffhausen CH-290.3.017.680-7</p>
-                  <p>Steuer UID MWST CHE 347 663 959</p>
-                  <p>Geschäftsführer : Günter Weippert</p>
                 </div>
                 <div class="col-md-4"> </div>
               </div>
