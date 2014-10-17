@@ -19,21 +19,25 @@
 #
 ##############################################################################
 {
-    'name': 'Partner Reference',
+    'name': 'Custom fields Weippert',
     'version': '1.0',
     "category" : 'Partner',
     'complexity': "easy",
     'description': """
-Automatic partner reference
+Custom fields Weippert
 ===========================
 
-With this module, the partner reference field becomes read-only and automatically filled at save from a customizable sequence.
+* Automatisch vergebene interne Referenzen
+* Kunden/Lieferanten-Nr.
+* Anfragedatum
 
     """,
     'author': 'artmin - IT-Dienstleistungen',
     'website': 'http://it.artmin.de',
-    'depends': ['crm'],
-    'data': ['partner_sequence.xml',],
+    'depends': ['sale'],
+    'data': ['partner_sequence.xml',
+        'partner_ref_view.xml',
+        'sale_order_view.xml'],
     'demo_xml': [],
     'test': [],
     'installable': True,

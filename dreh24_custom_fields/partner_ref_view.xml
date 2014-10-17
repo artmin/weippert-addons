@@ -1,0 +1,14 @@
+<openerp>
+  <data>
+    <record id="partner_your_ref" model="ir.ui.view">
+      <field name="name">res.partner.form.yourref</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <field name="ref" position="after">
+          <field name="your_ref"/>
+        </field>
+      </field>
+    </record>
+  </data>
+</openerp>

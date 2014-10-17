@@ -27,7 +27,8 @@ class artmin_partner_reference(osv.osv):
     _description = "artmin - partner reference"
 
     _columns = {
-        'ref': fields.char('Referenz', size=64, select=1, readonly=True),
+        'ref': fields.char('Interne Referenz', size=64, select=1, readonly=True),
+        'your_ref' : fields.char('Kunden/Lieferanten-Nr.', size=64),
     }
     
     _defaults = {           

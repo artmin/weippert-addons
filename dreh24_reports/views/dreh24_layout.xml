@@ -29,13 +29,7 @@
       <t t-if="not o or not 'company_id' in o">
           <t t-set="company" t-value="res_company"/>
       </t>
-      <div class="small grey vspace-m left">
-        <span t-field="company.partner_id.name"/> &amp;middot;
-        <span t-field="company.partner_id.street"/> &amp;middot;
-        <span t-field="company.partner_id.zip"/>
-        <span t-field="company.partner_id.city"/>
-      </div>
-      <div class="right grey vspace-l">
+      <div class="right grey" id="info">
         <span t-field="company.partner_id.name"/><br/>
         <span t-if="company.partner_id.name == 'dreh24 AG'">
           Schraubengroßhandel<br/>
@@ -46,6 +40,12 @@
         Telefon <span t-field="company.partner_id.phone"/><br/>
         Mail: <span t-field="company.partner_id.email"/><br/>
         <span t-field="company.partner_id.website"/>
+      </div>
+      <div class="small grey clearleft" style="padding-top:3.5cm">
+        <span t-field="company.partner_id.name"/> &amp;middot;
+        <span t-field="company.partner_id.street"/> &amp;middot;
+        <span t-field="company.partner_id.zip"/>
+        <span t-field="company.partner_id.city"/>
       </div>
     </template>
 
@@ -80,7 +80,8 @@
                   CHF - IBAN: CH72 0078 2008 2076 2010 2<br/>
                   EUR - IBAN: CH45 0078 2008 2076 2010 3<br/>
                   BIC: SHKBCH2S<br/>
-                  MWST CHE-347.663.959
+                  MWST CHE-347.663.959<br/>
+                  MWST DE289 269 812
                 </span>
               </div>
           </div>
@@ -90,7 +91,7 @@
 
     <!-- Override external header, only show logo -->
     <template id="report.external_layout_header">
-      <div class="header" style="text-align:right">
+      <div class="header" style="text-align:left;">
         <img t-if="company.logo" 
           t-att-src="'data:image/png;base64,%s' % company.logo" 
           style="width:281px"/>
@@ -114,6 +115,10 @@
         min-height: 0px !important;
         }
       /* by IT.artmin */
+      #delivery {
+        clear:right;
+        min-width: 4.4cm;
+        }
       th, td {
         padding-right: 0.3cm;
         padding-bottom: 0.2cm;
@@ -133,9 +138,9 @@
         vertical-align: top
         }
       .fullwidth {
-        width: 100%;
         clear:left;
         clear:right;
+        width: 100%;
         }
       .hspace-s {
         margin-right: 0.6cm
@@ -170,6 +175,9 @@
       td.right {
         text-align:right;
         }
+     #info {
+        min-width: 4.4cm;
+        }
     </template>
     
     <!-- Override margins in paper format -->
@@ -180,12 +188,12 @@
       <field name="page_height">0</field>
       <field name="page_width">0</field>
       <field name="orientation">Portrait</field>
-      <field name="margin_top">35</field>
-      <field name="margin_bottom">32</field>
+      <field name="margin_top">20</field>
+      <field name="margin_bottom">40</field>
       <field name="margin_left">20</field>
       <field name="margin_right">16</field>
       <field name="header_line" eval="False" />
-      <field name="header_spacing">15</field>
+      <field name="header_spacing">0</field>
       <field name="dpi">75</field>
     </record>
   </data>

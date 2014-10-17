@@ -18,6 +18,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
-import partner_ref
 
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+from openerp.osv import osv, fields
+from datetime import datetime
+
+class dreh24_sale_order(osv.osv):
+
+    _inherit = 'sale.order'
+    _columns = {
+        'client_order_ref_date': fields.date('Ihr Schreiben vom', select=1,
+            help="Datum der Anfrage des Kunden"),
+    }
+    
+    _defaults = {           
+        'client_order_ref_date' : datetime.today(), 
+    }
