@@ -170,12 +170,12 @@
           <section class="mt16 mb16">
             <div class="container">
               <div class="row">
-                <p style="text-align: center;">
+                <div style="text-align: center;">
                   <b style="letter-spacing: 0.5 em;"><h2>ALLGEMEINE GESCHÄFTSBEDINGUNGEN</h2></b><br/>
                   der dreh 24 AG<br/>
                   Kaltenbacherstraße 24, 8260 Stein am Rhein / Schweiz<br/>
                   eingetragen zu Handelsregister Schaffhausen CH-290.3.017.680-7<br/>
-                </p>
+                </div>
                 <p>
                 <div style="text-align: center;"><b>§ 1 Geltungsbereich</b></div>
                 (1) Unsere Allgemeinen Geschäftsbedingungen (AGB) gelten für alle gegenwärtigen und zukünftigen Geschäftsbeziehungen über Fernabsatz, insbesondere die Online-Plattform www.dreh24.com . Abweichende, entgegenstehende oder ergänzende Geschäftsbedingungen werden, selbst bei Kenntnis, nicht Vertragsbestandteil, es sei denn, ihrer Geltung wird unsererseits ausdrücklich zugestimmt. Wir sind nicht verpflichtet, den AGB des Vertragspartners zu widersprechen, und zwar auch dann nicht, wenn in diesen AGB die Gültigkeit derselben als ausdrückliche Bedingung genannt wird. Wir erklären, ausschließlich auf Grund dieser AGB kontrahieren zu wollen.<br/>
@@ -437,6 +437,8 @@
                       <p>zur Lieferung von Zeitungen, Zeitschriften oder Illustrierten mit Ausnahme von Abonnement-Vertragen.</p>
                     </li>
                   </ul>
+                  <a href="/dreh24_shop/static/pdf/widerrufsformular_ch.pdf">Download Widerrufsformular Schweiz</a><br/>
+                  <a href="/dreh24_shop/static/pdf/widerrufsformular_de.pdf">Download Widerrufsformular Deutschland</a><br/>
                 </div>
               </div>
             </div>
@@ -483,6 +485,86 @@
                   </table>
                 </div>
                 <div class="col-md-4"> </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </t>
+    </template>
+
+    <template id="datenschutz" name="Datenschutz" page="True">
+      <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+          <section class="mt16 mb16">
+            <div class="container">
+              <div class="row">
+                <div cass="col-md-12 mb16 mt16" id="jura">
+                  <div style="text-align:center;">
+                    <b style="letter-spacing: 2 em;"><h2>DATENSCHUTZERKLÄRUNG</h2></b><br/>
+                    der dreh24 AG<br/>
+                    Kaltenbacherstraße 24, CH-8260 Stein am Rhein Schweiz<br/>
+                    Handelsregister des Kantons Schaffhausen CH-290.3.017.680-7<p/>
+                  </div>
+                  <div style="text-align: center;"><b>§ 1 Allgemeines</b></div>
+                  <p>Es ist uns ein großes Anliegen sorgfältig mit Ihren persönlichen Informationen umzugehen und Sie wissen zu lassen, wie wir die Daten erheben, schützen und verarbeiten.</p>
+                  <p>Ihre Daten werden im Rahmen der gesetzlichen Vorschriften geschützt. Nachfolgend finden Sie Informationen, welche Daten während Ihres Besuchs auf der Homepage erfasst und wie diese genutzt werden. Die Erhebung und Verarbeitung personenbezogener Daten findet ausschließlich im Rahmen der gesetzlichen Vorschriften des Bundesdatenschutzgesetzes (BDSG) und Telemediengesetzes (TMG) statt.</p>
+                  <p>Für externe Links zu fremden Inhalten können wir, trotz sorgfältiger inhaltlicher Kontrolle, keine Haftung übernehmen.</p>
+
+                  <div style="text-align: center;"><b>§ 2 Erhebung, Verarbeitung und Nutzung von personenbezogenen Daten</b></div>
+                  <p>Personenbezogene Daten werden nur erfasst, wenn Sie diese Angaben freiwillig machen - etwa im Rahmen einer Anfrage oder Bestellung. Bei der Anmeldung als Neukunde geben Sie während Ihrer ersten Bestellung Ihre Daten bei uns im Warenkorb an. Wir fragen Sie hierbei nach persönlichen Daten. Wir speichern diese Daten, um Ihnen eine reibungslose Bestellabwicklung zu ermöglichen.</p>
+                  <p>Während des Bestellvorganges werden folgende personenbezogene Daten erhoben:</p>
+
+                  <ul>
+                    <li>Vor- und Nachname</li>
+                    <li>Anschrift</li>
+                    <li>E-Mail-Adresse</li>
+                    <li>Telefonnummer</li>
+                    <li>Geburtsdatum - bei Zahlung per Lastschrift</li> 
+                    <li>Bankverbindung - bei Zahlung per Lastschrift </li>
+                    <li>Kreditkartendaten - bei Zahlung per Kreditkarte</li>
+                  </ul>
+                  <p>Die Angabe Ihrer persönlichen Daten ist im Fall einer Bestellung und zur Kontaktaufnahme mit uns notwendig. Im Einzelnen verwenden wir Ihre personenbezogenen Daten zur Abwicklung der Bestellung, zur Lieferung der Waren, zur Prüfung der Bonität und für die Abwicklung der Zahlung.</p>
+                  <p>Wir verwenden Ihre Informationen auch, um mit Ihnen über Ihre Bestellungen zu kommunizieren sowie dazu, unsere Datensätze zu aktualisieren und Ihre Kundendaten bei uns zu unterhalten und zu pflegen. Wir nutzen Ihre Informationen auch dazu, unseren Shop zu verbessern, einem Missbrauch unserer Website vorzubeugen oder einen Missbrauch zu entdecken oder Dritten die Durchführung technischer, logistischer oder anderer Dienstleistungen in unserem Auftrag zu ermöglichen.</p>
+                  <p>Wir verwenden Ihre Informationen auch, um Ihnen eigene ähnliche Produkte zu empfehlen, die Sie interessieren könnten. Wir möchten Ihnen auf diese Weise Informationen über Produkte aus unserem Angebot zukommen lassen, die Sie auf Grundlage Ihrer letzten Einkäufe bei uns interessieren könnten. Dabei richten wir uns streng nach den gesetzlichen Vorgaben.</p>
+                  <div style="text-align: center;"><b>§ 2 Widerruf zur Nutzung Ihrer Daten für Produktempfehlungen</b></div>
+                  <p>Sofern Sie keine Produktempfehlungen mehr von uns erhalten wollen, können Sie der Verwendung Ihrer personenbezogenen Daten hierfür mit Wirkung für die Zukunft widersprechen, ohne dass dafür andere als die Übermittlungskosten nach den Basistarifen entstehen. Eine Mitteilung in Textform durch eine E-Mail an office@dreh24.com, durch eine formlose Mitteilung auf dem Postweg an dreh24 AG, Kaltenbacherstraße 24, CH-8260 Stein am Rhein oder an das Außenlager dreh24 AG, Zeilbaumweg 30 D-74613 Öhringen, reicht hierfür aus.</p>
+                  <p>Selbstverständlich finden Sie auch in jeder E-Mail mit Produktempfehlungen einen Abmelde-Link.</p>
+
+                  <div style="text-align: center;"><b>§ 3 Auskunftserteilung, Löschung und Sperrung</b></div>
+                  <p>Selbstverständlich sind wir jederzeit bereit, Ihnen gemäß BDSG Auskunft über sämtliche von Ihnen bei uns gespeicherten Daten zu erteilen. Nach den Vorschriften des Bundesdatenschutzgesetzes können Sie die Berichtigung, Löschung oder Sperrung Ihrer Daten mit Wirkung für die Zukunft verlangen. Weiterhin machen wir nach § 4g BDSG jedermann die eingesetzten datenverarbeitenden Verfahren nach § 4e BDSG auf Antrag verfügbar.</p>
+                  <p>Hierzu kontaktieren Sie uns einfach per E-Mail office@dreh24.com</p>
+
+                  <div style="text-align: center;"><b>Beauftrage § 4 Datenübertragung</b></div>
+                  <p>Zur Übertragung Ihrer Bestelldaten nutzen wir einen sicheren Server mit SSL- Technik (Secure Socket Layer) und einer 128- Bit Verschlüsselung. Das SSL- Verfahren (Secure- Socket- Layer) ist das zur Zeit gängigste und sicherste Datenübertragungsverfahren im Internet. Dieses Übertragungsverfahren wird von den meisten Browsern unterstützt. Alle mit dieser sicheren Methode übertragenen Informationen werden verschlüsselt, bevor sie an uns gesendet werden. Damit wird sichergestellt, dass kein Unbefugter Ihre Angaben lesen und verwenden kann.</p> 
+
+                  <p>In unserem Shop werden alle Kundeninformationen auf sicheren Servern gespeichert, die nicht für Unbefugte zugänglich sind und durch eine "Firewall" vor dem Zugriff von außen geschützt sind.</p> 
+
+                  <p>Des weiteren sind unsere Mitarbeiter nach § 5 BDSG zur Verschwiegenheit über personenbezogene Daten verpflichtet.</p>
+
+                  <div style="text-align: center;"><b>§ 5 Weitergabe an Dritte</b></div>
+                  <p>Keinesfalls verkaufen wir Informationen an Dritte. Wir geben Ihre personenbezogenen Daten, die wir erhalten, nur in folgenden Fällen und auf ein Mindestmaß reduziert an Dritte weiter: Dienstleistungspartner, welche zur Abwicklung ihrer Bestellung weitere Daten einfordern. Hierzu zählen Transportunternehmen (Deutsche Post AG, DPD). Unsere vertraglich verbundenen Partner für Finanzdienstleistungen (Bankeinzug, Kreditkarte) sowie ggf. die von uns beauftragten Firmen bei Bonitätsprüfungen.</p> 
+
+                  <p>Die dreh24 AG verwendet Ihre bei der Registrierung angegebenen Daten auch zum Zweck der Zusendung von  Newslettern sowie für persönliche Produktempfehlungen auf Basis Ihrer letzten Bestellungen. Es erfolgt keine Weitergabe Ihrer Daten an Dritte. Ausgenommen hiervon ist artmin IT-Dienstleistungen, welche ausschließlich für die technische Abwicklung des Newsletterversands ist. Eine anderweitige Verwendung Ihrer Daten findet hierbei zu keiner Zeit statt.</p>
+
+                  <div style="text-align: center;"><b>§ 6 Abbestellung des Newsletters</b></div>
+                  <p>Wenn Sie unseren Newsletter oder unsere persönlichen Produktempfehlungen nicht weiter erhalten möchten, so können Sie uns dies durch klicken des Links „Newsletter abmelden“, der in allen von der dreh24 AG gesendeten E-Mails enthalten ist, mitteilen. Wir werden Ihnen in diesem Fall für die Zukunft keine Newsletter und Produktempfehlungen mehr zusenden.</p>
+
+                  <p>Eine Übermittlung der Daten an Dienstleistungspartner erfolgt nach den Bestimmungen des BDSG (Bundesdatenschutzgesetztes) und der Umfang der Übermittlung beschränkt sich auf das notwendige Minimum. Wir stellen sicher, dass die Weitergabe von Informationen in Übereinstimmung mit dieser Datenschutzerklärung und den deutschen Datenschutzgesetzen erfolgt.</p>
+
+                  <p>Ihre jeweilige Einwilligung können Sie selbstverständlich jederzeit mit Wirkung für die Zukunft widerrufen. Etwas anderes gilt jedoch dann, wenn wir aufgrund von Gesetzen oder durch ein gerichtliches Urteil zu einer Offenlegung oder Übermittlung Ihrer Daten verpflichtet sind.</p>
+
+                  <p>Dies gilt gleichermaßen für Staaten innerhalb und außerhalb der Europäischen Union und des europäischen Wirtschaftsraumes.</p>
+
+                  <div style="text-align: center;"><b>§ 6 Cookies</b></div>
+                  <p>Die Internetseiten verwenden an mehreren Stellen Cookies. Cookies richten auf Ihrem Rechner keinen Schaden an und enthalten keine Viren. Sie dienen dazu, unser Angebot nutzerfreundlicher, effektiver und sicherer zu machen. Cookies sind kleine Textdateien, die auf Ihrem Rechner abgelegt werden und die Ihr Browser speichert. Die meisten der von uns verwendeten Cookies sind „Session- Cookies“. Sie werden nach Ende Ihres Besuchs automatisch gelöscht.</p> 
+
+                  <p>Diese Website benutzt Google Analytics, einen Webanalysedienst der Google Inc. („Google“). Google Analytics verwendet sog. „Cookies“, Textdateien, die auf Ihrem Computer gespeichert werden und die eine Analyse der Benutzung der Website durch Sie ermöglichen. Die durch den Cookie erzeugten Informationen über Ihre Benutzung dieser Website (einschließlich Ihrer IP- Adresse) wird an einen Server von Google in den USA übertragen und dort gespeichert. Google wird diese Informationen benutzen, um Ihre Nutzung der Website auszuwerten, um Reports über die Websiteaktivitäten für die Websitebetreiber zusammenzustellen und um weitere mit der Websitenutzung und der Internetnutzung verbundene Dienstleistungen zu erbringen. Auch wird Google diese Informationen gegebenenfalls an Dritte übertragen, sofern dies gesetzlich vorgeschrieben oder soweit Dritte diese Daten im Auftrag von Google verarbeiten. Google wird in keinem Fall Ihre IP- Adresse mit anderen Daten von Google in Verbindung bringen. Sie können die Installation der Cookies durch eine entsprechende Einstellung Ihrer Browser Software verhindern; wir weisen Sie jedoch darauf hin, dass Sie in diesem Fall gegebenenfalls nicht sämtliche Funktionen dieser Website vollumfänglich nutzen können. Durch die Nutzung dieser Website erklären Sie sich mit der Bearbeitung der über Sie erhobenen Daten durch Google in der zuvor beschriebenen Art und Weise und zu dem zuvor benannten Zweck einverstanden.“</p>
+
+                  <div style="text-align: center;"><b>§ 7 Einwilligung in die Datenschutzerklärung</b></div>
+                  <p>Während der Anmeldung in unserem Shop geben Sie Ihre Einwilligung wie folgt ab:</p> 
+
+                  <p>Hiermit gebe ich meine Einwilligung, dass meine personenbezogenen Daten, die während des Bestellvorganges erhoben werden, in Übereinstimmung mit der Datenschutzerklärung der dreh24AG verarbeitet und genutzt werden.</p>
+                                 </div>
               </div>
             </div>
           </section>

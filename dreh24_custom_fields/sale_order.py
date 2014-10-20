@@ -28,6 +28,8 @@ class dreh24_sale_order(osv.osv):
     _columns = {
         'client_order_ref_date': fields.date('Ihr Schreiben vom', select=1,
             help="Datum der Anfrage des Kunden"),
+        'custom_delivery_date': fields.date('Wunschtermin Lieferung', select=1,
+            help="Vom Kunden gewünschtes Datum für die Lieferung des Auftrages"),
     }
     
     _defaults = {           

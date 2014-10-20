@@ -51,8 +51,11 @@
       </xpath>
       <xpath expr="//div[@t-field='acquirer.pre_msg']" position="after">
         <div>
-          Mit dem Klick auf Bestellen akzeptieren Sie unsere 
-          <a href="/page/dreh24_shop.agb">AGB</a>.
+           Durch Anklicken des Buttons „zahlungspflichtig bestellen“ kommt ein Vertrag zustande,
+           dessen Grundlage die derzeit gültigen  <a href="/page/dreh24_shop.agb">AGBs</a> sowie
+           unsere Hinweise zum <a href="/page/dreh24_shop.datenschutz">Datenschutz</a> sind.
+           Wenn Sie diese gelesen haben und damit einverstanden sind, klicken Sie bitte den Button
+           „zahlungspflichtig bestellen“.
         </div>
       </xpath>
     </template>
