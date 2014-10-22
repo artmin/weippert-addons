@@ -58,6 +58,15 @@
            „zahlungspflichtig bestellen“.
         </div>
       </xpath>
+   </template>
+
+   <!-- Website delivery -->
+   <template id="website_delivery" inherit_id="website_sale_delivery.payment_delivery">
+     <xpath expr="//div[@id='delivery_carrier']//ul" position="after">
+        <div>
+          Expressversand nur möglich bei Bestellungen bis 12 Uhr (Mo-Fr).
+        </div>
+      </xpath>
     </template>
 
     <!-- Add top margin for image on product description page -->
