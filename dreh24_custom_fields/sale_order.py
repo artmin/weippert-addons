@@ -33,5 +33,5 @@ class dreh24_sale_order(osv.osv):
     }
     
     _defaults = {           
-        'client_order_ref_date' : datetime.today(), 
+        'client_order_ref_date' : fields.datetime.today(), 
     }
