@@ -44,16 +44,16 @@
                     <img class="catImage" src="/dreh24_shop/static/src/img/prod_screw_torx.png" style=""/>
                     <h3 class="mt8 mb0">Senkschrauben</h3>
                   </a>
-                  <div class="text-muted">mit Kreuzschlitz</div>
-                  <div class="text-muted">DIN 965</div>
+                  <div class="text-muted">mit TX-Antrieb</div>
+                  <div class="text-muted">ähnlich DIN 965</div>
                 </div>
                 <div class="col-md-4 text-center">
                   <a href="/shop/category/edelstahlschrauben-senkschraube-kreuzschlitz-16">
                     <img class="catImage" src="/dreh24_shop/static/src/img/prod_screw_kreuz.png" style=""/>
                     <h3 class="mt8 mb0">Senkschrauben</h3>
                   </a>
-                  <div class="text-muted">mit TX-Antrieb</div>
-                  <div class="text-muted">ähnlich DIN 965</div>
+                  <div class="text-muted">mit Kreuzschlitz</div>
+                  <div class="text-muted">DIN 965</div>
                 </div>
               </div>
             </div>
