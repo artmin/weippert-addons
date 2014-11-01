@@ -8,10 +8,11 @@ Changes in shop for company dreh24 AG. E.g. showing the Sales Unit Price instead
 of the list price.
         """,
     'author': 'IT - artmin',
-    'depends': ['website_sale'],
+    'depends': ['product','website_sale'],
     'data': [
         'views/dreh24_shop.xml',
         'views/dreh24_pages.xml',
+        'product_view.xml',
     ],
     'installable': True,
     'auto-install' : False,
