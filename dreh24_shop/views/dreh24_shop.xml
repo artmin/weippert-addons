@@ -89,7 +89,7 @@
             t-field-options='{"widget": "image", "class": "product_detail_img"}'/>
         </div>
       </xpath>
-      <xpath expr="//p[@field='product.description_sale']" position="replace">
+      <xpath expr="//p[@t-field='product.description_sale']" position="replace">
         <div class="text-muted">
           <div class="text-muted">
               Preis / 100 Stück: 
