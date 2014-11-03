@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    
+#
 #    OpenERP, Open Source Management Solution
-#    Copyright (C) 2014 artmin - IT Dienstleistungen.
+#    Copyright (C) 2013 Ecosoft Co., Ltd. (http://ecosoft.co.th).
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU Affero General Public License as
@@ -15,33 +15,29 @@
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ##############################################################################
+
 {
-    'name': 'artMin - Tools',
-    'version': '1.0',
-    "category" : 'Tools',
-    'complexity': "easy",
-    'depends' : ['base','website_sale'],
+    'name' : 'Product Sales Unit of Measure',
+    'version' : '1.1',
+    'author' : 'Ecosoft',
+    'summary': "Set default sales UOM for sales operation",
     'description': """
-artMin - Tools
-===========================
-
-* Land aus IP-Adresse 
-
+* Sales - setup in "Sales Unit of Measure" field of product
     """,
-    'author': 'artMin - IT-Dienstleistungen',
-    'website': 'http://it.artmin.de',
-    'data': [
-        'views/artmin_tools.xml',
-        'public_user_ch.xml',
-        ],
-    'demo_xml': [],
-    'test': [],
-    'installable': True,
-    'application': False,
+    'category': 'Sales',
+    'website' : 'http://www.ecosoft.co.th',
+    'images' : [],
+    'depends' : ['sale'],
+    'demo' : [],
+    'data' : ['product_view.xml',
+              'sale_view.xml'],
+    'test' : [],
     'auto_install': False,
+    'application': True,
+    'installable': True,
 }
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+  <data>
+    <record id="product_normal_form_view_uos" model="ir.ui.view">
+      <field name="name">product.product_normal.form.view.uos</field>
+      <field name="inherit_id" ref="product.product_normal_form_view" />
+      <field name="model">product.product</field>
+      <field name="arch" type="xml">
+        <xpath expr="//group[@name='sale_condition']" position="inside">
+          <field name="uom_so_id"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</openerp>
