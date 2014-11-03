@@ -9,7 +9,8 @@
               Deine IP: <span t-esc="ip"/><br/>
               Country from IP: <span t-esc="country"/><br/>
               Country from request: <span t-esc="country_code"/><br/>
-              Remote address: <span t-esc="remote_addr"/>
+              Remote address: <span t-esc="remote_addr"/><br/>
+              Partner: <span t-esc="partner_ch"/>
             </div>
           </div>
         </div>

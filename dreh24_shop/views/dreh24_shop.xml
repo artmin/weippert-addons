@@ -89,7 +89,7 @@
             t-field-options='{"widget": "image", "class": "product_detail_img"}'/>
         </div>
       </xpath>
-      <xpath expr="//p[@field='product.description_sale']" position="replace">
+      <xpath expr="//p[@t-field='product.description_sale']" position="replace">
         <div class="text-muted">
           <div class="text-muted">
               Preis / 100 Stück: 
@@ -103,6 +103,162 @@
           </div>          
         </div>
       </xpath>
+      <!-- Technical information -->
+      <xpath expr="//section[@id='product_detail']" position="after">
+        <section>
+          <div t-if="product.public_categ_ids.name == 'Federringe'" class="container">
+            <div class="row">
+              <div class="col-md-6 mt16">
+                <img class="img img-responsive mb16" style="" src="/dreh24_shop/static/src/img/tech_federring.jpg"></img>
+              </div>
+              <div class="col-md-6 mt16">
+                <h4>Technische Informationen</h4>
+                <table class="table table-bordered table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>Nenngröße<br/>Gewindedurchmesser</th>
+                      <th>d 1</th><th>d 2</th><th>b</th><th>s</th>
+                    </tr>
+                    <tr><td>M5</td><td>5,1</td><td>9,2</td><td>1,8</td><td>1,2</td></tr>
+                    <tr><td>M6</td><td>6,1</td><td>11,8</td><td>2,5</td><td>1,6</td></tr>
+                    <tr><td>M8</td><td>8,1</td><td>14,8</td><td>3,0</td><td>2,0</td></tr>
+                    <tr><td>M10</td><td>10,2</td><td>18,1</td><td>3,5</td><td>2,2</td></tr>
+                    <tr><td>M12</td><td>12,2</td><td>21,1</td><td>4,0</td><td>2,5</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div t-if="product.public_categ_ids.name == 'Senkschraube Kreuzschlitz'" class="container">
+            <div class="row">
+              <div class="col-md-6 mt16">
+                <img class="img img-responsive mb16" style=""
+                  src="/dreh24_shop/static/src/img/tech_senkschraube_kreuz_form_h.jpg"/>
+              </div>
+              <div class="col-md-6 mt16">
+                <h4>Technische Informationen</h4>
+                <table class="table table-bordered table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>Nenngröße<br/>Gewindedurchmesser</th>
+                      <th>dK</th>
+                      <th>k</th>              
+                    </tr>
+                    <tr><td>M4</td><td>7,5</td><td>2,2</td></tr>
+                    <tr><td>M5</td><td>9,2</td><td>2,5</td></tr>
+                    <tr><td>M6</td><td>11,0</td><td>3,0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div t-if="product.public_categ_ids.name == 'Senkschraube TX-Antrieb'" class="container">
+            <div class="row">
+              <div class="col-md-6 mt16">
+                <img class="img img-responsive mb16" style=""
+                  src="/dreh24_shop/static/src/img/tech_senkschraube_tx.jpg"/>
+              </div>
+              <div class="col-md-6 mt16">
+                <h4>Technische Informationen</h4>
+                <table class="table table-bordered table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>Nenngröße<br/>Gewindedurchmesser d</th>
+                      <th>TX-Antrieb</th>
+                      <th>dK</th>
+                      <th>k</th>              
+                    </tr>
+                    <tr><td>M4</td><td>20</td><td>7,5</td><td>2,2</td></tr>
+                    <tr><td>M5</td><td>25</td><td>9,2</td><td>2,5</td></tr>
+                    <tr><td>M6</td><td>30</td><td>11,0</td><td>3,0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div t-if="product.public_categ_ids.name == 'Sechskantmuttern'" class="container">
+            <div class="row">
+              <div class="col-md-6 mt16">
+                <img class="img img-responsive mb16" style=""
+                  src="/dreh24_shop/static/src/img/tech_sechskantmutter.jpg"/>
+              </div>
+              <div class="col-md-6 mt16">
+                <h4>Technische Informationen</h4>
+                <table class="table table-bordered table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>Nenngröße<br/>Gewindedurchmesser d</th>
+                      <th>s</th>
+                      <th>m (max.)</th>              
+                    </tr>
+                    <tr><td>M5</td><td>8,0</td><td>4,4</td></tr>
+                    <tr><td>M6</td><td>10,0</td><td>5,2</td></tr>
+                    <tr><td>M8</td><td>13,0</td><td>6,8</td></tr>                            
+                    <tr><td>M10</td><td>16,0</td><td>8,4</td></tr>                      
+                    <tr><td>M12</td><td>18,0</td><td>10,8</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div t-if="product.public_categ_ids.name == 'Unterlegscheiben'" class="container">
+            <div class="row">
+              <div class="col-md-6 mt16">
+                <img class="img img-responsive mb16" style=""
+                  src="/dreh24_shop/static/src/img/tech_unterlegscheibe.jpg"/>
+              </div>
+              <div class="col-md-6 mt16">
+                <h4>Technische Informationen</h4>
+                <table class="table table-bordered table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>Nenngröße<br/>Gewindedurchmesser</th>
+                      <th>Lochdurchmesser d2</th>
+                      <th>Außendurchmesser d1</th>
+                      <th>Höhe h</th>              
+                    </tr>
+                    <tr><td>M5</td><td>5,3</td><td>10</td><td>1,0</td></tr>
+                    <tr><td>M6</td><td>6,4</td><td>12</td><td>1,6</td></tr>
+                    <tr><td>M8</td><td>8,4</td><td>16</td><td>1,6</td></tr>                       
+                    <tr><td>M10</td><td>10,5</td><td>20</td><td>2,0</td></tr>                            
+                    <tr><td>M12</td><td>13</td><td>24</td><td>2,5</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          
+          <div t-if="product.public_categ_ids.name == 'Zylinderschrauben'" class="container">
+            <div class="row">
+              <div class="col-md-6 mt16">
+                <img class="img img-responsive mb16" style=""
+                  src="/dreh24_shop/static/src/img/tech_zylinderschraube.jpg"/>
+              </div>
+              <div class="col-md-6 mt16">
+                <h4>Technische Informationen</h4>
+                <table class="table table-bordered table-responsive">
+                  <tbody>
+                    <tr>
+                      <th>Nenngröße<br/>Gewindedurchmesser d</th>
+                      <th>b</th>
+                      <th>dk<br/>max.</th>
+                      <th>k<br/>max.</th>
+                      <th>s</th>
+                      <th>t</th>              
+                    </tr>
+                    <tr><td>M5</td><td>22</td><td>8,5</td><td>5,0</td><td>4,0</td><td>2,5</td></tr>
+                    <tr><td>M6</td><td>24</td><td>10,0</td><td>6,0</td><td>5,0</td><td>3,0</td></tr>
+                    <tr><td>M8</td><td>28</td><td>13,0</td><td>8,0</td><td>6,0</td><td>4,0</td></tr>
+                    <tr><td>M10</td><td>32</td><td>16,0</td><td>10,0</td><td>8,0</td><td>5,0</td></tr>                      
+                    <tr><td>M12</td><td>36</td><td>18,0</td><td>12,0</td><td>10,0</td><td>6,0</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      </xpath>        
+ 
     </template>
         
     <!-- Remove logo on "Home" page and add paading on top-->

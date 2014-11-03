@@ -23,7 +23,7 @@
     'version': '1.0',
     "category" : 'Tools',
     'complexity': "easy",
-    'depends' : ['base'],
+    'depends' : ['base','website_sale'],
     'description': """
 artMin - Tools
 ===========================
@@ -33,7 +33,10 @@ artMin - Tools
     """,
     'author': 'artMin - IT-Dienstleistungen',
     'website': 'http://it.artmin.de',
-    'data': ['views/artmin_tools.xml'],
+    'data': [
+        'views/artmin_tools.xml',
+        'public_user_ch.xml',
+        ],
     'demo_xml': [],
     'test': [],
     'installable': True,
