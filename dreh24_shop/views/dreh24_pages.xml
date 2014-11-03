@@ -268,7 +268,7 @@
             <div class="container">
               <div class="row">
                 <h1 style="text-align: center;">
-                  <span style="font-size: 30px; line-height: 33px;">Versandkostenübersicht</span>
+                  <span style="font-size: 30px; line-height: 33px;">Versandkosten nach Deutschland</span>
                 </h1>
                 <div>
                   <span style="font-size: 30px; line-height: 33px;"/>
@@ -299,7 +299,7 @@
                         <i>Ab 2 kg sind die Pakete versichert</i>
                       </p>
                       <p class="text-muted">
-                        <a class="btn btn-primary btn-lg" href="/shop/cart">Order now</a>
+                        <a class="btn btn-primary btn-lg" href="/">Jetzt bestellen</a>
                       </p>
                     </div>
                   </div>
@@ -329,7 +329,7 @@
                       <p class="text-muted">
                         <i>Pakete sind versichert</i>
                       </p>
-                      <a class="btn btn-primary btn-lg" href="/shop/cart">Order now</a>
+                      <a class="btn btn-primary btn-lg" href="/">Jetzt bestellen</a>
                     </div>
                   </div>
                 </div>
@@ -359,10 +359,73 @@
                           <i style="color: rgb(119, 119, 119); text-align: center; background-color: rgb(245, 245, 245);">Pakete sind versichert</i>
                         </i>
                       </p>
-                      <a class="btn btn-primary btn-lg" href="/shop/cart">Order now</a>
+                      <a class="btn btn-primary btn-lg" href="/">Jetzt bestellen</a>
                     </div>
                   </div>
                 </div>
+              </div>
+            </div>
+          </section>
+          <section>
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12 text-center mt16 mb32">
+                  <h2>Versand in die Schweiz und nach Österreich</h2>
+                </div>
+                <div class="col-md-2"/>
+                <div class="col-md-4">
+                  <div class="panel panel-info">
+                    <div class="panel-heading text-center">
+                      <h2 style="margin: 0">Paketversand</h2>
+                      <p class="text-muted" style="margin: 0">nach Österreich</p>
+                    </div>
+                    <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                      <h2 style="margin: 0">
+                        <span>ab </span>
+                        <b style="font-size: 60px">12</b>
+                        <small>,00 € Netto</small>
+                      </h2>
+                      <div/>
+                    </div>
+                    <ul class="list-group">
+                      <li class="list-group-item active">Expressversand auf Anfrage</li>
+                      <li class="list-group-item">Gewicht bis 10 kg: 12,00 €</li>
+                      <li class="list-group-item">Gewicht bis 20 kg: 18,00 €</li>
+                    </ul>
+                    <div class="panel-footer text-center">
+                      <p class="text-muted"/>
+                      <a class="btn btn-primary btn-lg" href="/">Jetzt bestellen</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="panel panel-primary">
+                    <div class="panel-heading text-center">
+                      <h2 style="margin: 0">Paketversand</h2>
+                      <p style="margin: 0">in die Schweiz</p>
+                    </div>
+                    <div class="panel-body text-center text-muted" style="background-color: rgba(0,0,0,0.1)">
+                      <h2 style="margin: 0">
+                        <span>ab CHF </span>
+                        <b style="font-size: 60px">9</b>
+                        <small>,00 Netto</small>
+                      </h2>
+                      <div/>
+                    </div>
+                    <ul class="list-group">
+                      <li class="list-group-item active">Expressversand auf Anfrage</li>
+                      <li class="list-group-item">Gewicht bis 2 kg: CHF 9,00</li>
+                      <li class="list-group-item">Gewicht bis 5 kg: CHF 11,00</li>
+                      <li class="list-group-item">Gewicht bis 10 kg: CHF 12,00</li>
+                      <li class="list-group-item">Gewicht bis 20 kg: CHF 18,00</li>
+                    </ul>
+                    <div class="panel-footer text-center">
+                      <p class="text-muted"/>
+                      <a class="btn btn-primary btn-lg" href="/">Jetzt bestellen</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2"/>
               </div>
             </div>
           </section>
