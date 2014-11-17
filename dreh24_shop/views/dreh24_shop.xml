@@ -70,10 +70,27 @@
            „zahlungspflichtig bestellen“.
         </div>
       </xpath>
+      <!-- Put proper currency -->
+      <xpath expr="//span[@t-field='line.price_unit']" position="replace">
+        <span t-field="line.price_unit"
+         style="white-space: nowrap;"
+         t-field-options='{
+           "widget": "monetary",
+           "display_currency": "website_sale_order.pricelist_id.currency_id"
+           }'/> 
+      </xpath>
    </template>
 
    <!-- Website delivery -->
    <template id="website_delivery" inherit_id="website_sale_delivery.payment_delivery">
+     <xpath expr="//span[@t-field='delivery.price']" position="replace">
+       <span class="badge"
+         t-field="delivery.price"
+         t-field-options='{
+           "widget": "monetary",
+           "display_currency": "website_sale_order.pricelist_id.currency_id"
+           }'/>
+     </xpath>
      <xpath expr="//div[@id='delivery_carrier']//ul" position="after">
         <div>
           Expressversand nur möglich bei Bestellungen bis 12 Uhr (Mo-Fr).
@@ -268,7 +285,78 @@
       </xpath>        
  
     </template>
+
+    <!-- Replace currency of user pricelist with currency of sales order. -->
+    <template id="cart" inherit_id="website_sale.cart">
+      <xpath expr="//span[@t-field='line.price_unit']" position="replace">
+        <span t-field="line.price_unit" 
+            style="white-space: nowrap;" 
+            t-field-options='{
+              "widget": "monetary",
+              "display_currency": "website_sale_order.pricelist_id.currency_id"
+              }'/> 
+      </xpath>
+    </template>
+
+    <!-- Replace currency of user pricelist with currency of sales order. -->
+    <template id="total" inherit_id="website_sale.total">
+      <xpath expr="//span[@t-field='website_sale_order.amount_total']" position="replace">
+        <span t-field="website_sale_order.amount_total"
+          style="white-space: nowrap;"
+          t-field-options='{
+            "widget": "monetary",
+            "display_currency": "website_sale_order.pricelist_id.currency_id"
+            }'/>
+      </xpath>
+      <xpath expr="//span[@t-field='website_sale_order.amount_tax']" position="replace">
+        <span t-field="website_sale_order.amount_tax"
+          style="white-space: nowrap;"
+          t-field-options='{
+            "widget": "monetary",
+            "display_currency": "website_sale_order.pricelist_id.currency_id"
+                    }'/>
+      </xpath>
+    </template>
+    
+    <!-- Replace currency of user pricelist with currency of sales order. -->
+    <template id="delivery_cart" inherit_id="website_sale_delivery.cart_delivery">
+      <xpath expr="//span[@t-field='website_sale_order.amount_delivery']" position="replace">
+        <span t-field="website_sale_order.amount_delivery" 
+          t-field-options='{
+            "widget": "monetary",
+            "display_currency": "website_sale_order.pricelist_id.currency_id"
+            }'/>
+      </xpath>
+    </template>
         
+    <!-- Replace currency of user pricelist with currency of sales order. -->
+    <template id="checkout" inherit_id="website_sale.checkout">
+      <xpath expr="//span[@t-field='website_sale_order.amount_untaxed']" position="replace">
+        <span style="white-space: nowrap;"
+          t-field="website_sale_order.amount_untaxed"
+          t-field-options='{
+            "widget": "monetary",
+            "display_currency": "website_sale_order.pricelist_id.currency_id"
+            }'/>
+      </xpath>
+      <xpath expr="//span[@t-field='website_sale_order.amount_tax']" position="replace">
+        <span style="white-space: nowrap;"
+          t-field="website_sale_order.amount_tax"
+          t-field-options='{
+            "widget": "monetary",
+            "display_currency": "website_sale_order.pricelist_id.currency_id"
+            }'/>
+      </xpath>
+      <xpath expr="//span[@t-field='website_sale_order.amount_total']" position="replace">
+        <span style="white-space: nowrap;"
+          t-field="website_sale_order.amount_total"
+          t-field-options='{
+            "widget": "monetary",
+            "display_currency": "website_sale_order.pricelist_id.currency_id"
+            }'/>
+      </xpath>
+    </template>
+    
     <!-- Remove logo on "Home" page and add paading on top-->
     <template id="website_logo" inherit_id="website.layout_logo_show">
       <xpath expr="//img" position="replace">

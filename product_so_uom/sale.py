@@ -48,7 +48,16 @@ class sale_order_line(osv.osv):
                 # Dirty hack: If unit price is equal to list_price and sales uom
                 # is not equal to product uom, there must be something wrong.
                 # Therefore recalculate!
-                if res.get('value').get('price_unit') == product.list_price and \
+                
+                # Differentiate between swiss and eu prices
+                pricelist_obj = self.pool('product.pricelist').browse(cr, uid, pricelist, context=context)
+                if pricelist_obj.currency_id.name == 'CHF':
+                  list_price = product.list_price_ch
+                else:
+                  list_price = product.list_price
+                  
+                # Check if price was calculated properly and correct, if not
+                if (res.get('value').get('price_unit') - list_price < 0.01) and \
                   not res.get('value').get('product_uom') == product.uom_id.id:
                   # Calculate price from uom_so_id factor
                   price_computed = product.uom_so_id.factor_inv * res.get('value').get('price_unit') / product.uom_id.factor_inv
