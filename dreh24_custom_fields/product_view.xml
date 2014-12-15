@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <record id="product_template" model="ir.ui.view">
+      <field name="name">product.template.common.form.weippert</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_form_view"/>
+      <field name="arch" type="xml">
+        <page name="sales" position="after">
+          <page string="Fertigung" name="production">
+            <group name="production_group">
+              <group name="zeichnung" string="Zeichnungen">
+                <field name="zeichnung"/>
+                <field name="alte_zeichnung"/>
+              </group>
+              <group name="box" string="Behälter">
+                <field name="box"/>
+                <field name="box_menge"/>
+              </group>
+            </group>
+            <group name="werkzeug">
+              <field name="werkzeug_nr"/>
+              <field name="verpackungsart" />
+            </group>
+          </page>
+        </page>
+        <group name="sale" position="after">
+          <group name="kontrakt" string="Kontraktinformationen">
+            <field name="kontrakt_nr"/>
+            <field name="kontraktmenge"/>
+            <field name="restmenge"/>
+          </group>
+        </group>
+      </field>
+    </record>
+  </data>
+</openerp>

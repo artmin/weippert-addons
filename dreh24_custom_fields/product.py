@@ -18,7 +18,26 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.     
 #
 ##############################################################################
-import partner_ref
-import sale_order
-import product
-# vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:
+
+from openerp.osv import osv, fields
+
+class weippert_product(osv.osv):
+
+    _inherit = 'product.template'
+    _description = "Custom fields for Weippert products."
+
+    _columns = {
+        # Fertigung
+        'zeichnung': fields.char('Zeichnung', size=64),
+        'alte_zeichnung' : fields.char('Alte Zeichnung', size=64),
+        'box' : fields.char('Behälter', size=32),
+        'box_menge' : fields.integer('Behälterinhalt', size=10),
+        'werkzeug_nr' : fields.char('Werkzeugnummer', size=64),
+        'verpackungsart' : fields.char('Verpackungsart', size=128),
+        # Verkauf
+        'kontrakt_nr' : fields.char('Kontraktnummer', size=32),
+        'kontraktmenge' : fields.integer('Kontraktmenge', size=10),
+        'restmenge' : fields.integer('Restmenge', size=10),
+    }
+
+weippert_product()
