@@ -37,7 +37,7 @@ class artmin_partner_reference(osv.osv):
     }
     
     def create(self, cr, uid, vals, context=None):
-        if not 'ref' in vals:
+        if not 'ref' in vals and not 'parent_id' in vals:
           # Get sequence
           ref = self.pool.get('ir.sequence').get(cr, uid, 'artmin.partner.ref')
           # Get company id from from if available

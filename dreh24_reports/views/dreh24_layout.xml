@@ -30,18 +30,42 @@
           <t t-set="company" t-value="res_company"/>
       </t>
       <div class="right grey" id="info">
-        <span t-field="company.partner_id.name"/><br/>
+        <span t-if="company.partner_id.name != 'dreh24 AG'">
+          Weippert Kunststofftechnik<br/>
+          GmbH &amp;amp; Co. KG<br/>
+        </span>
         <span t-if="company.partner_id.name == 'dreh24 AG'">
+          dreh AG<br/>
           Schraubengroßhandel<br/>
           Webshop<br/>
         </span>
         <span t-field="company.partner_id.street"/><br/>
         <span t-field="company.partner_id.zip"/> <span t-field="company.partner_id.city"/><br/>
-        Telefon <span t-field="company.partner_id.phone"/><br/>
-        Mail: <span t-field="company.partner_id.email"/><br/>
-        <span t-field="company.partner_id.website"/>
+        <div t-if="company.partner_id.name == 'dreh24 AG'">
+          Telefon <span t-field="company.partner_id.phone"/><br/>
+          Mail: <span t-field="company.partner_id.email"/><br/>
+          <span t-field="company.partner_id.website"/>
+        </div>
+        <div t-if="company.partner_id.name != 'dreh24 AG'">
+          <span class="left hspace-xs">Telefon<br/>Fax</span>
+          <span class="left">
+            <span t-field="company.partner_id.phone"/><br/>
+            <span t-field="company.partner_id.fax"/>
+          </span>
+          <div class="small clearleft">
+            Mail: <span t-field="company.partner_id.email"/><br/>
+            <span t-field="company.partner_id.website"/>
+          </div>
+        </div>
       </div>
-      <div class="small grey clearleft" style="padding-top:3.5cm">
+
+      <div t-if="company.partner_id.name == 'dreh24 AG'" class="small grey clearleft" style="padding-top:3.5cm">
+        <span t-field="company.partner_id.name"/> &amp;middot;
+        <span t-field="company.partner_id.street"/> &amp;middot;
+        <span t-field="company.partner_id.zip"/>
+        <span t-field="company.partner_id.city"/>
+      </div>
+      <div t-if="company.partner_id.name != 'dreh24 AG'" class="x-small grey clearleft" style="padding-top:3.5cm">
         <span t-field="company.partner_id.name"/> &amp;middot;
         <span t-field="company.partner_id.street"/> &amp;middot;
         <span t-field="company.partner_id.zip"/>
@@ -54,7 +78,7 @@
       <xpath expr="//div[@class='footer']" position="replace">
         <div class="footer">
           <div class="fullwidth top small grey">
-              <div class="left" style="margin-right:1cm">
+              <div class="left hspace-s">
                 <span t-field="company.partner_id.name"/><br/>
                 <span t-field="company.partner_id.street"/><br/>
                 <span t-field="company.partner_id.zip"/>
@@ -64,15 +88,22 @@
                 <span t-if="company.partner_id.name == 'dreh24 AG'">
                   Handelsregister des Kantons Schaffhausen
                 </span>
+                <span t-if="company.partner_id.name != 'dreh24 AG'">
+                  Kommanditgesellschaft Sitz Öhringen<br/>
+                  <span t-field="company.company_registry"/>
+                </span>
               </div>
               <div class="left">
                 Tel. <span t-field="company.partner_id.phone"/><br/>
-                <span t-field="company.partner_id.email"/><br/>
+                <span t-if="company.partner_id.fax">
+                  Fax <span t-field="company.partner_id.fax"/><br/>
+                </span>
+                Mail: <span t-field="company.partner_id.email"/><br/>
                 <span t-field="company.partner_id.website"/><br/>
                 <span t-if="company.partner_id.name == 'dreh24 AG'">
                   Webshop<br/>
+                  <span t-field="company.company_registry"/>
                 </span>
-                <span t-field="company.company_registry"/>
               </div>
               <div class="right">
                 <span t-if="company.partner_id.name == 'dreh24 AG'">
@@ -82,6 +113,12 @@
                   BIC: SHKBCH2S<br/>
                   MWST CHE-347.663.959<br/>
                   MWST DE289 269 812
+                </span>
+                <span t-if="company.partner_id.name != 'dreh24 AG'">
+                  Bankverbindung<br/>
+                  IBAN&amp;nbsp;DE39&amp;nbsp;6225&amp;nbsp;1550&amp;nbsp;0000&amp;nbsp;0085&amp;nbsp;52<br/>
+                  BIC: SOLADES1KUN<br/>
+                  MWSt  DE257 950 463
                 </span>
               </div>
           </div>
@@ -142,6 +179,9 @@
         clear:right;
         width: 100%;
         }
+      .hspace-xs {
+        margin-right: 0.2 cm;
+        }
       .hspace-s {
         margin-right: 0.6cm
         }
@@ -165,7 +205,10 @@
         }
       .small {
          font-size: 8pt
-        }
+         }
+      .x-small {
+         font-size: 6.5pt;
+      }
       .title {
         font-size:12pt
         }
