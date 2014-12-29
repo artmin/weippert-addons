@@ -60,3 +60,4 @@ getaddons
 
 # Editor files
 *~
+*.swp

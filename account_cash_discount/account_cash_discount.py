@@ -23,10 +23,9 @@ from openerp.addons import decimal_precision as dp
 import datetime
 
 class account_cash_discount(osv.osv):
-  _name = "account.cash.discount"
-  _description = "Cash discount on invoices and sale orders."
+  _inherit = "account.payment.term"
+  _description = "Add cash discount to payment terms."
   _columns = {
-    'name' : fields.char('Bezeichnung', size=30, required="True"),
     'discount_deadline' : fields.integer('Skontofrist', size=2, required=True,
         help='Frist in Tagen, wie lange Skonto abgezogen werden darf,'),
     'discount_rate' : fields.float('Skontosatz', digits=(2,2), required=True,
@@ -46,7 +45,7 @@ class sale_cash_discount(osv.osv):
   def _cash_discount(self, cr, uid, ids, field_name, arg, context=None):
     # Get discount rate for selected cash discount
     res = {}
-    discount_obj = self.pool.get('account.cash.discount')
+    payment_obj = self.pool.get('account.payment.term')
     cur_obj = self.pool.get('res.currency')
     for order in self.browse(cr, uid, ids, context=None):
       res[order.id] = {
@@ -54,14 +53,14 @@ class sale_cash_discount(osv.osv):
                        'discount date' : '',
                        'discount_sum' : 0.0,
                        }
-      if discount_obj and order.cash_discount.id:
+      if payment_obj and order.payment_term.id:
         # Compute discount amount and new price
-        discount_rate = discount_obj.browse(cr, uid, order.cash_discount.id).discount_rate
+        discount_rate = payment_obj.browse(cr, uid, order.payment_term.id).discount_rate
         discount_amount = order.amount_total * discount_rate / 100
         discount_sum = order.amount_total - discount_amount
         
         # Compute deadline for discount payment
-        discount_days = discount_obj.browse(cr, uid, order.cash_discount.id).discount_deadline
+        discount_days = payment_obj.browse(cr, uid, order.payment_term.id).discount_deadline
         date_order = datetime.datetime.strptime(order.date_order, '%Y-%m-%d %H:%M:%S')
         discount_date = date_order + datetime.timedelta(discount_days)
         
@@ -73,7 +72,6 @@ class sale_cash_discount(osv.osv):
     return res
 
   _columns = {
-      'cash_discount' : fields.many2one('account.cash.discount', 'Skonto'),
       'discount_amount' : fields.function(
         _cash_discount,
         digits_compute=dp.get_precision('Account'),

@@ -21,7 +21,7 @@
 
 {
     'name': 'Cash discount',
-    'version': '1.0',
+    'version': '0.1',
     'category': 'Account',
     'description': """
 Possibility to add cash discount on invoice.
