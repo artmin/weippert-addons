@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
   <data>
+    <!-- Additional fields -->
     <record id="product_template" model="ir.ui.view">
       <field name="name">product.template.common.form.weippert</field>
       <field name="model">product.template</field>
@@ -31,6 +32,43 @@
             <field name="restmenge"/>
           </group>
         </group>
+      </field>
+    </record>
+
+    <!-- Set tree view to default view for product template -->
+    <record id="product.product_template_action" model="ir.actions.act_window">
+      <field name="name">Products</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">product.template</field>
+      <field name="view_mode">tree,kanban,form</field>
+      <field name="view_type">form</field>
+      <field name="view_id" ref="product.product_template_tree_view"/>
+      <field name="context">{"search_default_filter_to_sell":1}</field>
+    </record>
+
+    <!-- Modify tree view of products -->
+    <record id="product.product_template_tree_view" model="ir.ui.view">
+      <field name="name">product.template.product.tree</field>
+      <field name="model">product.template</field>
+      <field name="arch" type="xml">
+        <tree string="Product">
+          <field name="default_code"/>
+          <field name="name"/>
+          <field name="uom_id"/>
+          <field name="list_price"/>
+        </tree>
+      </field>
+    </record>
+
+    <!-- add possibilty to search for id in product template view -->
+    <record id="product_template_search_view_weippert" model="ir.ui.view">
+      <field name="name">product.template.search.weippert</field>
+      <field name="model">product.template</field>
+      <field name="inherit_id" ref="product.product_template_search_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='name']" position="before">
+          <field name="default_code"/>
+        </xpath>
       </field>
     </record>
   </data>
