@@ -35,7 +35,7 @@
           </div>
  
           <div class="fullwidth" style="padding-top:1cm;clear:left">
-            <span class="title hspace-s"
+            <span class="title hspace-xs"
               t-if="o.state not in ['draft','sent'] or o.payment_acquirer_id">
               Auftragsbest&amp;auml;tigung Nr.
             </span>
@@ -47,7 +47,9 @@
             <span class="hspace-s"> vom </span>
             <span class="hspace-s" 
               t-esc="datetime.datetime.strptime(o.date_order, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/>
-             <t t-call="report.external_report_partner_ref"/>
+            <t t-if="o.partner_id.ref">
+              Kunden-Nr. <span t-field="o.partner_id.ref"/> 
+            </t>
           </div>
           
           <div class="vspace-xs">
@@ -74,7 +76,7 @@
             Wir bedanken uns für Ihre Anfrage und bieten freibleibend an.
           </div>
 
-          <div t-if ="o.payment_acquirer_id" class="vspace-xs">
+          <div t-if ="o.payment_acquirer_id and o.company_id.name == 'dreh24 AG'" class="vspace-xs">
             Wir bedanken uns für Ihre Bestellung. Die Lieferung erfolgt 
             ausschließlich zu unseren Liefer- und Zahlungsbedingungen. 
             Diese finden Sie auf unserer Internetseite – www.dreh24.com
@@ -103,12 +105,17 @@
                     <br/>
                     <!-- Anfrage -->
                     <t t-if="o.state in ['draft','sent']">
-                      <span t-if="l.product_id.uom_id.factor * l.product_id.virtual_available &gt;= l.product_uom_qty * l.product_uom.factor">
-                        ab Lager lieferbar
-                      </span>
-                      <span t-if="l.product_id.uom_id.factor * l.product_id.virtual_available &lt; l.product_uom_qty * l.product_uom.factor">
-                        Lieferzeit 4 Wochen
-                      </span>
+                      <t t-if="o.company_id.name == 'dreh24 AG'">
+                        <span t-if="l.product_id.uom_id.factor * l.product_id.virtual_available &gt;= l.product_uom_qty * l.product_uom.factor">
+                          ab Lager lieferbar
+                        </span>
+                        <span t-if="l.product_id.uom_id.factor * l.product_id.virtual_available &lt; l.product_uom_qty * l.product_uom.factor">
+                          Lieferzeit 4 Wochen
+                        </span>
+                      </t>
+                      <t t-if="o.company_id.name != 'dreh24 AG' and o.custom_delivery_date">
+                        Liefertermin: <span t-field="o.custom_delivery_date"/>
+                      </t>
                     </t>
                     <!-- Auftragsbestätigung -->
                     <t t-if="not o.state in ['draft','sent']">
@@ -184,41 +191,6 @@
             </tr>
           </table>
           
-          <!-- cash discount -->
-          <div class="clearleft" t-if="o.payment_term.discount_rate">
-            <table>
-              <tr>
-                <td colspan="3">
-                  Zahlung: innerhalb von 
-                  <span t-field="o.payment_term.discount_deadline"/> Tagen mit
-                  <span t-field="o.payment_term.discount_rate"/> &amp;#037; Skonto,
-                  <span t-field="o.payment_term.net_payment_target"/> Tage netto
-                </td>
-              </tr>
-              <tr>
-                <td>Zahlung bis <span t-field="o.discount_date"/></td>
-                <td class="right">
-                  abzgl. <span t-field="o.discount_amount"
-                    t-field-options='{"widget": "monetary", "display_currency" : "o.pricelist_id.currency_id"}'/> = 
-                </td>
-                <td class="right">
-                  <span t-field="o.discount_sum"
-                    t-field-options='{"widget": "monetary", "display_currency" : "o.pricelist_id.currency_id"}'/> 
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Zahlung bis <span t-field="o.net_date"/>
-                </td>
-                <td class="right">=</td>
-                <td class="right">
-                  <span t-field="o.amount_total"
-                    t-field-options='{"widget": "monetary", "display_currency" : "o.pricelist_id.currency_id"}'/> 
-                </td>
-              </tr>
-            </table>
-          </div>
-
           <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
           <div style="margin-top:2.5cm">
             <p t-if="o.state not in ['draft','sent']">
@@ -227,7 +199,7 @@
                 Der Empfänger bestätigt, die Gegenstände für sein Unternehmen erworben zu haben.
               </div>
               <div t-field="o.fiscal_position.note" class="vspace-xs"/>
-              <div t-if="not o.payment_acquirer_id" class="vspace-s">
+              <div t-if="not o.payment_acquirer_id and o.company_id.name == 'dreh24 AG'" class="vspace-s">
                 Die Lieferung erfolgt ausschließlich zu unseren Liefer- und Zahlungsbedingungen. <br/>
                 Diese finden Sie auf unserer Internetseite – www.dreh24.com
               </div>
@@ -281,7 +253,9 @@
             <b><span class="title hspace-m" t-field="o.number"/></b>
             <span t-if="o.date_invoice" class="hspace-s"> vom </span>
             <span class="hspace-m" t-field="o.date_invoice"/>
-            <t t-call="report.external_report_partner_ref"/>
+            <t t-if="o.partner_id.ref">
+              Kunden-Nr. <span t-field="o.partner_id.ref"/>
+            </t>
           </div>
           
           <div t-if="o.type not in ['in_refund', 'in_invoice']" class="vspace-xs">
@@ -369,7 +343,7 @@
           </div>
             
           <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
-          <div class="vspace-s" t-if="o.payment_term.discount_rate == 0.0">
+          <div class="vspace-s" t-if="o.payment_term and o.payment_term.discount_rate == 0.0">
             Zahlungsbedinungen: <span t-field="o.payment_term.note"/>
           </div>
           <div class="vspace-xs" t-field="o.comment"/>
@@ -390,7 +364,9 @@
             <b><span class="title hspace-m" t-field="o.name"/></b>
             <span class="hspace-s"> vom </span>
             <span class="hspace-m" t-esc="datetime.datetime.strptime(o.date, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/>
-            <t t-call="report.external_report_partner_ref"/>
+            <t t-if="o.partner_id.ref">
+              Kunden-Nr. <span t-field="o.partner_id.ref"/>
+            </t>
           </div>
 
           <div class="vspace-xs">
@@ -425,7 +401,7 @@
               Diese finden Sie auf unserer Internetseite – www.dreh24.com
             </div>
           </div>
-          <div t-if="o.partner_id.name[0] == 'B' and o.partner_id.name[2:] == 'rkert'" class="vspace-s">
+          <div t-if="o.partner_id.name[0] == 'B' and o.partner_id.name[2:7] == 'rkert'" class="vspace-s">
             Die Artikel sind RoHS konform.
           </div>
           <div t-if="o.weight != 0.0" class="vspace-s">
