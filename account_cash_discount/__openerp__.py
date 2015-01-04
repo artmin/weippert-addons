@@ -35,6 +35,7 @@ Possibility to add cash discount on invoice.
     ],
     'data': [
         'account_cash_discount_view.xml',
+        'report_invoice.xml',
     ],
     'images': [''],
     'installable': True,

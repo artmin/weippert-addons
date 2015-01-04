@@ -25,10 +25,10 @@
   <!-- ===  Sale order class === -->
 
   <!-- additional fields in sale order view -->
-  <record model="ir.ui.view" id="view_order_form">
-    <field name="name">sale.order.form.cash_discount</field>
-    <field name="model">sale.order</field>
-    <field name="inherit_id" ref="sale.view_order_form" />
+  <record model="ir.ui.view" id="view_invoice_form">
+    <field name="name">account.invoice.form.cash_discount</field>
+    <field name="model">account.invoice</field>
+    <field name="inherit_id" ref="account.invoice_form" />
     <field name="arch" type="xml">
       <field name="amount_total" position="after">
         <field name="discount_amount" 
