@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="report_invoice_account_cash_discount"
+  inherit_id="dreh24_reports.report_invoice_document_dreh24">
+  <xpath expr="//table[@id='total']" position="after">
+    <!-- cash discount -->
+    <div class="clearleft clearright fullwidth" t-if="o.payment_term.discount_rate > 0.0">
+      <table>
+        <tr>
+          <td colspan="3">
+            Zahlung: innerhalb von 
+            <span t-field="o.payment_term.discount_deadline"/> Tagen mit
+            <span t-field="o.payment_term.discount_rate"/> &amp;#037; Skonto,
+            <span t-field="o.payment_term.net_payment_target"/> Tage netto
+          </td>
+        </tr>
+        <t t-if="o.date_invoice">
+          <tr>
+            <td>Zahlung bis <span t-field="o.discount_date"/></td>
+            <td class="right">
+              abzgl. <span t-field="o.discount_amount"
+                t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> = 
+            </td>
+            <td class="right">
+              <span t-field="o.discount_sum"
+                t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> 
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Zahlung bis <span t-field="o.net_date"/>
+            </td>
+            <td class="right">=</td>
+            <td class="right">
+              <span t-field="o.amount_total"
+                t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> 
+            </td>
+          </tr>
+          </t>
+      </table>
+    </div>
+  </xpath>
+</template>
+</data>
+</openerp>
+

@@ -22,6 +22,7 @@ from openerp.osv import osv, fields
 from openerp.addons import decimal_precision as dp
 import datetime
 
+# Extend payment term by cash discount
 class account_cash_discount(osv.osv):
   _inherit = "account.payment.term"
   _description = "Add cash discount to payment terms."
@@ -35,9 +36,9 @@ class account_cash_discount(osv.osv):
         'beglichen werden kann')
     }
 
-class sale_cash_discount(osv.osv):
-  _inherit = "sale.order"
-  _description = "Adds field for cash discount on sales order form"
+class invoice_cash_discount(osv.osv):
+  _inherit = "account.invoice"
+  _description = "Adds field for cash discount on invoice form"
  
   '''
   Method computes values for discount amount and the sum to be paid by a specific date
@@ -45,30 +46,36 @@ class sale_cash_discount(osv.osv):
   def _cash_discount(self, cr, uid, ids, field_name, arg, context=None):
     # Get discount rate for selected cash discount
     res = {}
-    payment_obj = self.pool.get('account.payment.term')
+    payment_objs = self.pool.get('account.payment.term')
     cur_obj = self.pool.get('res.currency')
-    for order in self.browse(cr, uid, ids, context=None):
-      res[order.id] = {
+    for invoice in self.browse(cr, uid, ids, context=None):
+      res[invoice.id] = {
                        'discount_amount' : 0.0,
-                       'discount date' : '',
+                       'discount_date' : '',
+                       'net_date' : '',
                        'discount_sum' : 0.0,
                        }
-      if payment_obj and order.payment_term.id:
+      if payment_objs and invoice.payment_term.id:
         # Compute discount amount and new price
-        discount_rate = payment_obj.browse(cr, uid, order.payment_term.id).discount_rate
-        discount_amount = order.amount_total * discount_rate / 100
-        discount_sum = order.amount_total - discount_amount
-        
-        # Compute deadline for discount payment
-        discount_days = payment_obj.browse(cr, uid, order.payment_term.id).discount_deadline
-        date_order = datetime.datetime.strptime(order.date_order, '%Y-%m-%d %H:%M:%S')
-        discount_date = date_order + datetime.timedelta(discount_days)
-        
+        payment_obj = payment_objs.browse(cr, uid, invoice.payment_term.id)
+        discount_rate = payment_obj.discount_rate
+        discount_amount = invoice.amount_total * discount_rate / 100
+        discount_sum = invoice.amount_total - discount_amount
         # Prepare data 
-        cur = order.pricelist_id.currency_id
-        res[order.id]['discount_amount'] = cur_obj.round(cr, uid, cur, discount_amount)
-        res[order.id]['discount_sum'] = cur_obj.round(cr, uid, cur, discount_sum)
-        res[order.id]['discount_date'] = discount_date.date()
+        cur = invoice.currency_id
+        res[invoice.id]['discount_amount'] = cur_obj.round(cr, uid, cur, discount_amount)
+        res[invoice.id]['discount_sum'] = cur_obj.round(cr, uid, cur, discount_sum)
+        
+        # Compute deadline for discount and net payment
+        if invoice.date_invoice:
+          discount_days = payment_obj.discount_deadline
+          net_days = payment_obj.net_payment_target
+          date_order = datetime.datetime.strptime(invoice.date_invoice, '%Y-%m-%d')
+          discount_date = date_order + datetime.timedelta(discount_days)
+          net_date = date_order + datetime.timedelta(net_days)
+          res[invoice.id]['discount_date'] = discount_date.date()
+          res[invoice.id]['net_date'] = net_date.date()
+
     return res
 
   _columns = {
@@ -82,7 +89,11 @@ class sale_cash_discount(osv.osv):
         string='Skontofrist',
         type="date",
         multi='cash_discount'),
-      'discount_sum' :fields.function(
+      'net_date' : fields.function(
+        _cash_discount,
+        type="date",
+        multi='cash_discount'),
+      'discount_sum' : fields.function(
         _cash_discount,
         digits_compute=dp.get_precision('Account'),
         string='Rechnungsbetrag abzgl. Skonto',

@@ -30,15 +30,19 @@ Custom fields Weippert
 * Automatisch vergebene interne Referenzen
 * Kunden/Lieferanten-Nr.
 * Anfragedatum
+* Wunschtermin für Lieferung
+* Referenz/Beschreibung
+* Zusätzliche Felder für Produkte (Fertigung, Kontraktdaten)
 
     """,
     'author': 'artmin - IT-Dienstleistungen',
     'website': 'http://it.artmin.de',
-    'depends': ['sale','product'],
+    'depends': ['sale','product','stock','account'],
     'data': ['partner_sequence.xml',
         'partner_ref_view.xml',
         'sale_order_view.xml',
-        'product_view.xml'],
+        'product_view.xml',
+        'stock_view.xml'],
     'demo_xml': [],
     'test': [],
     'installable': True,

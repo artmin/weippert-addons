@@ -8,15 +8,21 @@
       <span t-field="o.partner_id.ref"/>
     </template>
     
-    <!-- template for address-->
+    <!-- template for addressee-->
     <template id="report.external_report_to">
-      <div class="vspace-xs clearleft">
-        <div t-if="not o.partner_id.is_company" 
-          t-field="o.partner_id.parent_id.name"/> 
+      <div class="vspace-xs clearleft" id="addressee">
+        <t t-if="not o.partner_id.is_company">
+          <t t-if="o.partner_id.name != o.partner_id.parent_id.name"> 
+            <div t-field="o.partner_id.parent_id.name"/>
+          </t>
+        </t>
         <div t-field="o.partner_id.name"/>
         <p t-field="o.partner_id.street"/>
         <span t-field="o.partner_id.zip"/>
         <span t-field="o.partner_id.city"/>
+        <t t-if="o.partner_id.country_id">
+          <span t-field="o.partner_id.country_id.name"/>
+        </t>
       </div>
    </template>
  
@@ -155,7 +161,11 @@
       #delivery {
         clear:right;
         min-width: 4.4cm;
+        max-width: 7cm;
         }
+      #addressee {
+        max-width: 8cm;
+      }
       th, td {
         padding-right: 0.3cm;
         padding-bottom: 0.2cm;
