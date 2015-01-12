@@ -287,7 +287,12 @@
               <tr t-foreach="o.invoice_line" t-as="l">
                 <td><span t-esc="l_index + 1"/></td>
                 <td><span t-field="l.product_id.default_code"/></td>
-                <td><span t-field="l.product_id.name"/></td>
+                <td>
+                  <span t-field="l.product_id.name"/>
+                  <t t-if="l.product_id.zeichnung">
+                    <br/>Zeichn. <span t-field="l.product_id.zeichnung"/>
+                  </t>
+                </td>
                 <td><span t-esc="'%d' % l.quantity"/></td>
                 <td><span t-field="l.uos_id.name"/></td>
                 <td><span t-field="l.price_unit"
@@ -326,18 +331,16 @@
           </table>
 
           <!-- Anmerkung -->
-          <div style="margin-top:2.5cm">
-            <div t-if="o.fiscal_position.name == 'Kunde EU Unternehmen (mit USt-ID)'">
+          <div class="fullwidth">
+            <div t-if="o.fiscal_position.name == 'Kunde EU Unternehmen (mit USt-ID)'" class="vspace-s">
               Die USt-ID Nummer des Empfängers lautet <span t-field="o.partner_id.vat"/><br/>
               Der Empfänger bestätigt, die Gegenstände für sein Unternehmen erworben zu haben.
             </div>
             <div t-field="o.fiscal_position.note" class="vspace-xs"/>
             <div class="vspace-s">
               Die gelieferte Ware bleibt bis zur vollständigen Bezahlung Eigentum des Lieferanten.<br/>
-              <div t-if="o.company_id.name == 'dreh24 AG'">
-                Die Lieferung erfolgt ausschließlich zu unseren Liefer- und Zahlungsbedingungen.
-                Diese finden Sie auf unserer Internetseite – www.dreh24.com<br/>
-              </div>
+              Die Lieferung erfolgt ausschließlich zu unseren Liefer- und Zahlungsbedingungen.
+              Diese finden Sie auf unserer Internetseite – <span t-field="o.company_id.website"/><br/>
               Wenn kein abweichendes Lieferdatum, dann gilt Rechnungsdatum gleich Lieferdatum.
             </div>
           </div>
@@ -381,15 +384,22 @@
                 <th>Artikelbezeichnung</th>
                 <th>Einheit</th>
                 <th>Menge</th>
+                <th t-if="o.company_id.name != 'dreh24 AG'">Sachbearbeiter</th>
               </tr>
             </thead>
             <tbody>
               <tr t-foreach="o.move_lines" t-as="move">
-                <td class="top"><span t-esc="move_index + 1"/></td>
-                <td class="top"><span t-field="move.product_id.default_code"/></td>
-                <td class="top"><span t-field="move.product_id.name"/></td>
-                <td class="top"><span t-field="move.product_uom.name"/></td>
-                <td class="top"><span t-esc="'%d' % move.product_uom_qty"/></td>
+                <td class="bottom"><span t-esc="move_index + 1"/></td>
+                <td class="bottom"><span t-field="move.product_id.default_code"/></td>
+                <td class="bottom">
+                  <t t-if="move.purchase_order_ref">
+                    Auftragsnr. <b><span t-field="move.purchase_order_ref"/></b><br/>
+                  </t>
+                  <span t-field="move.product_id.name"/>
+                </td>
+                <td class="bottom"><span t-field="move.product_uom.name"/></td>
+                <td class="bottom"><span t-esc="'%d' % move.product_uom_qty"/></td>
+                <td t-if="o.company_id.name != 'dreh24 AG'" class="bottom"><span t-field="move.processing_employee"/></td>
               </tr>
             </tbody>
           </table>

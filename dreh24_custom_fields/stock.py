@@ -28,7 +28,12 @@ class stock_picking(osv.osv):
 
 class stock_move(osv.osv):
     _inherit = "stock.move"
+    _columns = {
+            'purchase_order_ref' : fields.char('Bestell-Nr.', size=32),
+            'processing_employee' : fields.char('Sachbearbeiter', size=32),
+            }
 
+    # Get client_order_ref from sales order
     def _picking_assign(self, cr, uid, move_ids, procurement_group, location_from, location_to, context=None):
 
         # Call super function
@@ -47,7 +52,7 @@ class stock_move(osv.osv):
             if value.has_key('client_order_ref'):
                 order_ref = value['client_order_ref']
         # If exists client reference update stock picking client_order_ref field
-        if order_ref:
+        if (len(vals) > 0) and order_ref:
             stock_pick_obj = self.pool.get("stock.picking")
             stock_pick_id = stock_pick_obj.search(cr, uid, [('origin', '=', move.origin)], context=context)
             stock_pick_obj.write(cr, uid, stock_pick_id, {'client_order_ref': order_ref}, context=context)

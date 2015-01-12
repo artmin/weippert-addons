@@ -12,5 +12,18 @@
       </field>
     </field>
   </record>
+
+  <record id="stock_move_picking_form" model="ir.ui.view">
+    <field name="name">stock.move.additions.form</field>
+    <field name="model">stock.move</field>
+    <field name="type">form</field>
+    <field name="inherit_id" ref="stock.view_move_picking_form"/>
+    <field name="arch" type="xml">
+      <field name="name" position="after">
+        <field name="purchase_order_ref"/>
+        <field name="processing_employee"/>
+      </field>
+    </field>
+  </record>
 </data>
 </openerp>

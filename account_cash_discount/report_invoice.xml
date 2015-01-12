@@ -5,7 +5,7 @@
   inherit_id="dreh24_reports.report_invoice_document_dreh24">
   <xpath expr="//table[@id='total']" position="after">
     <!-- cash discount -->
-    <div class="clearleft clearright fullwidth" t-if="o.payment_term.discount_rate > 0.0">
+    <div class="fullwidth vspace-xs" t-if="o.payment_term.discount_rate > 0.0">
       <table>
         <tr>
           <td colspan="3">
@@ -18,10 +18,12 @@
         <t t-if="o.date_invoice">
           <tr>
             <td>Zahlung bis <span t-field="o.discount_date"/></td>
-            <td class="right">
-              abzgl. <span t-field="o.discount_amount"
-                t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> = 
+            <td>
+              <span t-field="o.payment_term.discount_rate"/> &amp;#037 Skonto
+              <span t-field="o.discount_amount"
+                t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> 
             </td>
+            <td> = </td>
             <td class="right">
               <span t-field="o.discount_sum"
                 t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> 
@@ -31,7 +33,8 @@
             <td>
               Zahlung bis <span t-field="o.net_date"/>
             </td>
-            <td class="right">=</td>
+            <td>netto</td>
+            <td> = </td>
             <td class="right">
               <span t-field="o.amount_total"
                 t-field-options='{"widget": "monetary", "display_currency" : "o.currency_id"}'/> 
