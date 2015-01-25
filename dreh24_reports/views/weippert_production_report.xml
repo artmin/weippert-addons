@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <template id="weippert_production_report" inherit_id="mrp.report_mrporder">
+      <xpath expr="//div[@class='page']" position="replace">
+      </xpath>
+    </template>
+  </data>
+</openerp>
+ 
