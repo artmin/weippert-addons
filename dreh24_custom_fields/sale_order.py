@@ -30,8 +30,17 @@ class dreh24_sale_order(osv.osv):
             help="Datum der Anfrage des Kunden"),
         'custom_delivery_date': fields.date('Wunschtermin Lieferung', select=1,
             help="Vom Kunden gewünschtes Datum für die Lieferung des Auftrages"),
-    }
+        }    
     
     _defaults = {           
         'client_order_ref_date' : fields.date.today(), 
     }
+
+    def onchange_partner_id(self, cr, uid, ids, part, context=None):
+        res = super(dreh24_sale_order, self).onchange_partner_id(cr, uid,
+                ids, part, context=context)
+        vals = res['value']
+        partner_obj = self.pool.get('res.partner').browse(cr, uid, part)
+        vals['incoterm'] = partner_obj.incoterm
+        return {'value' : vals }
+        

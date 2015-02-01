@@ -29,6 +29,7 @@ class artmin_partner_reference(osv.osv):
     _columns = {
         'ref': fields.char('Interne Referenz', size=64, select=1, readonly=True),
         'your_ref' : fields.char('Kunden/Lieferanten-Nr.', size=64),
+        'incoterm' : fields.many2one('stock.incoterms', 'Lieferbedingung'),
     }
     
     _defaults = {           

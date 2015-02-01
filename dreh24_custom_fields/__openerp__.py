@@ -29,6 +29,7 @@ Custom fields Weippert
 
 * Automatisch vergebene interne Referenzen
 * Kunden/Lieferanten-Nr.
+* Lieferbedingungen
 * Anfragedatum
 * Wunschtermin für Lieferung
 * Referenz/Beschreibung
@@ -37,7 +38,7 @@ Custom fields Weippert
     """,
     'author': 'artmin - IT-Dienstleistungen',
     'website': 'http://it.artmin.de',
-    'depends': ['sale','product','stock','account','dreh24_reports'],
+    'depends': ['sale','product','stock','account','dreh24_reports','delivery'],
     'data': ['partner_sequence.xml',
         'partner_ref_view.xml',
         'sale_order_view.xml',
