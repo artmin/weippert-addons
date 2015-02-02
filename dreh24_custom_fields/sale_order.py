@@ -41,6 +41,9 @@ class dreh24_sale_order(osv.osv):
                 ids, part, context=context)
         vals = res['value']
         partner_obj = self.pool.get('res.partner').browse(cr, uid, part)
-        vals['incoterm'] = partner_obj.incoterm
+        if partner_obj.incoterm:
+          vals['incoterm'] = partner_obj.incoterm
+        else:
+          vals['incoterm'] = False
         return {'value' : vals }
         

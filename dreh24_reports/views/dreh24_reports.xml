@@ -131,7 +131,7 @@
                             <span t-esc="(datetime.date.today() + datetime.timedelta(days=3)).strftime('%d.%m.%Y')"/>
                           </t>
                         </t>
-                        <t t-if="o.carrier_id and (not 'Expressversand' in o.carrier_id.name)">
+                        <t t-if="not o.carrier_id or o.carrier_id and (not 'Expressversand' in o.carrier_id.name)">
                           <!-- ohne Wunschtermin -->
                           <t t-if="not o.custom_delivery_date">
                             <span t-esc="(datetime.date.today() + datetime.timedelta(days=l.product_id.sale_delay)).strftime('%d.%m.%Y')"/>
