@@ -192,11 +192,11 @@
           <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
           <div style="margin-top:2.5cm">
             <p t-if="o.state not in ['draft','sent']">
+              <div t-field="o.fiscal_position.note"/>
               <div t-if="o.fiscal_position.name == 'Kunde EU Unternehmen (mit USt-ID)'">
-                Die USt-ID Nummer des Empfängers lautet <span t-field="o.partner_invoice_id.vat"/><br/>
+                Die USt-ID Nummer des Empfängers lautet: <span t-field="o.partner_invoice_id.vat"/><br/>
                 Der Empfänger bestätigt, die Gegenstände für sein Unternehmen erworben zu haben.
               </div>
-              <div t-field="o.fiscal_position.note" class="vspace-xs"/>
               <div t-if="not o.payment_acquirer_id and o.company_id.name == 'dreh24 AG'" class="vspace-s">
                 Die Lieferung erfolgt ausschließlich zu unseren Liefer- und Zahlungsbedingungen. <br/>
                 Diese finden Sie auf unserer Internetseite – www.dreh24.com
@@ -333,11 +333,11 @@
 
           <!-- Anmerkung -->
           <div class="fullwidth">
+            <div t-field="o.fiscal_position.note"/>
             <div t-if="o.fiscal_position.name == 'Kunde EU Unternehmen (mit USt-ID)'" class="vspace-s">
-              Die USt-ID Nummer des Empfängers lautet <span t-field="o.partner_id.vat"/><br/>
+              Die USt-ID Nummer des Empfängers lautet: <span t-field="o.partner_id.vat"/><br/>
               Der Empfänger bestätigt, die Gegenstände für sein Unternehmen erworben zu haben.
             </div>
-            <div t-field="o.fiscal_position.note" class="vspace-xs"/>
             <div class="vspace-s">
               Die gelieferte Ware bleibt bis zur vollständigen Bezahlung Eigentum des Lieferanten.<br/>
               Die Lieferung erfolgt ausschließlich zu unseren Liefer- und Zahlungsbedingungen.
