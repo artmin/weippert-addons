@@ -24,12 +24,29 @@ from datetime import datetime
 
 class dreh24_sale_order(osv.osv):
 
+    def _first_product(self, cr, uid, ids, field_name, arg, context=None):
+        res = {}
+        # Get first product of sales order
+        for sale_order in self.browse(cr, uid, ids, context=None):
+          if sale_order.order_line and len(sale_order.order_line) > 0:
+            #line_obj = self.pool.get('sale.order.line')
+            #line = line_obj.browse(cr, uid, sale_order.order_line[0])
+            res[sale_order.id] = sale_order.order_line[0].name
+          else:
+            res[sale_order.id] = ''
+        return res
+    
     _inherit = 'sale.order'
     _columns = {
         'client_order_ref_date': fields.date('Ihr Schreiben vom', select=1,
             help="Datum der Anfrage des Kunden"),
         'custom_delivery_date': fields.date('Wunschtermin Lieferung', select=1,
             help="Vom Kunden gewünschtes Datum für die Lieferung des Auftrages"),
+        # Is needed for table view of sales orders
+        'first_product' : fields.function(
+            _first_product,
+            type="char",
+            string="Artikel"),
         }    
     
     _defaults = {           
@@ -46,4 +63,27 @@ class dreh24_sale_order(osv.osv):
         else:
           vals['incoterm'] = False
         return {'value' : vals }
-        
+
+class weippert_sale_order_line(osv.osv):
+  _inherit = 'sale.order.line'
+  def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
+      uom=False, qty_uos=0, uos=False, name='', partner_id=False,
+      lang=False, update_tax=True, date_order=False, packaging=False, fiscal_position=False, flag=False, context=None):
+    # Call super function
+    res = super(weippert_sale_order_line, self).product_id_change(cr, uid, ids,
+        pricelist, product, qty=qty, uom=uom, qty_uos=qty_uos, uos=uos,
+        name=name, partner_id=partner_id, lang=lang, update_tax=update_tax,
+        date_order=date_order, packaging=packaging,
+        fiscal_position=fiscal_position, flag=flag, context=context)
+    if not product:
+      return res
+    # Only set product name for description
+    else:
+      val = res.get('value')
+      product_obj = self.pool.get('product.product')
+      product_obj = product_obj.browse(cr, uid, product)
+      if not flag:
+        val['name'] = product_obj.name
+      return {'value' : val, 'domain' : res.get('domain'), 'warning' :
+          res.get('warning') }
+

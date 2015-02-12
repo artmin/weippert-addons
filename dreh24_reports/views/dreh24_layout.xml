@@ -241,8 +241,30 @@
       td.right {
         text-align:right;
         }
-     #info {
+      #info {
         min-width: 4.4cm;
+        }
+      table.mrp {
+        clear:both;
+        width:100%;
+        padding: 10px;
+        margin-top: 1.5cm;
+        }
+      table.mrp td {
+        padding: 5px;
+        border: solid 1px;
+        vertical-align: top;
+        }
+      table.mrp td.noBorder {
+        border-style: none;
+        }
+      table.mrp td.borderLeft {
+        border-style: none;
+        border-left-style: solid;
+        }
+      table.mrp td.borderRight {
+        border-style: none;
+        border-right-style: solid;
         }
     </template>
     

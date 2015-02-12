@@ -13,5 +13,28 @@
         </xpath>
       </field>
     </record>
+
+    <record id="sale_quotation_view_product" model="ir.ui.view">
+      <field name="name">sale.quotation.tree.product</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_quotation_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="replace">
+          <field name="first_product"/>
+        </xpath>
+      </field>
+    </record>
+
+    <record id="sale_order_view_product" model="ir.ui.view">
+      <field name="name">sale.order.tree.product</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_tree"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='user_id']" position="replace">
+          <field name="first_product"/>
+        </xpath>
+      </field>
+    </record>
+
   </data>
 </openerp>

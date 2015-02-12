@@ -3,6 +3,206 @@
   <data>
     <template id="weippert_production_report" inherit_id="mrp.report_mrporder">
       <xpath expr="//div[@class='page']" position="replace">
+        <div class="page">
+          <table class="mrp vspace-s">
+            <tr>
+              <td colspan="2" style="border-right-style:none;">
+                <img t-att-src="'data:image/png;base64,%s' % o.company_id.logo" 
+                  style="width:281px; float:left"/>
+              </td>
+              <td colspan="3" style="border-left-style:none">
+                <span class="title" style="margin-top:10px;margin-left:10px;font-size: 14pt;">
+                  Fertigungsauftrag Nr. <span t-field="o.name"/>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                Bezeichnung<br/>
+                <span t-field="o.product_id.name"/>
+              </td>
+              <td colspan="2">
+                Artikel-Nr.<br/>
+                <span t-field="o.product_id.code"/>
+              </td>
+              <td>
+                Werkzeug-Nr.<br/>
+                <span t-field="o.product_id.werkzeug_nr"/>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                Zeichnung<br/>
+                <span t-field="o.product_id.zeichnung"/>
+              </td>
+              <td colspan="2">
+                Zeichnung alt<br/>
+                <span t-field="o.product_id.alte_zeichnung"/>
+              </td>
+              <td>
+                Maschine
+              </td>
+            </tr>
+            <tr>
+              <td>Termin</td>
+              <td><span t-esc="datetime.datetime.strptime(o.date_planned, '%Y-%m-%d %H:%M:%S').strftime('%d.%m.%Y')"/></td>
+              <td>Menge / Stück</td>
+              <td colspan="2"><span t-field="o.product_qty"/></td>
+            </tr>
+            <tr>
+              <td>Material</td>
+              <td>Materialbedarf / kg</td>
+              <td>Spritzteil</td>
+              <td colspan="2">Artikel-Nr.</td>
+            </tr>
+            <!-- Material -->
+            <t t-if="o.move_lines">
+              <t t-foreach="o.move_lines" t-as="line">
+                <t t-if="line.product_id.uom_id.name == 'kg'">
+                  <tr>
+                    <td><span t-field="line.product_id.name"/></td>
+                    <td><span t-field="line.product_qty"/></td>
+                    <td><span t-esc="o.product_id.name + ' SPT'"/> </td>
+                    <td colspan="2"><span t-field="line.product_id.code"/></td>
+                  </tr>
+                </t>
+              </t>
+            </t>
+            <tr>
+              <td>Farbe zu Material</td>
+              <td colspan="4"><span t-field="o.bom_id.farbe"/></td>
+            </tr>
+            <tr>
+              <td class="borderLeft">&amp;nbsp;</td>
+              <td colspan="2" class="noBorder">Zubehörteile</td>
+              <td class="noBorder">Menge / St.</td>
+              <td class="borderRight">Artikel-Nr.</td>
+            </tr>
+            <!-- Material für Spritzguss -->
+            <t t-if="o.bom_id.bom_line_ids">
+              <t t-foreach="o.bom_id.bom_line_ids" t-as="line">
+                <t t-if="line.workcenter_id.name == 'Spritzguss'">
+                  <tr>
+                    <td class="borderLeft">
+                      &amp;nbsp;
+                    </td>
+                    <td colspan="2" class="noBorder">
+                      <span t-field="line.product_id.name"/>
+                    </td>
+                    <td class="noBorder">
+                      <span t-field="line.product_qty"/>
+                    </td>
+                    <td class="borderRight">
+                      <span t-field="line.product_id.code"/>
+                    </td>
+                  </tr>
+                </t>
+              </t>
+            </t>
+            <tr>
+              <td>Weiterbearbeitung intern</td>
+              <td colspan="4">Auftrag</td>
+            </tr>
+            <t t-if="o.workcenter_lines">
+              <t t-foreach="o.workcenter_lines" t-as="line2">
+                <t t-if="line2.workcenter_id.name == 'Intern'">
+                  <tr>
+                    <td class="borderLeft">&amp;nbsp;</td>
+                    <td class="borderRight" colspan="4">
+                      <span t-field="line2.name"/>
+                    </td>
+                  </tr>
+                </t>
+              </t>
+            </t>
+            <!-- Material für Weiterverarbeitung intern -->
+            <t t-if="o.bom_id.bom_line_ids">
+              <tr>
+                <td class="borderLeft">&amp;nbsp;</td>
+                <td class="noBorder" colspan="2">Zubehörteile</td>
+                <td class="noBorder">Menge / St.</td>
+                <td class="borderRight">Artikel-Nr.</td>
+              </tr>
+              <t t-foreach="o.bom_id.bom_line_ids" t-as="line">
+                <t t-if="line.workcenter_id.name == 'Intern'">
+                  <tr>
+                    <td class="borderLeft">
+                      &amp;nbsp;
+                    </td>
+                    <td colspan="2" class="noBorder">
+                      <span t-field="line.product_id.name"/>
+                    </td>
+                    <td class="noBorder">
+                      <span t-field="line.product_qty"/>
+                    </td>
+                    <td class="borderRight">
+                      <span t-field="line.product_id.code"/>
+                    </td>
+                  </tr>
+                </t>
+              </t>
+            </t>
+            
+            <tr>
+              <td>Weiterbearbeitung extern</td>
+              <td colspan="4">Auftrag</td>
+            </tr>
+            <t t-if="o.workcenter_lines">
+              <t t-foreach="o.workcenter_lines" t-as="line3">
+                <t t-if="line3.workcenter_id.name == 'Extern'">
+                  <tr>
+                    <td class="borderLeft right"><span t-field="line3.coworker_id.name"/></td>
+                    <td class="borderRight" colspan="4">
+                      <span t-field="line3.name"/>
+                    </td>
+                  </tr>
+                </t>
+              </t>
+            </t>
+            <!-- Material für Weiterverarbeitung extern -->
+            <t t-if="o.bom_id.bom_line_ids">
+              <tr>
+                <td class="borderLeft">&amp;nbsp;</td>
+                <td class="noBorder" colspan="2">Zubehörteile</td>
+                <td class="noBorder">Menge / St.</td>
+                <td class="borderRight">Artikel-Nr.</td>
+              </tr>
+              <t t-foreach="o.bom_id.bom_line_ids" t-as="line4">
+                <t t-if="line4.workcenter_id.name == 'Extern'">
+                  <tr>
+                    <td class="borderLeft">
+                      &amp;nbsp;
+                    </td>
+                    <td colspan="2" class="noBorder">
+                      <span t-field="line4.product_id.name"/>
+                    </td>
+                    <td class="noBorder">
+                      <span t-field="line4.product_qty"/>
+                    </td>
+                    <td class="borderRight">
+                      <span t-field="line4.product_id.code"/>
+                    </td>
+                  </tr>
+                </t>
+              </t>
+            </t>
+
+            <tr>
+              <td rowspan="2" colspan="2">
+                <b>gefertigte Stückzahl</b><br/>
+                Menge, Datum, Name
+              </td>
+              <td colspan="3" style="height:2cm">
+                Maschine rüsten<br/>Datum, Name
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3" style="height:2cm">
+                Maschine abrüsten<br/>Datum, Name
+              </td>
+            </tr>
+          </table>
+        </div>
       </xpath>
     </template>
   </data>

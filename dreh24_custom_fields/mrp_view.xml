@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <!-- Additional fields -->
+    <record id="mrp_bom_form" model="ir.ui.view">
+      <field name="name">mrp.bom.form.weippert</field>
+      <field name="model">mrp.bom</field>
+      <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//label[@for='routing_id']" position="before">
+          <field name="farbe"/>
+        </xpath>
+        <xpath expr="//field[@name='product_rounding']" position="replace">
+          <field name="workcenter_id"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Add coworker to routing -->
+    <record id="mrp_workcenter_routing_coworker" model="ir.ui.view">
+      <field name="name">mrp.routing.workcenter.form.weippert</field>
+      <field name="model">mrp.routing.workcenter</field>
+      <field name="inherit_id" ref="mrp.mrp_routing_workcenter_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='cycle_nbr']" position="after">
+          <field name="coworker_id"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Swap cycles for coworker in workcenter_lines tree view -->
+    <record id="mrp_workcenter_routing_coworker_tree" model="ir.ui.view">
+      <field name="name">mrp.routing.workcenter.tree.weippert</field>
+      <field name="model">mrp.routing.workcenter</field>
+      <field name="inherit_id" ref="mrp.mrp_routing_workcenter_tree_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//field[@name='cycle_nbr']" position="replace">
+          <field name="coworker_id"/>
+        </xpath>
+      </field>
+    </record>
+
+    <!-- Add coworker to production workcenter lines views -->
+    <record id="mrp_production_workcenter_lines" model="ir.ui.view">
+      <field name="name">mrp.production.workcenter.lines.weippert</field>
+      <field name="model">mrp.production</field>
+      <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+      <field name="arch" type="xml">
+        <field name='workcenter_lines' position="replace">
+          <field name="workcenter_lines">
+            <form string="Production Work Centers">
+              <group col="4">
+                <field colspan="4" name="name"/>
+                <field name="workcenter_id"/>
+                <field name="sequence"/>
+                <field name="coworker_id"/>
+                <field name="hour" widget="float_time"/>
+              </group>
+            </form>
+            <tree string="Production Work Centers">
+              <field name="sequence"/>
+              <field name="name"/>
+              <field name="workcenter_id"/>
+              <field name="coworker_id"/>
+              <field name="hour" widget="float_time"/>
+            </tree>
+          </field>
+        </field>
+      </field>
+    </record>
+
+  </data>
+</openerp>

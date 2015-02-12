@@ -34,16 +34,20 @@ Custom fields Weippert
 * Wunschtermin für Lieferung
 * Referenz/Beschreibung
 * Zusätzliche Felder für Produkte (Fertigung, Kontraktdaten)
+* Zusätzliche Felder für Stückliste
+* Änderung Ansicht für Produkte und Aufträge
 
     """,
     'author': 'artmin - IT-Dienstleistungen',
     'website': 'http://it.artmin.de',
-    'depends': ['sale','product','stock','account','dreh24_reports','delivery'],
+    'depends': ['sale','product','stock','account','delivery'],
     'data': ['partner_sequence.xml',
         'partner_ref_view.xml',
         'sale_order_view.xml',
         'product_view.xml',
-        'stock_view.xml',],
+        'stock_view.xml',
+        'mrp_view.xml',
+        'security/ir.model.access.csv',],
     'demo_xml': [],
     'test': [],
     'installable': True,

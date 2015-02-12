@@ -7,7 +7,9 @@
 Reports for company dreh24 AG
         """,
     'author': 'IT - artmin',
-    'depends': ['product_so_uom','website_sale_delivery'],
+    'depends': ['product_so_uom',
+        'website_sale_delivery',
+        'dreh24_custom_fields'],
     'data': [
         'views/dreh24_layout.xml',
         'views/dreh24_reports.xml',

@@ -20,6 +20,7 @@
 ##############################################################################
 
 from openerp.osv import osv, fields
+from openerp import SUPERUSER_ID
 
 class weippert_product(osv.osv):
 
@@ -41,3 +42,4 @@ class weippert_product(osv.osv):
     }
 
 weippert_product()
+
