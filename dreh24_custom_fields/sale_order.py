@@ -64,6 +64,7 @@ class dreh24_sale_order(osv.osv):
           vals['incoterm'] = False
         return {'value' : vals }
 
+'''
 class weippert_sale_order_line(osv.osv):
   _inherit = 'sale.order.line'
   def product_id_change(self, cr, uid, ids, pricelist, product, qty=0,
@@ -86,4 +87,4 @@ class weippert_sale_order_line(osv.osv):
         val['name'] = product_obj.name
       return {'value' : val, 'domain' : res.get('domain'), 'warning' :
           res.get('warning') }
-
+'''

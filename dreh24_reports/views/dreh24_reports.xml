@@ -86,8 +86,7 @@
             <thead>
               <tr>
                 <th>Pos.</th>
-                <th>Artikelnr.</th>
-                <th>Artikelbezeichnung</th>
+                <th>Artikel</th>
                 <th>Menge</th>
                 <th>Einheit</th>
                 <th>Preis/Einheit</th>
@@ -97,7 +96,6 @@
             <tbody class="sale_tbody top">
               <tr t-foreach="o.order_line" t-as="l">
                 <td><span t-esc="l_index + 1"/></td>
-                <td><span t-field="l.product_id.default_code"/></td>
                 <td>
                   <span t-field="l.name"/>
                   <!-- info über verfügbarkeit -->
@@ -273,8 +271,7 @@
             <thead>
               <tr>
                 <th>Pos.</th>
-                <th>Artikelnr.</th>
-                <th>Artikelbezeichnung</th>
+                <th>Artikel</th>
                 <th>Menge</th>
                 <th>Einheit</th>
                 <th>Preis/Einheit</th>
@@ -284,7 +281,6 @@
             <tbody class="sale_tbody top">
               <tr t-foreach="o.invoice_line" t-as="l">
                 <td><span t-esc="l_index + 1"/></td>
-                <td><span t-field="l.product_id.default_code"/></td>
                 <td>
                   <span t-field="l.name"/>
                   <t t-if="l.product_id.zeichnung">
@@ -381,8 +377,7 @@
             <thead>
               <tr>
                 <th>Pos.</th>
-                <th>Artikelnr.</th>
-                <th>Artikelbezeichnung</th>
+                <th>Artikel</th>
                 <th>Einheit</th>
                 <th>Menge</th>
                 <th t-if="o.company_id.name != 'dreh24 AG'">Sachbearbeiter</th>
@@ -391,7 +386,6 @@
             <tbody>
               <tr t-foreach="o.move_lines" t-as="move">
                 <td class="bottom"><span t-esc="move_index + 1"/></td>
-                <td class="bottom"><span t-field="move.product_id.default_code"/></td>
                 <td class="bottom">
                   <t t-if="move.purchase_order_ref">
                     Auftragsnr. <b><span t-field="move.purchase_order_ref"/></b><br/>
