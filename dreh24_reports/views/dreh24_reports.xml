@@ -425,7 +425,7 @@
 
     <!-- Anfrage -->
     <template id="report_purchasequotation"
-      inherit_id="purchase.report_purchasequotation">
+      inherit_id="purchase.report_purchasequotation_document">
       <xpath expr="//div[@class='page']" position="replace">
         <div class="page">
           <t t-call="report.external_report_info"/>
@@ -437,7 +437,7 @@
                  t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
           <div t-if="o.picking_type_id.warehouse_id" class="vspace-xs">
-            <span t-field="o.picking_type_id.warehouse_id.name"/>
+            <!--span t-field="o.picking_type_id.warehouse_id.name"/-->
             <div t-field="o.picking_type_id.warehouse_id.partner_id"
               t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
@@ -474,7 +474,7 @@
     </template>
 
     <!-- Bestellung -->
-    <template id="report_purchaseorder" inherit_id="purchase.report_purchaseorder">
+    <template id="report_purchaseorder" inherit_id="purchase.report_purchaseorder_document">
       <xpath expr="//div[@class='page']" position="replace">
         <div class="page">
           <t t-call="report.external_report_info"/>
@@ -486,7 +486,7 @@
                  t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
           <div t-if="o.picking_type_id.warehouse_id" class="vspace-xs">
-            <span t-field="o.picking_type_id.warehouse_id.name"/>
+            <!-- span t-field="o.picking_type_id.warehouse_id.name"/-->
             <div t-field="o.picking_type_id.warehouse_id.partner_id"
               t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
