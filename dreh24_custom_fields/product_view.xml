@@ -22,6 +22,7 @@
             <group name="werkzeug">
               <field name="werkzeug_nr"/>
               <field name="verpackungsart" />
+              <field name="machine_nr"/>
             </group>
           </page>
         </page>

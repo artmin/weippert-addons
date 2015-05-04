@@ -35,6 +35,7 @@ class weippert_product(osv.osv):
         'box_menge' : fields.integer('Behälterinhalt', size=10),
         'werkzeug_nr' : fields.char('Werkzeugnummer', size=64),
         'verpackungsart' : fields.char('Verpackungsart', size=128),
+        'machine_nr' : fields.char('Maschinenbelegung', size=64),
         # Verkauf
         'kontrakt_nr' : fields.char('Kontraktnummer', size=32),
         'kontraktmenge' : fields.integer('Kontraktmenge', size=10),

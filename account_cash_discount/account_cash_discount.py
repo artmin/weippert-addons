@@ -99,3 +99,14 @@ class invoice_cash_discount(osv.osv):
         string='Rechnungsbetrag abzgl. Skonto',
         multi='cash_discount'),
       }
+
+'''class account_cash_discount_voucher(model.Model):
+  Adds possibility to book cash discount on voucher 
+  _columns = {
+        'payment_option':fields.selection([
+                                           ('without_writeoff', 'Keep Open'),
+                                           ('with_writeoff', 'Reconcile Payment Balance'),
+                                           ('cash_discount', 'Skonto buchen'),
+                                           ], 'Payment Difference', required=True, readonly=True, states={'draft': [('readonly', False)]}, help="This field helps you to choose what you want to do with the eventual difference between the paid amount and the sum of allocated amounts. You can either choose to keep open this difference on the partner's account, or reconcile it with the payment(s)"),
+      }
+      '''

@@ -45,7 +45,6 @@ Custom fields Weippert
         'partner_ref_view.xml',
         'sale_order_view.xml',
         'product_view.xml',
-        'stock_view.xml',
         'mrp_view.xml',
         'security/ir.model.access.csv',],
     'demo_xml': [],
