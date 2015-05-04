@@ -72,13 +72,13 @@
         </div>
       </div>
 
-      <div t-if="company.partner_id.name == 'dreh24 AG'" class="small grey clearleft" style="padding-top:3.5cm">
+      <div t-if="company.partner_id.name == 'dreh24 AG'" class="small grey clearleft" style="padding-top:1.2cm">
         <span t-field="company.partner_id.name"/> &amp;middot;
         <span t-field="company.partner_id.street"/> &amp;middot;
         <span t-field="company.partner_id.zip"/>
         <span t-field="company.partner_id.city"/>
       </div>
-      <div t-if="company.partner_id.name != 'dreh24 AG'" class="x-small grey clearleft" style="padding-top:3.5cm">
+      <div t-if="company.partner_id.name != 'dreh24 AG'" class="x-small grey clearleft" style="padding-top:1.2cm">
         <span t-field="company.partner_id.name"/> &amp;middot;
         <span t-field="company.partner_id.street"/> &amp;middot;
         <span t-field="company.partner_id.zip"/>
@@ -90,54 +90,53 @@
     <template id="external_layout_footer" inherit_id="report.external_layout_footer">
       <xpath expr="//div[@class='footer']" position="replace">
         <div class="footer">
-          <div t-if="company.partner_id.name != 'dreh24 AG'" class="fullwith right">
+          <div t-if="company.partner_id.name != 'dreh24 AG'" class="right">
             <img width="60" src="/dreh24_reports/static/src/img/tuev_cert.png"/>
           </div>
           <div class="fullwidth top small grey">
-              <div class="left hspace-s">
-                <span t-field="company.partner_id.name"/><br/>
-                <span t-field="company.partner_id.street"/><br/>
-                <span t-field="company.partner_id.zip"/>
-                <span t-field="company.partner_id.city"/> &amp;middot;
-                <span t-field="company.partner_id.country_id.name"/><br/>
-                Geschäftsführer: Günter Weippert<br/>
-                <span t-if="company.partner_id.name == 'dreh24 AG'">
-                  Handelsregister des Kantons Schaffhausen
-                </span>
-                <span t-if="company.partner_id.name != 'dreh24 AG'">
-                  Kommanditgesellschaft Sitz Öhringen<br/>
-                  <span t-field="company.company_registry"/>
-                </span>
-              </div>
-              <div class="left">
-                Tel. <span t-field="company.partner_id.phone"/><br/>
-                <span t-if="company.partner_id.fax">
-                  Fax <span t-field="company.partner_id.fax"/><br/>
-                </span>
-                Mail: <span t-field="company.partner_id.email"/><br/>
-                <span t-field="company.partner_id.website"/><br/>
-                <span t-if="company.partner_id.name == 'dreh24 AG'">
-                  Webshop<br/>
-                  <span t-field="company.company_registry"/>
-                </span>
-              </div>
-              <div class="right">
-                <span t-if="company.partner_id.name == 'dreh24 AG'">
-                  Bankverbindung<br/>
-                  CHF - IBAN: CH72 0078 2008 2076 2010 2<br/>
-                  EUR - IBAN: CH45 0078 2008 2076 2010 3<br/>
-                  BIC: SHKBCH2S<br/>
-                  MWST CHE-347.663.959<br/>
-                  MWST DE289 269 812
-                </span>
-                <span t-if="company.partner_id.name != 'dreh24 AG'">
-                  Bankverbindung<br/>
-                  IBAN&amp;nbsp;DE39&amp;nbsp;6225&amp;nbsp;1550&amp;nbsp;0000&amp;nbsp;0085&amp;nbsp;52<br/>
-                  BIC: SOLADES1KUN<br/>
-                  MWSt  DE257 950 463
-                </span>
-              </div>
-          </div>
+           <div class="left hspace-s">
+              <span t-field="company.partner_id.name"/><br/>
+              <span t-field="company.partner_id.street"/><br/>
+              <span t-field="company.partner_id.zip"/>
+              <span t-field="company.partner_id.city"/> &amp;middot;
+              <span t-field="company.partner_id.country_id.name"/><br/>
+              Geschäftsführer: Günter Weippert<br/>
+              <span t-if="company.partner_id.name == 'dreh24 AG'">
+                Handelsregister des Kantons Schaffhausen
+              </span>
+              <span t-if="company.partner_id.name != 'dreh24 AG'">
+                Kommanditgesellschaft Sitz Öhringen<br/>
+                <span t-field="company.company_registry"/>
+              </span>
+            </div>
+            <div class="left hspace-s">
+              Tel. <span t-field="company.partner_id.phone"/><br/>
+              <span t-if="company.partner_id.fax">
+                Fax <span t-field="company.partner_id.fax"/><br/>
+              </span>
+              <span t-field="company.partner_id.email"/><br/>
+              <span t-field="company.partner_id.website"/><br/>
+              <span t-if="company.partner_id.name == 'dreh24 AG'">
+                Webshop<br/>CH-290.3.017.680-7
+              </span>
+            </div>
+            <div class="right">
+              <span t-if="company.partner_id.name == 'dreh24 AG'">
+                Bankverbindung<br/>
+                CHF - IBAN: CH72 0078 2008 2076 2010 2<br/>
+                EUR - IBAN: CH45 0078 2008 2076 2010 3<br/>
+                BIC: SHKBCH2S<br/>
+                MWST CHE-347.663.959<br/>
+                MWST DE289 269 812
+              </span>
+              <span t-if="company.partner_id.name != 'dreh24 AG'">
+                Bankverbindung<br/>
+                IBAN&amp;#8239;DE39&amp;nbsp;6225&amp;#8239;1550&amp;#8239;0000&amp;#8239;0085&amp;#8239;52<br/>
+                BIC: SOLADES1KUN<br/>
+                MWSt  DE257 950 463
+              </span>
+            </div>
+         </div>
         </div>
       </xpath>
     </template>
@@ -198,8 +197,7 @@
         vertical-align: bottom;
         }
       .fullwidth {
-        clear:left;
-        clear:right;
+        clear:both;
         width: 100%;
         }
       .hspace-xs {
@@ -221,7 +219,7 @@
         margin-top: 0.6cm;
         }
       .vspace-m {
-        margin-top: 1.3cm
+        padding-top: 1.3cm
         }
       .vspace-l {
         margin-top: 2cm
@@ -276,12 +274,12 @@
       <field name="page_height">0</field>
       <field name="page_width">0</field>
       <field name="orientation">Portrait</field>
-      <field name="margin_top">20</field>
+      <field name="margin_top">40</field>
       <field name="margin_bottom">45</field>
-      <field name="margin_left">20</field>
+      <field name="margin_left">16</field>
       <field name="margin_right">16</field>
       <field name="header_line" eval="False" />
-      <field name="header_spacing">0</field>
+      <field name="header_spacing">20</field>
       <field name="dpi">75</field>
     </record>
   </data>

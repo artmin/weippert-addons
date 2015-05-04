@@ -21,7 +21,7 @@
  
           <!-- shipping address != invoice address -->
           <div t-if="o.state not in ['draft','sent']" 
-            class="right vspace-xs"
+            class="vspace-m"
             id="delivery"
             style="max-width:7cm;">
               <p>Lieferadresse:</p>
@@ -34,7 +34,7 @@
               <span t-field="o.partner_shipping_id.country_id.name"/>
           </div>
  
-          <div class="fullwidth" style="padding-top:1cm;clear:left">
+          <div class="fullwidth" style="padding-top:1cm">
             <span class="title hspace-xs"
               t-if="o.state not in ['draft','sent'] or o.payment_acquirer_id">
               Auftragsbest&amp;auml;tigung Nr.
@@ -83,7 +83,7 @@
           </div>
 
           <table class="fullwidth vspace-s">
-            <thead>
+            <thead class="fullwidth vspace-s">
               <tr>
                 <th>Pos.</th>
                 <th>Artikel</th>
@@ -97,10 +97,12 @@
               <tr t-foreach="o.order_line" t-as="l">
                 <td><span t-esc="l_index + 1"/></td>
                 <td>
-                  <span t-field="l.name"/>
+                  <div t-field="l.name"/>
+                  <t t-if="l.product_id.zeichnung">
+                    Zeichnung: <span t-field="l.product_id.zeichnung"/><br/>
+                  </t>
                   <!-- info über verfügbarkeit -->
                   <t t-if="l.product_id.categ_id.name != 'Versand'">
-                    <br/>
                     <!-- Anfrage -->
                     <t t-if="o.state in ['draft','sent']">
                       <t t-if="o.company_id.name == 'dreh24 AG'">
@@ -203,8 +205,9 @@
             <p t-if="o.company_id.name == 'dreh24 AG' and o.state in ['draft','sent']">
               Zwischenverkauf vorbehalten.
             </p>
-            <p t-if="o.payment_acquirer_id.name == 'Vorkasse' and o.state in ['draft','sent']">Überweisen Sie
-              den Betrag auf eines unserer Konten. Nach Geldeingang wird die Bestellung bearbeitet.
+            <p t-if="o.payment_acquirer_id.name == 'Vorkasse' and o.state in ['draft','sent']">
+              Überweisen Sie den Betrag unter Angabe der Kunden- und Auftragsnummer auf eines
+              unserer Konten. Nach Geldeingang wird die Bestellung bearbeitet.
             </p>
             <p t-if="o.payment_acquirer_id.name == 'Vorkasse' and o.state not in ['draft','sent']">
               Wir haben Ihre Zahlung erhalten und werden Ihre Bestellung bearbeiten.
@@ -255,13 +258,14 @@
           </div>
           
           <div t-if="o.type not in ['in_refund', 'in_invoice']" class="vspace-xs">
-            <span>Auftragsnr. </span>
-            <span t-if="o.name">
+            <t t-if="o.name and not '|' in o.name">
+              <span>Auftragsnr. </span>
               <span t-field="o.name"/>
               <!--span t-if="o.client_order_ref_date">
                 vom <span t-field="o.client_order_ref_date"/>
               </span-->
-            </span><br/>
+              <br/>
+            </t>
             <span t-if="o.partner_id.your_ref">
               Lieferanten-Nr. <span t-field="o.partner_id.your_ref"/>
             </span>
@@ -282,16 +286,13 @@
               <tr t-foreach="o.invoice_line" t-as="l">
                 <td><span t-esc="l_index + 1"/></td>
                 <td>
-                  <span t-field="l.name"/>
+                  <div t-field="l.name"/>
                   <t t-if="l.product_id.zeichnung">
-                    <br/>Zeichn. <span t-field="l.product_id.zeichnung"/>
+                    Zeichn. <span t-field="l.product_id.zeichnung"/>
                   </t>
                 </td>
-                <td><span t-esc="'%d' % l.quantity"/></td>
+                <td><span t-esc="'{0:.3g}'.format(l.quantity).replace('.',',')"/></td>
                 <td><span t-field="l.uos_id.name"/></td>
-                <!--td t-if="o.company_id.name == 'dreh24 AG'"><span t-field="l.price_unit"
-                    t-field-options='{"widget": "monetary", "display_currency": "o.currency_id"}'/>
-                </td-->
                 <td>
                   <span t-esc="str('%.4f' % l.price_unit).replace('.',',')"/> €
                 </td>
@@ -369,9 +370,9 @@
             </t>
           </div>
 
-          <div class="vspace-xs">
+          <!--div class="vspace-xs">
             Auftragsnr. <span t-field="o.client_order_ref"/>
-          </div>
+          </div-->
 
           <table class="fullwidth vspace-m">
             <thead>
@@ -423,7 +424,7 @@
       </xpath>
     </template>
 
-    <!-- Anfrage -->
+    <!-- Anfrage-->
     <template id="report_purchasequotation"
       inherit_id="purchase.report_purchasequotation_document">
       <xpath expr="//div[@class='page']" position="replace">
@@ -437,7 +438,6 @@
                  t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
           <div t-if="o.picking_type_id.warehouse_id" class="vspace-xs">
-            <!--span t-field="o.picking_type_id.warehouse_id.name"/-->
             <div t-field="o.picking_type_id.warehouse_id.partner_id"
               t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
@@ -463,8 +463,13 @@
             <tbody>
               <tr t-foreach="o.order_line" t-as="order">
                 <td class="top"><span t-esc="order_index + 1"/></td>
-                <td class="top"><span t-field="order.product_id.name"/></td>
-                <td class="top"><span t-field="order.product_qty"/></td>
+                <td class="top">
+                  <div t-field="order.product_id.name"/>
+                  <t t-if="order.product_id.zeichnung">
+                    Zeichn. <span t-field="order.product_id.zeichnung"/>
+                  </t>
+                </td>
+                <td class="top"><span t-esc="'{0:.3g}.format(order.product_qty"/></td>
               </tr>
             </tbody>
           </table>
@@ -486,7 +491,6 @@
                  t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
           <div t-if="o.picking_type_id.warehouse_id" class="vspace-xs">
-            <!-- span t-field="o.picking_type_id.warehouse_id.name"/-->
             <div t-field="o.picking_type_id.warehouse_id.partner_id"
               t-field-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": true}'/>
           </div>
@@ -512,8 +516,13 @@
             <tbody>
               <tr t-foreach="o.order_line" t-as="order">
                 <td class="top"><span t-esc="order_index + 1"/></td>
-                <td class="top"><span t-field="order.name"/></td>
-                <td class="top"><span t-field="order.product_qty"/></td>
+                <td class="top">
+                  <div t-field="order.name"/>
+                  <t t-if="order.product_id.zeichnung">
+                    Zeichn. <span t-field="order.product_id.zeichnung"/>
+                  </t>
+                </td>
+                <td class="top"><span t-esc="'{0:.3g}'.format(order.product_qty).replace('.',',')"/></td>
               </tr>
             </tbody>
           </table>
