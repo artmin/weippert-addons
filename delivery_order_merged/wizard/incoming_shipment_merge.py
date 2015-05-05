@@ -123,31 +123,33 @@ class delivery_order_merge(osv.osv_memory):
                          _('Merging is Not allowed on Done Orders.'))
             
             for move in line.move_lines:
+                '''
             	if  move.product_id.id in moves_product:
             		cr.execute("select sum(product_uom_qty) from stock_move where picking_id=%s and product_id=%s", (new_pick, move.product_id.id))
             		product_uom_qty = cr.fetchone()
             		new_qty = product_uom_qty[0] + move.product_uom_qty
             		cr.execute("update stock_move set product_uom_qty = %s where picking_id=%s and product_id=%s", (new_qty,new_pick, move.product_id.id))
             	else:
-	            	move_obj.create(cr, uid,{
-				            'name': move.name or '',
-				            'product_id': move.product_id and move.product_id.id or False,
-				            'product_uom_qty': move.product_uom_qty,
-				            'product_uos_qty': move.product_uos_qty,
-				            'product_uom': move.product_uom and move.product_uom.id or False,
-				            'product_uos': move.product_uos and move.product_uos.id or False,
-				            'date': move.date,
-				            'date_expected': move.date_expected,
-				            'location_id':move.location_id and move.location_id.id or False,
-				            'location_dest_id':move.location_dest_id and move.location_dest_id.id or False,
-				            'picking_id': new_pick,
-				            'partner_id': move.partner_id and move.partner_id.id or False,
-				            'move_dest_id': move.move_dest_id and move.move_dest_id.id or False,
-				            'state': move.state,
-				            'company_id': move.company_id.id,
-				            'price_unit': move.price_unit,
-	        			}, context=context)
-	            	moves_product.append(move.product_id.id)
+                '''
+                move_obj.create(cr, uid,{
+                        'name': move.name or '',
+                        'product_id': move.product_id and move.product_id.id or False,
+                        'product_uom_qty': move.product_uom_qty,
+                        'product_uos_qty': move.product_uos_qty,
+                        'product_uom': move.product_uom and move.product_uom.id or False,
+                        'product_uos': move.product_uos and move.product_uos.id or False,
+                        'date': move.date,
+                        'date_expected': move.date_expected,
+                        'location_id':move.location_id and move.location_id.id or False,
+                        'location_dest_id':move.location_dest_id and move.location_dest_id.id or False,
+                        'picking_id': new_pick,
+                        'partner_id': move.partner_id and move.partner_id.id or False,
+                        'move_dest_id': move.move_dest_id and move.move_dest_id.id or False,
+                        'state': move.state,
+                        'company_id': move.company_id.id,
+                        'price_unit': move.price_unit,
+                    }, context=context)
+                moves_product.append(move.product_id.id)
                 
             pick_obj.write(cr, uid, [new_pick], {'invoice_state': line.invoice_state, 'state': line.state, 'partner_id': line.partner_id and line.partner_id.id or False,'origin':origin}, context=context)
             origin += '-'

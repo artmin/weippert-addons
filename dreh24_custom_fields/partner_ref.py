@@ -38,8 +38,6 @@ class artmin_partner_reference(osv.osv):
     
     def create(self, cr, uid, vals, context=None):
         if not 'ref' in vals and not 'parent_id' in vals:
-          # Get sequence
-          ref = self.pool.get('ir.sequence').get(cr, uid, 'artmin.partner.ref')
           # Get company id from from if available
           if vals.get('company_id'):
             company = self.pool.get('res.company').browse(cr, uid, vals['company_id'], context=context)
@@ -49,6 +47,8 @@ class artmin_partner_reference(osv.osv):
             company = self.pool.get('res.company').browse(cr, uid, user.company_id.id, context=context)
           # Construct customer reference according to company
           if company.name:
+            # Get sequence
+            ref = self.pool.get('ir.sequence').get(cr, uid, 'artmin.partner.ref')
             if company.name == 'dreh24 AG':
               vals['ref'] = 'D' + str(ref)
             elif company.name == 'Weippert Kunststofftechnik GmbH & Co. KG':
