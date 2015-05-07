@@ -39,10 +39,10 @@
       <xpath expr="//h4[@class='oe_price_h4 css_editable_mode_hidden']" position="replace">
         <h4 class="oe_price_h4 css_editable_mode_hidden">
           <t t-if="country_id != 'CH'">
-            <t t-set="pack_price" t-value="compute_currency(product.price * product.product_variant_ids.uom_so_id.factor_inv / 100)"/>
+            <t t-set="pack_price" t-value="compute_currency(product.price * product.product_variant_ids.uom_so_id.factor_inv)"/>
           </t>
           <t t-if="country_id == 'CH'">
-            <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.product_variant_ids.uom_so_id.factor_inv / product.product_variant_ids.uom_id.factor_inv)"/>
+            <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.product_variant_ids.uom_so_id.factor_inv)"/>
           </t>
           <b t-if="country_id == 'CH'" itemprop="priceCurrency">CHF</b>
           <b class="oe_price" style="white-space: nowrap;" t-esc="str('%.2f' % pack_price).replace('.',',')"/>
@@ -79,6 +79,9 @@
            "display_currency": "website_sale_order.pricelist_id.currency_id"
            }'/> 
       </xpath>
+      <xpath expr="//div[@id='payment_method']//ul" position="after">
+        <div>Bezahlung auf Rechnung auf Anfrage</div>
+      </xpath>
    </template>
 
    <!-- Website delivery -->
@@ -101,8 +104,9 @@
     <template id="website_products_so_unit"
       inherit_id="website_sale.products_description">
       <xpath expr="//div[@itemprop='description']" position="before">
-        <div t-if="country_id != 'CH'">Preis / 100 Stück: <span t-field="product.list_price"/> €</div>
-        <div t-if="country_id == 'CH'">Preis / 100 Stück: CHF <span t-field="product.list_price_ch"/></div>
+        <div t-if="country_id != 'CH'">Preis / Stück: <span t-field="product.list_price"/> €</div>
+        <div t-if="country_id == 'CH'">Preis / Stück: CHF <span t-field="product.list_price_ch"/></div>
+        <div>Verpackungseinheit: <span t-field="product.product_variant_ids[0].uom_so_id.name"/></div>
       </xpath>
     </template>
 
@@ -117,7 +121,7 @@
       <xpath expr="//p[@t-field='product.description_sale']" position="replace">
         <div class="text-muted">
           <div class="text-muted">
-              Preis / 100 Stück: 
+              Preis / Stück: 
               <t t-if="country_id == 'CH'">
                 CHF <span t-field="product.list_price_ch"/>
               </t>

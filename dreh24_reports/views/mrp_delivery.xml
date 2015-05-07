@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+
+    <template id="mrp_report_picking">
+      <t t-call="report.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="report.external_layout">
+            <div class="page">
+              <!--t t-call="report.external_report_info"/-->
+
+              <!-- Addressee -->
+              <div class="vspace-xs" t-field="o.product_id.property_stock_production.partner_id.name"/>
+              <div t-field="o.product_id.property_stock_production.partner_id.street"/>
+              <span t-field="o.product_id.property_stock_production.partner_id.zip"/>
+              <span t-field="o.product_id.property_stock_production.partner_id.city"/>
+           
+              <div class="fullwidth vspace-l">
+                <span class="title hspace-s">Lieferschein</span>
+                <span class="hspace-s"> vom </span>
+                <span class="hspace-m" t-esc="datetime.date.today().strftime('%d.%m.%Y')"/>
+              </div>
+
+              <div class="vspace-s">
+                Für die Produktion von
+                <span t-esc="'{:.3g}'.format(o.product_qty)"/>
+                <span t-field="o.product_uom"/>
+                <span t-field="o.product_id.name"/>
+              </div>
+
+              <table class="fullwidth vspace-s">
+                <thead>
+                  <tr>
+                    <th>Pos.</th>
+                    <th>Artikel</th>
+                    <th>Menge</th>
+                    <th>Einheit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <t t-set="i" t-value="1"/>
+                  <t t-foreach="o.bom_id.bom_line_ids" t-as="line">
+                    <tr t-if="line.workcenter_id.name == 'Extern'">
+                      <td class="bottom"><span t-esc="i"/></td>
+                      <t t-set="i" t-value="i+1"/>
+                      <td class="bottom"><span t-field="line.product_id.name"/></td>
+                      <td class="bottom"><span t-esc="'{0:.3g}'.format(line.product_qty).replace('.',',')"/></td>
+                      <td class="bottom"><span t-field="line.product_uom.name"/></td>
+                    </tr>
+                  </t>
+                </tbody>
+              </table>
+            </div>
+          </t>
+        </t>
+      </t>
+    </template>
+  </data>
+</openerp>

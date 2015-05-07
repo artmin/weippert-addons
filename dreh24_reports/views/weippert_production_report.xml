@@ -40,7 +40,8 @@
                 <span t-field="o.product_id.alte_zeichnung"/>
               </td>
               <td>
-                Maschine
+                Maschine<br/>
+                <span t-field="o.product_id.machine_nr"/>
               </td>
             </tr>
             <tr>

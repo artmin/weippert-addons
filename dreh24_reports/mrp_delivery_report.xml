@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+  <data>
+    <report 
+        id="mrp_delivery"
+        model="mrp.production"
+        string="Lieferschein"
+        report_type="qweb-pdf"
+        name="dreh24_reports.mrp_report_picking"
+        file="Lieferschein"
+        attachment_use="True"
+        attachment="'Lieferschein_'+object.name+'.pdf'"
+    />
+  </data>
+</openerp>

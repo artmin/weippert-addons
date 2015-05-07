@@ -14,6 +14,8 @@ Reports for company dreh24 AG
         'views/dreh24_layout.xml',
         'views/dreh24_reports.xml',
         'views/weippert_production_report.xml',
+        'views/mrp_delivery.xml',
+        'mrp_delivery_report.xml',
     ],
     'installable': True,
     'auto-install' : False,
