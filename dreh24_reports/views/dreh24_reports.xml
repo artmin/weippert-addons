@@ -344,7 +344,7 @@
           </div>
             
           <!-- Versandart, -bedingungen und Zahlungsbedingungen -->
-          <div class="vspace-s" t-if="o.payment_term and o.payment_term.discount_rate == 0.0">
+          <div id="payment_term" class="vspace-s" t-if="o.payment_term and o.payment_term.discount_rate == 0.0">
             Zahlungsbedinungen: <span t-field="o.payment_term.note"/>
           </div>
           <div class="vspace-xs" t-field="o.comment"/>
@@ -397,9 +397,7 @@
             </div>
           </div>
           <!-- Check for partner Bürkert -->
-          <t t-if="o.partner_id.parent_id" t-set="partner" t-value="o.partner_id.parent_id"/>
-          <t t-if="not o.partner_id.parent_id" t-set="partner" t-value="o.partner_id"/>
-          <div t-if="partner.name[0] == 'B' and partner.name[2:7] == 'rkert'" class="vspace-s">
+          <div t-if="o.partner_id.parent_id.name[0] == 'B' and o.partner_id.parent_id.name[2:7] == 'rkert'" class="vspace-s">
             Die Artikel sind RoHS konform.
           </div>
           <div t-if="o.weight != 0.0" class="vspace-s">
