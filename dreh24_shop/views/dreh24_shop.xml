@@ -20,10 +20,10 @@
         <t t-if="country_id != 'CH'">
             <t t-set="pack_price" t-value="compute_currency(product.price * product.product_variant_ids.uom_so_id.factor_inv / product.uom_id.factor_inv)"/>
         </t>
-        <t t-if="'CH' in country_id">
+        <t t-if="country_id == 'CH'">
             <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.product_variant_ids.uom_so_id.factor_inv / product.uom_id.factor_inv)"/>
         </t>
-        <b t-if="country_id in 'CH'" itemprop="priceCurrency">CHF</b>
+        <b t-if="country_id == 'CH'" itemprop="priceCurrency">CHF</b>
         <b class="oe_price" style="white-space: nowrap;" t-esc="str('%.2f' % pack_price).replace('.',',')"/>
         <t t-if="country_id != 'CH'"><b itemprop="priceCurrency" t-esc="pricelist.currency_id.symbol"/></t>
         <span  t-if="country_id != 'CH'" style="margin-left:0.5cm; font-size:8pt; font-weight:normal;">
