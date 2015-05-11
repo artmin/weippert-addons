@@ -42,6 +42,9 @@
       <t t-if="not o or not 'company_id' in o">
           <t t-set="company" t-value="res_company"/>
       </t>
+
+      <img t-if="company.logo" t-att-src="'data:image/png;base64,%s' % company.logo" style="max-width:7.5cm;max-height:1.1cm;"/>
+
       <div class="right grey" id="info">
         <span t-if="company.partner_id.name != 'dreh24 AG'">
           Weippert Kunststofftechnik<br/>
@@ -72,13 +75,13 @@
         </div>
       </div>
 
-      <div t-if="company.partner_id.name == 'dreh24 AG'" class="small grey clearleft" style="padding-top:1.2cm">
+      <div t-if="company.partner_id.name == 'dreh24 AG'" class="small grey clearleft" style="margin-top:2cm">
         <span t-field="company.partner_id.name"/> &amp;middot;
         <span t-field="company.partner_id.street"/> &amp;middot;
         <span t-field="company.partner_id.zip"/>
         <span t-field="company.partner_id.city"/>
       </div>
-      <div t-if="company.partner_id.name != 'dreh24 AG'" class="x-small grey clearleft" style="padding-top:1.2cm">
+      <div t-if="company.partner_id.name != 'dreh24 AG'" class="x-small grey clearleft" style="margin-top:2cm">
         <span t-field="company.partner_id.name"/> &amp;middot;
         <span t-field="company.partner_id.street"/> &amp;middot;
         <span t-field="company.partner_id.zip"/>
@@ -141,13 +144,10 @@
       </xpath>
     </template>
 
-    <!-- Override external header, only show logo -->
+    <!-- Override external header, leave empty -->
     <template id="report.external_layout_header">
       <div class="header" style="text-align:left;">
-        <img t-if="company.logo" 
-          t-att-src="'data:image/png;base64,%s' % company.logo" 
-          style="width:281px"/>
-      </div>
+     </div>
     </template>
 
     <!-- Override style sheets -->
@@ -274,12 +274,12 @@
       <field name="page_height">0</field>
       <field name="page_width">0</field>
       <field name="orientation">Portrait</field>
-      <field name="margin_top">40</field>
+      <field name="margin_top">20</field>
       <field name="margin_bottom">45</field>
       <field name="margin_left">16</field>
       <field name="margin_right">16</field>
       <field name="header_line" eval="False" />
-      <field name="header_spacing">20</field>
+      <field name="header_spacing">0</field>
       <field name="dpi">75</field>
     </record>
   </data>

@@ -5,7 +5,8 @@
       id="report_saleorder_dreh24" inherit_id="sale.report_saleorder_document">
       <xpath expr="//div[@class='page']" position="replace">
         <div class="page">
-          <t t-call="report.external_report_info"/>
+  
+        <t t-call="report.external_report_info"/>
           
           <div class="vspace-xs clearleft left" id="addressee">
             <div t-if="not o.partner_invoice_id.is_company" 
