@@ -41,29 +41,18 @@ class stock_picking(osv.osv):
           _first_product,
           type='char',
           string="Artikel"),
+        'client_order_ref' : fields.related(
+            'sale_id',
+            'client_order_ref',
+            type="char",
+            relation="sale.order",
+            string="Bestellnummer",
+            store=False),
+        'custom_delivery_date' : fields.related(
+            'sale_id',
+            'custom_delivery_date',
+            type="date",
+            relation="sale.order",
+            string="Wunschtermin Lieferung",
+            store=False),
         }
-       
-    # Get custom delivery date from sales order
-    def _picking_assign(self, cr, uid, move_ids, procurement_group, location_from, location_to, context=None):
-
-        # Call super function
-        res = super(stock_move, self)._picking_assign(cr, uid, move_ids, procurement_group, location_from, location_to, context=context)
-
-        # Get move id
-        move = self.browse(cr, uid, move_ids, context=context)[0]
-
-        # Get the values from the move
-        order_obj = self.pool.get("sale.order")
-        order_id = order_obj.search(cr, uid, [('name','=', move.origin)], context=context)
-        vals = order_obj.read(cr, uid, order_id, ['custom_delivery_date'])
-
-        # Get delivery date
-        for value in vals:
-            if value.has_key('custom_delivery_date'):
-                order_ref = value['custom_delivery_date']
-        # If exists client reference update stock picking client_order_ref field
-        if (len(vals) > 0) and order_ref:
-            stock_pick_obj = self.pool.get("stock.picking")
-            stock_pick_id = stock_pick_obj.search(cr, uid, [('origin', '=', move.origin)], context=context)
-            stock_pick_obj.write(cr, uid, stock_pick_id, {'min_date': order_ref}, context=context)
-        return

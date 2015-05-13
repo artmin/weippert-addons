@@ -18,10 +18,10 @@
       <!-- Choose price of sales price unit and add gross price -->
       <xpath expr="//div[@itemprop='offers']/b" position="replace">
         <t t-if="country_id != 'CH'">
-            <t t-set="pack_price" t-value="compute_currency(product.price * product.product_variant_ids.uom_so_id.factor_inv / product.uom_id.factor_inv)"/>
+            <t t-set="pack_price" t-value="compute_currency(product.price * product.uos_coeff)"/>
         </t>
         <t t-if="country_id == 'CH'">
-            <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.product_variant_ids.uom_so_id.factor_inv / product.uom_id.factor_inv)"/>
+            <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.uos_coeff)"/>
         </t>
         <b t-if="country_id == 'CH'" itemprop="priceCurrency">CHF</b>
         <b class="oe_price" style="white-space: nowrap;" t-esc="str('%.2f' % pack_price).replace('.',',')"/>
@@ -39,10 +39,10 @@
       <xpath expr="//h4[@class='oe_price_h4 css_editable_mode_hidden']" position="replace">
         <h4 class="oe_price_h4 css_editable_mode_hidden">
           <t t-if="country_id != 'CH'">
-            <t t-set="pack_price" t-value="compute_currency(product.price * product.product_variant_ids.uom_so_id.factor_inv)"/>
+            <t t-set="pack_price" t-value="compute_currency(product.price * product.uos_coeff)"/>
           </t>
           <t t-if="country_id == 'CH'">
-            <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.product_variant_ids.uom_so_id.factor_inv)"/>
+            <t t-set="pack_price" t-value="compute_currency(product.list_price_ch * product.uos_coeff)"/>
           </t>
           <b t-if="country_id == 'CH'" itemprop="priceCurrency">CHF</b>
           <b class="oe_price" style="white-space: nowrap;" t-esc="str('%.2f' % pack_price).replace('.',',')"/>
@@ -59,7 +59,7 @@
     <template id="website_payment" inherit_id="website_sale.payment">
       <xpath expr="//td[@t-if='line.product_id.product_tmpl_id']//strong" position="replace">
         <strong t-field="line.product_id.name"/><br/>
-        Verpackungseinheit: <span t-field="line.product_id.uom_so_id.name"/>
+        Verpackungseinheit: <span t-field="line.product_id.uom_so_id"/>
       </xpath>
       <xpath expr="//div[@t-field='acquirer.pre_msg']" position="after">
         <div>
@@ -106,7 +106,7 @@
       <xpath expr="//div[@itemprop='description']" position="before">
         <div t-if="country_id != 'CH'">Preis / Stück: <span t-field="product.list_price"/> €</div>
         <div t-if="country_id == 'CH'">Preis / Stück: CHF <span t-field="product.list_price_ch"/></div>
-        <div>Verpackungseinheit: <span t-field="product.product_variant_ids[0].uom_so_id.name"/></div>
+        <div>Verpackungseinheit: <span t-field="product.uos_id"/></div>
       </xpath>
     </template>
 
@@ -118,18 +118,20 @@
             t-field-options='{"widget": "image", "class": "product_detail_img"}'/>
         </div>
       </xpath>
+      <!-- add price per piece and unit of sale for product description -->
       <xpath expr="//p[@t-field='product.description_sale']" position="replace">
         <div class="text-muted">
-          <div class="text-muted">
-              Preis / Stück: 
-              <t t-if="country_id == 'CH'">
-                CHF <span t-field="product.list_price_ch"/>
-              </t>
-              <t t-if="country_id != 'CH'">
-                <span t-field="product.list_price"/> €
-              </t>
-              <p t-field="product.description_sale" class="text-muted"/>
-          </div>          
+          <br/>Preis / Stück: 
+          <t t-if="country_id == 'CH'">
+            CHF <span t-field="product.list_price_ch"/>
+          </t>
+          <t t-if="country_id != 'CH'">
+            <span t-field="product.list_price"/> €
+          </t>
+          <br/>Verpackungseinheit: <span t-field="product.uos_id"/>
+          <t t-if="product.description_sale">
+            <p t-field="product.description_sale"/>
+          </t>
         </div>
       </xpath>
       <!-- Technical information -->
