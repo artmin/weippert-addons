@@ -7,7 +7,7 @@
         <t t-foreach="docs" t-as="o">
           <t t-call="report.external_layout">
             <div class="page">
-              <!--t t-call="report.external_report_info"/-->
+              <t t-call="report.external_report_info"/>
 
               <!-- Addressee -->
               <div class="vspace-xs" t-field="o.product_id.property_stock_production.partner_id.name"/>
@@ -26,6 +26,7 @@
                 <span t-esc="'{:.3g}'.format(o.product_qty)"/>
                 <span t-field="o.product_uom"/>
                 <span t-field="o.product_id.name"/>
+                [<span t-field="o.product_id.code"/>]
               </div>
 
               <table class="fullwidth vspace-s">
@@ -44,7 +45,7 @@
                       <td class="bottom"><span t-esc="i"/></td>
                       <t t-set="i" t-value="i+1"/>
                       <td class="bottom"><span t-field="line.product_id.name"/></td>
-                      <td class="bottom"><span t-esc="'{0:.3g}'.format(line.product_qty).replace('.',',')"/></td>
+                      <td class="bottom"><span t-esc="'{0:.8g}'.format(line.product_qty * o.product_qty).replace('.',',')"/></td>
                       <td class="bottom"><span t-field="line.product_uom.name"/></td>
                     </tr>
                   </t>
