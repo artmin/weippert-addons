@@ -63,4 +63,3 @@ class dreh24_sale_order(osv.osv):
         else:
           vals['incoterm'] = False
         return {'value' : vals }
-
