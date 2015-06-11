@@ -104,7 +104,7 @@
     <template id="website_products_so_unit"
       inherit_id="website_sale.products_description">
       <xpath expr="//div[@itemprop='description']" position="before">
-        <div t-if="country_id != 'CH'">Preis / Stück: <span t-field="product.list_price"/> €</div>
+        <div t-if="country_id != 'CH'">Preis / Stück: <span t-field="product.price"/> €</div>
         <div t-if="country_id == 'CH'">Preis / Stück: CHF <span t-field="product.list_price_ch"/></div>
         <div>Verpackungseinheit: <span t-field="product.uos_id"/></div>
       </xpath>
