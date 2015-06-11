@@ -23,7 +23,7 @@
 
               <div class="vspace-s">
                 Für die Produktion von
-                <span t-esc="'{:.3g}'.format(o.product_qty)"/>
+                <span t-esc="'{:.8g}'.format(o.product_qty)"/>
                 <span t-field="o.product_uom"/>
                 <span t-field="o.product_id.name"/>
                 [<span t-field="o.product_id.code"/>]
