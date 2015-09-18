@@ -54,16 +54,20 @@
           </div>
           
           <div class="vspace-xs">
-            <span t-if="o.state in ['draft','sent'] and not o.payment_acquirer_id">Ihre Anfrage </span>
-            <span t-if="o.state not in ['draft','sent'] or o.payment_acquirer_id">Ihre Bestellung</span>
-            <span t-field="o.client_order_ref"/>
-            <span t-if="o.client_order_ref_date">
-              vom <span t-field="o.client_order_ref_date"/>
-            </span>
-            <br/>
-            <span t-if="o.partner_id.your_ref">
-              Lieferanten-Nr. <span t-field="o.partner_id.your_ref"/>
-            </span>
+            <!-- Nur Hinweis zu Bestellung / Anfrage geben, wenn Auftrag nicht
+                 über den Shop kommt -->
+            <t t-if="not o.payment_acquirer_id">
+              <span t-if="o.state in ['draft','sent'] and not o.payment_acquirer_id">Ihre Anfrage </span>
+              <span t-if="o.state not in ['draft','sent'] or o.payment_acquirer_id">Ihre Bestellung</span>
+              <span t-field="o.client_order_ref"/>
+              <span t-if="o.client_order_ref_date">
+                vom <span t-field="o.client_order_ref_date"/>
+              </span>
+              <br/>
+              <span t-if="o.partner_id.your_ref">
+                Lieferanten-Nr. <span t-field="o.partner_id.your_ref"/>
+              </span>
+            </t>
           </div>
           
           <div t-if="o.state in ['draft','sent'] and o.company_id.name == 'dreh24 AG' and not o.payment_acquirer_id" 
