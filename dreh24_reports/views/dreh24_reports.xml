@@ -83,7 +83,10 @@
           <div t-if ="o.payment_acquirer_id and o.company_id.name == 'dreh24 AG'" class="vspace-xs">
             Wir bedanken uns für Ihre Bestellung.
           </div>
-
+          <p t-if="o.company_id.name == 'dreh24 AG' and o.state in ['draft','sent']">
+            Zwischenverkauf vorbehalten.
+          </p>
+ 
           <table class="fullwidth vspace-s">
             <thead class="fullwidth vspace-s">
               <tr>
@@ -204,10 +207,7 @@
                 Der Empfänger bestätigt, die Gegenstände für sein Unternehmen erworben zu haben.
               </div>
             </p>
-            <p t-if="o.company_id.name == 'dreh24 AG' and o.state in ['draft','sent']">
-              Zwischenverkauf vorbehalten.
-            </p>
-            <p t-if="o.payment_acquirer_id.name == 'Vorkasse' and o.state in ['draft','sent']">
+           <p t-if="o.payment_acquirer_id.name == 'Vorkasse' and o.state in ['draft','sent']">
               Überweisen Sie den Betrag unter Angabe der Kunden- und Auftragsnummer auf eines
               unserer Konten. Nach Geldeingang wird die Bestellung bearbeitet.
             </p>
