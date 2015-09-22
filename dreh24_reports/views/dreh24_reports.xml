@@ -70,21 +70,18 @@
             </t>
           </div>
           
+          <!-- Angebot von dreh24 nicht über den shop. -->
           <div t-if="o.state in ['draft','sent'] and o.company_id.name == 'dreh24 AG' and not o.payment_acquirer_id" 
             class="vspace-xs">
-            Wir bedanken uns für Ihre Anfrage und bieten freibleibend,
-            ausschließlich zu unseren Liefer- und Zahlungsbedingungen an.
-            Diese finden Sie auf unserer Internetseite – www.dreh24.com
+            Wir bedanken uns für Ihre Anfrage und bieten freibleibend an.
           </div>
-
+          <!-- Angebot von Weippert Kunststofftechnik -->
           <div t-if="o.state in ['draft','sent'] and o.company_id.name != 'dreh24 AG'">
             Wir bedanken uns für Ihre Anfrage und bieten freibleibend an.
           </div>
-
+          <!-- Bestellung bei dreh24 über den Shop -->
           <div t-if ="o.payment_acquirer_id and o.company_id.name == 'dreh24 AG'" class="vspace-xs">
-            Wir bedanken uns für Ihre Bestellung. Die Lieferung erfolgt 
-            ausschließlich zu unseren Liefer- und Zahlungsbedingungen. 
-            Diese finden Sie auf unserer Internetseite – www.dreh24.com
+            Wir bedanken uns für Ihre Bestellung.
           </div>
 
           <table class="fullwidth vspace-s">
