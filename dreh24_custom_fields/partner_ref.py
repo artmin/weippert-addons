@@ -24,7 +24,7 @@ from openerp.osv import osv, fields
 class artmin_partner_reference(osv.osv):
 
     _inherit = 'res.partner'
-    _description = "artmin - partner reference"
+    _description = "Automatische Vergabe von Kundennummern"
 
     _columns = {
         'your_ref' : fields.char('Kunden/Lieferanten-Nr.', size=64),
@@ -37,26 +37,25 @@ class artmin_partner_reference(osv.osv):
     }
     
     def create(self, cr, uid, vals, context=None):
-        if not 'ref' in vals and not 'parent_id' in vals:
-          # Get company id from from if available
-          if vals.get('company_id'):
-            company = self.pool.get('res.company').browse(cr, uid, vals['company_id'], context=context)
-          # If no company is set, get company from user    
-          else:
-            user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
-            company = self.pool.get('res.company').browse(cr, uid, user.company_id.id, context=context)
-          # Construct customer reference according to company
-          if company.name:
-            # Get sequence
-            ref = self.pool.get('ir.sequence').get(cr, uid, 'artmin.partner.ref')
-            if company.name == 'dreh24 AG':
-              vals['ref'] = 'D' + str(ref)
-            elif company.name == 'Weippert Kunststofftechnik GmbH & Co. KG':
-              vals['ref'] = 'W' + str(ref)
+        # Only assert partner references to "real" customers not contacts and if
+        # reference ha not been entered manually already
+        if not vals.get('parent_id') and not vals.get('ref'):
+            # Get company id from vals if available
+            if vals.get('company_id'):
+              company = self.pool.get('res.company').browse(cr, uid, vals['company_id'], context=context)
+            # If no company is set, get company from user    
             else:
-              vals['ref'] = 'N' + str(ref)
-          else:
-            vals['ref'] = 'N' + str(ref)
+              user = self.pool.get('res.users').browse(cr, uid, uid, context=context)
+              company = self.pool.get('res.company').browse(cr, uid, user.company_id.id, context=context)
+            # Construct customer reference according to company
+            if company.name:
+              # Get sequence
+              if company.name == 'dreh24 AG':
+                ref = self.pool.get('ir.sequence').get(cr, uid, 'partner.ref.dreh24')
+                vals['ref'] = 'D' + str(ref)
+              else:
+                ref = self.pool.get('ir.sequence').get(cr, uid, 'partner.ref.weippert')
+                vals['ref'] = 'W' + str(ref)
         return super(artmin_partner_reference, self).create(cr, uid, vals, context=context)
 
 artmin_partner_reference()

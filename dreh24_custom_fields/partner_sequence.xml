@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <openerp>
-	<data noupdate="1">
-		<record id="seq_type_master_item" model="ir.sequence.type">
-			<field name="name">artmin partner reference</field>
-			<field name="code">artmin.partner.ref</field>
+	<data noupdate="0">
+		<record id="seq_type_dreh24" model="ir.sequence.type">
+			<field name="name">Kundennummer dreh24</field>
+			<field name="code">partner.ref.dreh24</field>
 		</record>
-		<record id="seq_master_item" model="ir.sequence">
-			<field name="name">artmin partner reference</field>
-			<field name="code">artmin.partner.ref</field>
+		<record id="seq_master_dreh24" model="ir.sequence">
+			<field name="name">Kundennummer dreh24</field>
+			<field name="code">partner.ref.dreh24</field>
+			<field name="padding">7</field>
+                </record>
+                
+                <record id="seq_type_weippert" model="ir.sequence.type">
+			<field name="name">Kundennummer Weippert</field>
+			<field name="code">partner.ref.weippert</field>
+		</record>
+		<record id="seq_master_weippert" model="ir.sequence">
+			<field name="name">Kundennummer Weippert</field>
+			<field name="code">partner.ref.weippert</field>
 			<field name="padding">7</field>
 		</record>
+
 	</data>
 </openerp>
